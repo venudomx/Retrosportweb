@@ -390,6 +390,33 @@
       color:rgba(233,233,242,.55);
       font-size:12.5px;
     }
+
+    /* === MANGAS (radio pro) === */
+    .radio-group{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .radio-option{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      cursor:pointer;
+      padding:12px 12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      user-select:none;
+      transition: border .15s ease, background .15s ease, transform .06s ease;
+    }
+    .radio-option:hover{
+      border-color: rgba(139,92,246,.28);
+      background: rgba(139,92,246,.08);
+    }
+    .radio-option:active{transform: translateY(1px)}
+    .radio-option input{
+      accent-color: var(--green);
+    }
   </style>
 </head>
 
@@ -686,6 +713,23 @@
                 <option value="" disabled selected>Selecciona</option>
                 <option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
               </select>
+
+              <!-- === TIPO DE MANGA (AGREGADO) === -->
+              <div style="margin-top:12px">
+                <label>Tipo de manga</label>
+                <div class="radio-group">
+                  <label class="radio-option">
+                    <input type="radio" name="manga" value="Manga corta" checked>
+                    Manga corta
+                  </label>
+                  <label class="radio-option">
+                    <input type="radio" name="manga" value="Manga larga">
+                    Manga larga
+                  </label>
+                </div>
+                <div class="hint">Selecciona si la quieres de manga corta o manga larga.</div>
+              </div>
+              <!-- === FIN MANGA === -->
             </div>
           </div>
 
@@ -896,7 +940,7 @@
     </section>
 
     <div class="footer">
-      © <span id="year"></span> RetroSport 
+      © <span id="year"></span> RetroSport
     </div>
   </main>
 
@@ -907,7 +951,6 @@
     const WHATSAPP_NUMBER = "524445817329";
 
     // Si un dia renombras archivos, cambia aqui:
-    // const ASSETS = { hero:"hero.jpg", logo:"logo.png", product1:"jersey1.jpg" };
     const ASSETS = {
       hero: "IMG_1365.jpeg",
       logo: "IMG_1434.png",
@@ -919,9 +962,9 @@
     const LINKS = {
       instagram: "https://www.instagram.com/retrosportmx",
       facebook: "https://m.facebook.com/ElRetrosportMX/?",
-      linkedin: "https://www.linkedin.com/company/retrosport/",
-      x: "https://x.com/retrosportmx?s=21",
-      threads: "https://www.threads.com/@retrosportmx?igshid=NTc4MTIwNjQ2YQ=="
+      linkedin: "#",
+      x: "#",
+      threads: "#"
     };
 
     // =========================
@@ -964,7 +1007,7 @@
       a.addEventListener("click", ()=> mobilePanel.classList.remove("show"));
     });
 
-    // Smooth scroll (nice)
+    // Smooth scroll
     $$(".links a, .mobile-panel a").forEach(a=>{
       a.addEventListener("click", (e)=>{
         const href = a.getAttribute("href");
@@ -1019,7 +1062,6 @@
       items.forEach(item=>{
         item.addEventListener("click", ()=>{
           if(single){
-            // if grouped, ensure only within same group
             items.forEach(i=>{
               if(groupAttr){
                 if(i.dataset[groupAttr] === item.dataset[groupAttr]) i.classList.remove("selected");
@@ -1048,7 +1090,7 @@
     });
 
     // =========================
-    // Color preview (tries to resolve)
+    // Color preview
     // =========================
     const colorInput = $("#colorName");
     const swatch = $("#swatch");
@@ -1058,7 +1100,6 @@
       if(!name) return "";
       const t = name.trim().toLowerCase();
 
-      // Quick map (mejor que solo 4 opciones)
       const map = {
         "rojo":"red",
         "azul":"dodgerblue",
@@ -1079,8 +1120,6 @@
       };
 
       if(map[t]) return map[t];
-
-      // If user writes a valid CSS color name/hex, let browser try it
       return t;
     }
 
@@ -1088,7 +1127,6 @@
       const v = colorInput.value;
       const css = colorToCss(v);
 
-      // Validate color by trying to set it
       const test = document.createElement("div");
       test.style.color = css;
       const ok = test.style.color !== "";
@@ -1110,6 +1148,10 @@
         fullName: $("#fullName").value.trim(),
         product: $("#product").value.trim(),
         size: $("#size").value,
+
+        // === MANGA (AGREGADO) ===
+        manga: document.querySelector('input[name="manga"]:checked')?.value || "Manga corta",
+
         cityState: $("#cityState").value.trim(),
         qty: $("#qty").value,
         playerName: $("#playerName").value.trim(),
@@ -1138,6 +1180,10 @@
       lines.push("PRODUCTO");
       lines.push(`- Producto/Camisa: ${data.product}`);
       lines.push(`- Talla: ${data.size}`);
+
+      // === MANGA EN WHATSAPP (AGREGADO) ===
+      lines.push(`- Tipo de manga: ${data.manga}`);
+
       lines.push(`- Cantidad: ${data.qty}`);
       if(data.colorName) lines.push(`- Color/Variacion: ${data.colorName}`);
       if(data.playerName) lines.push(`- Jugador: ${data.playerName}`);
