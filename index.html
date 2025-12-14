@@ -1,409 +1,448 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Retro Sport | The classic never ends</title>
-  <meta name="description" content="Retro Sport: marca deportiva minorista y mayorista de productos originales, jerseys retro y ediciones especiales. Logistica, importacion y exportacion dentro y fuera de Mexico." />
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0b0b12" />
+  <title>Retro Sport</title>
   <style>
     :root{
-      --bg:#07090c;
-      --card:#0c1017;
-      --text:#e9eef7;
-      --muted:#a9b4c7;
-      --line:rgba(255,255,255,.08);
-
-      /* MORADO PREMIUM (acento) */
-      --accent:#7c3aed;
-      --accent2:#a78bfa;
-
+      --bg:#07070c;
+      --panel:#0c0c14cc;
+      --panel2:#0d0d18;
+      --text:#e9e9f2;
+      --muted:#b9b9c8;
+      --line:#1a1a2a;
+      --purple:#8b5cf6;
+      --purple2:#a78bfa;
+      --green:#25D366;
+      --green2:#19b957;
       --shadow: 0 18px 60px rgba(0,0,0,.55);
-      --radius: 18px;
-      --max: 1100px;
+      --radius: 22px;
     }
 
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+    html,body{height:100%}
     body{
       margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background:
-        radial-gradient(900px 500px at 50% -100px, rgba(124,58,237,.18), transparent 60%),
-        radial-gradient(700px 450px at 0% 20%, rgba(167,139,250,.12), transparent 60%),
-        var(--bg);
       color:var(--text);
-      line-height:1.55;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(900px 420px at 18% 15%, rgba(139,92,246,.22), transparent 60%),
+        radial-gradient(900px 420px at 82% 12%, rgba(167,139,250,.16), transparent 60%),
+        radial-gradient(900px 520px at 20% 90%, rgba(139,92,246,.10), transparent 55%),
+        linear-gradient(180deg, #06060a 0%, #070714 55%, #06060a 100%);
+      overflow-x:hidden;
     }
 
     a{color:inherit; text-decoration:none}
-    .wrap{max-width:var(--max); margin:0 auto; padding:0 18px;}
+    .container{width:min(1120px, 92vw); margin:0 auto}
 
-    /* Top bar */
-    .topbar{
-      position:sticky; top:0; z-index:10;
+    /* NAV */
+    .nav{
+      position:sticky; top:0; z-index:50;
       backdrop-filter: blur(10px);
-      background: rgba(7,9,12,.65);
-      border-bottom:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(10,10,16,.82), rgba(10,10,16,.55));
+      border-bottom: 1px solid rgba(255,255,255,.06);
     }
-    .topbar .inner{
+    .nav-inner{
       display:flex; align-items:center; justify-content:space-between;
-      gap:12px;
-      padding:12px 0;
+      padding:14px 0;
+      gap:14px;
     }
-
     .brand{
       display:flex; align-items:center; gap:10px;
-      font-weight:800;
-      letter-spacing:.4px;
-      min-width: 160px;
+      font-weight:700; letter-spacing:.3px;
     }
     .brand img{
-      width:34px; height:34px; object-fit:contain;
-      filter: drop-shadow(0 10px 25px rgba(0,0,0,.6));
+      width:28px; height:28px; object-fit:contain;
+      filter: drop-shadow(0 8px 20px rgba(139,92,246,.25));
     }
-
-    /* Desktop nav */
-    nav{
-      display:flex; gap:14px; flex-wrap:wrap;
+    .links{display:flex; gap:18px; align-items:center}
+    .links a{
       font-size:14px; color:var(--muted);
-      align-items:center;
+      padding:8px 10px; border-radius:12px;
     }
-    nav a{padding:8px 10px; border-radius:999px}
-    nav a:hover{background:rgba(255,255,255,.06); color:var(--text)}
+    .links a:hover{background:rgba(139,92,246,.10); color:var(--text)}
+    .nav-cta{display:flex; gap:10px; align-items:center}
+    .btn{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color:var(--text);
+      padding:10px 14px;
+      border-radius:14px;
+      font-weight:650;
+      cursor:pointer;
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      transition: transform .08s ease, background .15s ease, border .15s ease;
+      user-select:none;
+    }
+    .btn:hover{background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.16)}
+    .btn:active{transform: translateY(1px)}
+    .btn-wa{
+      background: linear-gradient(180deg, var(--green) 0%, var(--green2) 100%);
+      border-color: rgba(0,0,0,.12);
+      color:#07110a;
+      box-shadow: 0 16px 40px rgba(37,211,102,.20);
+    }
+    .btn-wa:hover{filter:brightness(1.02)}
+    .btn-dark{background: rgba(255,255,255,.02)}
+    .icon{width:18px; height:18px; display:inline-block}
 
     /* Mobile menu */
-    .menuBtn{
+    .burger{display:none}
+    .mobile-panel{
       display:none;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.06);
-      color: var(--text);
-      padding:10px 12px;
-      border-radius:12px;
-      cursor:pointer;
-      font-weight:800;
-      letter-spacing:.3px;
+      padding:10px 0 16px;
     }
-
-    .mobileNav{
-      display:none;
-      padding:0 0 14px;
-    }
-    .mobileNav a{
+    .mobile-panel a{
       display:block;
-      padding:12px 12px;
-      border-radius:12px;
+      padding:12px 10px;
+      border-radius:14px;
       color:var(--muted);
-      border:1px solid transparent;
-      margin-top:8px;
-      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.06);
+      background: rgba(255,255,255,.02);
+      margin-top:10px;
     }
-    .mobileNav a:hover{
-      color:var(--text);
-      border-color: rgba(167,139,250,.25);
+    .mobile-panel a:hover{color:var(--text); border-color:rgba(139,92,246,.25)}
+    @media (max-width: 860px){
+      .links{display:none}
+      .burger{display:inline-flex}
+      .mobile-panel.show{display:block}
     }
 
-    /* Hero */
-    .hero{padding:44px 0 22px;}
-    .heroGrid{
+    /* HERO */
+    .hero{
+      padding: 34px 0 26px;
+    }
+    .hero-grid{
       display:grid;
-      grid-template-columns: 1.05fr .95fr;
+      grid-template-columns: 1.2fr .8fr;
       gap:18px;
       align-items:stretch;
     }
-    .heroCard{
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns:1fr; }
+    }
+    .card{
       background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      border:1px solid var(--line);
+      border: 1px solid rgba(255,255,255,.07);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding:26px;
       overflow:hidden;
       position:relative;
     }
-    .kicker{
+    .card.pad{padding:22px}
+    .pill{
       display:inline-flex; gap:10px; align-items:center;
-      color:var(--muted);
-      font-size:13px;
-      border:1px solid var(--line);
-      padding:7px 10px;
-      border-radius:999px;
+      font-size:12px; color:var(--muted);
+      border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
+      padding:8px 12px; border-radius:999px;
+      margin-bottom:10px;
     }
-    .kicker b{color:var(--text)}
-    h1{
-      margin:14px 0 6px;
-      font-size:44px;
-      line-height:1.05;
-      letter-spacing:-.7px;
+    .title{
+      font-size:44px; line-height:1.05; margin:6px 0 10px;
+      letter-spacing:-.8px;
     }
-    .slogan{margin:0 0 14px; color:var(--muted); font-size:16px;}
-    .heroText{
-      margin:0 0 18px;
-      color: var(--muted);
-      font-size:15.5px;
-      max-width: 58ch;
+    @media (max-width: 520px){
+      .title{font-size:36px}
     }
-    .ctaRow{
-      display:flex; gap:12px; flex-wrap:wrap;
-      margin-top: 10px;
-    }
-    .btn{
-      border:0; cursor:pointer;
-      padding:13px 16px;
-      border-radius:999px;
-      font-weight:750;
-      letter-spacing:.2px;
+    .subtitle{color:var(--muted); font-size:15px; line-height:1.55; margin:0 0 16px}
+    .hero-actions{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:14px}
+    .note{color:rgba(233,233,242,.70); font-size:12.5px; margin-top:12px}
+    .social-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+    .chip{
       display:inline-flex; align-items:center; gap:10px;
-      transition: transform .06s ease, filter .2s ease;
-      user-select:none;
-      font-size:14.5px;
-    }
-    .btn:active{transform: translateY(1px)}
-    .btnPrimary{
-      background: var(--accent);
-      color:#0a0f0c;
-      box-shadow: 0 10px 30px rgba(124,58,237,.22);
-    }
-    .btnGhost{
-      background: rgba(255,255,255,.06);
-      color: var(--text);
-      border:1px solid var(--line);
-    }
-    .mini{font-size:12.5px; color:var(--muted); margin-top:12px;}
-
-    .heroImage{
-      border-radius: var(--radius);
-      border:1px solid var(--line);
-      overflow:hidden;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.08);
       background: rgba(255,255,255,.02);
-      box-shadow: var(--shadow);
+      color:rgba(233,233,242,.88);
+      font-size:13px;
+    }
+    .chip:hover{border-color: rgba(139,92,246,.25); background: rgba(139,92,246,.08)}
+    .hero-media{
+      min-height: 320px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+    .media-top{
       position:relative;
-      min-height: 330px;
+      flex:1;
+      border-radius: var(--radius);
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.02);
+      display:flex; align-items:center; justify-content:center;
     }
-    .heroImage img{
+    .media-top img{
       width:100%; height:100%;
-      object-fit: cover;
+      object-fit:cover;
       display:block;
-      opacity:.95;
+      filter: contrast(1.03) saturate(1.05);
+      opacity:.92;
     }
-    .badge{
-      position:absolute;
-      left:14px; bottom:14px;
-      background: rgba(7,9,12,.7);
-      border:1px solid var(--line);
+    .media-badge{
+      position:absolute; bottom:12px; left:12px;
       padding:10px 12px;
       border-radius: 14px;
-      max-width: 85%;
+      background: rgba(7,7,12,.55);
+      border: 1px solid rgba(255,255,255,.10);
+      color: rgba(233,233,242,.88);
+      backdrop-filter: blur(10px);
+      font-size:13px;
     }
-    .badge .t{font-weight:800}
-    .badge .s{color:var(--muted); font-size:12.5px; margin-top:2px}
-
-    /* Sections */
-    .section{padding:22px 0}
-    .titleRow{
-      display:flex; align-items:flex-end; justify-content:space-between; gap:12px;
-      margin: 6px 0 12px;
-    }
-    h2{margin:0; font-size:26px; letter-spacing:-.3px;}
-    .sub{margin:0; color:var(--muted); font-size:14px;}
-
-    .grid2{
+    .media-mini{
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap:14px;
     }
-    .card{
-      background: rgba(255,255,255,.03);
-      border:1px solid var(--line);
+    .mini{
       border-radius: var(--radius);
-      padding:18px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.02);
+      padding:14px;
+      min-height:92px;
     }
-    .card p{margin:0; color:var(--muted)}
+    .mini h4{margin:0 0 6px; font-size:14px}
+    .mini p{margin:0; color:var(--muted); font-size:13px; line-height:1.4}
+
+    /* Sections */
+    section{padding: 22px 0}
+    .section-title{
+      display:flex; align-items:end; justify-content:space-between; gap:16px;
+      margin: 10px 0 14px;
+    }
+    .section-title h2{margin:0; font-size:26px}
+    .section-title p{margin:0; color:var(--muted); font-size:13px}
+
+    .grid-2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:16px;
+    }
+    @media (max-width: 980px){
+      .grid-2{grid-template-columns:1fr}
+    }
+
     .list{
       margin:12px 0 0;
       padding:0;
       list-style:none;
-      display:grid;
-      gap:10px;
+      display:grid; gap:10px;
     }
-    .list li{
+    .li{
       display:flex; gap:10px; align-items:flex-start;
-      color: var(--muted);
+      color:rgba(233,233,242,.88);
+      font-size:14px;
     }
     .dot{
-      width:10px; height:10px; border-radius:999px;
-      background: var(--accent2);
-      margin-top:6px;
+      width:10px; height:10px; margin-top:6px;
+      border-radius:999px;
+      background: rgba(139,92,246,.65);
+      box-shadow: 0 0 0 3px rgba(139,92,246,.14);
       flex:0 0 auto;
-      box-shadow: 0 0 0 6px rgba(167,139,250,.10);
     }
 
     /* Products */
-    .productGrid{
+    .products{
       display:grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap:14px;
+      grid-template-columns: 1fr 1fr;
+      gap:16px;
     }
-    .product{overflow:hidden; padding:0;}
-    .product .img{
-      height: 280px;
-      background: rgba(255,255,255,.03);
-      border-bottom:1px solid var(--line);
+    @media (max-width: 980px){ .products{grid-template-columns:1fr} }
+    .product-card{display:grid; grid-template-columns: 1fr; overflow:hidden}
+    .product-img{
+      height: 260px;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      background: rgba(255,255,255,.02);
+      display:flex; align-items:center; justify-content:center;
       position:relative;
     }
-    .product img{
+    .product-img img{
       width:100%; height:100%;
-      object-fit: cover;
+      object-fit:cover;
       display:block;
     }
-    .product .body{padding:16px 16px 18px;}
+    .product-body{padding:16px}
     .tag{
       display:inline-flex; align-items:center; gap:8px;
-      font-size:12px; color:var(--muted);
-      border:1px solid var(--line);
-      padding:6px 10px; border-radius:999px;
-      background: rgba(255,255,255,.03);
+      font-size:12px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.02);
+      color:rgba(233,233,242,.86);
+      margin-bottom:10px;
     }
-    .product h3{margin:10px 0 6px; font-size:18px; letter-spacing:-.2px;}
-    .product p{margin:0; color:var(--muted); font-size:14px}
+    .product-body h3{margin:0 0 6px; font-size:18px}
+    .product-body p{margin:0; color:var(--muted); font-size:14px}
 
     /* Form */
-    form{display:grid; gap:12px; margin-top:12px;}
-    .row{
+    .form-wrap{padding:18px}
+    form{display:grid; gap:14px}
+    .row{display:grid; grid-template-columns: 1fr 1fr; gap:14px}
+    @media (max-width: 720px){ .row{grid-template-columns:1fr} }
+    label{font-size:12.5px; color:rgba(233,233,242,.80); display:block; margin:0 0 6px}
+    input, select, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(10,10,16,.55);
+      color:var(--text);
+      outline:none;
+    }
+    input::placeholder, textarea::placeholder{color:rgba(185,185,200,.55)}
+    input:focus, select:focus, textarea:focus{
+      border-color: rgba(139,92,246,.55);
+      box-shadow: 0 0 0 4px rgba(139,92,246,.14);
+    }
+    textarea{min-height:92px; resize:vertical}
+    .hint{margin-top:6px; font-size:12px; color:rgba(233,233,242,.60)}
+
+    .choice-grid{
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap:12px;
     }
-    label{display:grid; gap:6px; color: var(--muted); font-size:13px;}
-    input, select, textarea{
-      width:100%;
-      padding:12px 12px;
-      border-radius: 14px;
-      border:1px solid var(--line);
-      background: rgba(0,0,0,.25);
-      color: var(--text);
-      outline:none;
-    }
-    textarea{min-height:110px; resize:vertical}
-    input:focus, select:focus, textarea:focus{
-      border-color: rgba(167,139,250,.55);
-      box-shadow: 0 0 0 6px rgba(167,139,250,.12);
-    }
+    @media (max-width: 720px){ .choice-grid{grid-template-columns:1fr} }
 
-    /* Parches: tocar toda la fila */
-    .checksGrid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:10px;
-      margin-top:6px;
-    }
-    .checkRow{
+    .choice{
       display:flex;
-      gap:10px;
       align-items:center;
-      padding:10px 12px;
-      border-radius:12px;
-      border:1px solid var(--line);
+      gap:12px;
+      padding:12px 12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.02);
       cursor:pointer;
       user-select:none;
+      transition: border .15s ease, background .15s ease, transform .06s ease;
     }
-    .checkRow:hover{
-      background: rgba(167,139,250,.10);
-      border-color: rgba(167,139,250,.22);
+    .choice:hover{
+      border-color: rgba(139,92,246,.28);
+      background: rgba(139,92,246,.08);
     }
-    .checkRow input{
-      accent-color: var(--accent);
-      width:18px;
-      height:18px;
-    }
-    .checkRow span{color: var(--text); font-size:13.5px;}
-
-    /* Color preview dot */
-    .colorWrap{
-      display:flex;
-      gap:10px;
-      align-items:center;
-    }
-    .colorDot{
-      width:22px;
-      height:22px;
-      border-radius:50%;
-      border:2px solid rgba(255,255,255,.55);
-      background: transparent;
-      box-shadow: 0 0 0 6px rgba(167,139,250,.08);
+    .choice:active{transform: translateY(1px)}
+    .radio{
+      width:18px; height:18px; border-radius:999px;
+      border:2px solid rgba(255,255,255,.28);
+      display:grid; place-items:center;
       flex:0 0 auto;
+    }
+    .radio::after{
+      content:"";
+      width:10px; height:10px; border-radius:999px;
+      background: transparent;
+    }
+    .choice.selected .radio{border-color: rgba(37,211,102,.9)}
+    .choice.selected .radio::after{background: rgba(37,211,102,.9)}
+    .choice .c-title{font-weight:700; font-size:13.5px}
+    .choice .c-sub{color:var(--muted); font-size:12.5px; margin-top:2px}
+
+    .color-preview{
+      display:flex; align-items:center; gap:10px;
+      margin-top:10px;
+      color:rgba(233,233,242,.75);
+      font-size:12.5px;
+    }
+    .swatch{
+      width:18px; height:18px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.10);
+      box-shadow: 0 0 0 4px rgba(255,255,255,.06);
+    }
+
+    .sendbar{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      padding-top:6px;
+    }
+    .small{
+      font-size:12px;
+      color:rgba(233,233,242,.62)
     }
 
     /* Contact */
-    .contactGrid{
-      display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap:14px;
-      align-items: start;
-    }
-    .contactLine{
-      display:flex; gap:10px; align-items:center;
-      color:var(--muted);
-      margin:8px 0 0;
-      flex-wrap:wrap;
-    }
-    .pill{
-      display:inline-flex;
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      color: var(--text);
-      font-size:13px;
-      align-items:center;
-      gap:8px;
-    }
-    .socialRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px;}
-    .socialRow a:hover{filter:brightness(1.06)}
+    .contact-grid{display:grid; grid-template-columns: 1fr 1fr; gap:16px}
+    @media (max-width: 980px){ .contact-grid{grid-template-columns:1fr} }
 
-    /* Footer */
-    footer{
-      padding:26px 0 34px;
-      border-top:1px solid var(--line);
-      color: var(--muted);
-      font-size:13px;
-      margin-top: 20px;
+    .contact-item{
+      display:flex; gap:12px; align-items:center;
+      padding:12px 12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.02);
     }
-
-    /* Responsive */
-    @media (max-width: 900px){
-      .heroGrid{grid-template-columns: 1fr}
-      h1{font-size:38px}
-      .grid2{grid-template-columns:1fr}
-      .productGrid{grid-template-columns:1fr}
-      .contactGrid{grid-template-columns:1fr}
-      .row{grid-template-columns:1fr}
-      .heroImage{min-height:260px}
-      .checksGrid{grid-template-columns:1fr}
-
-      nav{display:none;}
-      .menuBtn{display:inline-flex;}
-      .mobileNav{display:none;}
-      .mobileNav.open{display:block;}
+    .contact-item .k{color:var(--muted); font-size:12.5px}
+    .contact-item .v{font-weight:700; font-size:13.5px}
+    .footer{
+      padding:22px 0 34px;
+      border-top:1px solid rgba(255,255,255,.06);
+      margin-top:10px;
+      color:rgba(233,233,242,.55);
+      font-size:12.5px;
     }
   </style>
 </head>
 
 <body>
+  <!-- SVG ICONS (inline, no falla por links externos) -->
+  <svg width="0" height="0" style="position:absolute">
+    <symbol id="i-wa" viewBox="0 0 32 32">
+      <path fill="currentColor" d="M19.11 17.24c-.22-.11-1.33-.66-1.54-.74-.21-.08-.36-.11-.51.11-.15.22-.59.74-.72.89-.13.15-.27.17-.49.06-.22-.11-.94-.35-1.8-1.12-.67-.6-1.12-1.34-1.25-1.56-.13-.22-.01-.34.1-.45.1-.1.22-.27.33-.4.11-.13.15-.22.22-.37.07-.15.04-.28-.02-.4-.06-.11-.51-1.24-.7-1.7-.18-.44-.36-.38-.51-.39l-.43-.01c-.15 0-.4.06-.61.28-.21.22-.8.78-.8 1.9 0 1.12.82 2.2.93 2.35.11.15 1.62 2.47 3.92 3.47.55.24.98.39 1.31.5.55.17 1.05.15 1.44.09.44-.07 1.33-.55 1.52-1.08.19-.53.19-.99.13-1.08-.06-.09-.21-.15-.43-.26z"/>
+      <path fill="currentColor" d="M16 3C9.37 3 4 8.37 4 15c0 2.3.65 4.45 1.78 6.28L4 29l7.93-1.74A11.96 11.96 0 0 0 16 27c6.63 0 12-5.37 12-12S22.63 3 16 3zm0 21.8c-1.82 0-3.5-.5-4.95-1.36l-.36-.21-4.7 1.03 1.02-4.58-.24-.38A9.76 9.76 0 0 1 6.2 15 9.8 9.8 0 1 1 16 24.8z"/>
+    </symbol>
 
-  <!-- TOP BAR -->
-  <header class="topbar">
-    <div class="wrap">
-      <div class="inner">
-        <div class="brand">
-          <img src="./logo.png" alt="Logo Retro Sport" />
+    <symbol id="i-mail" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z"/>
+    </symbol>
+
+    <symbol id="i-phone" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M6.6 10.8c1.6 3.2 3.4 5 6.6 6.6l2.2-2.2c.3-.3.8-.4 1.2-.2 1 .3 2.1.5 3.2.5.7 0 1.2.5 1.2 1.2V20c0 .7-.5 1.2-1.2 1.2C10.4 21.2 2.8 13.6 2.8 4.2 2.8 3.5 3.3 3 4 3h3.3c.7 0 1.2.5 1.2 1.2 0 1.1.2 2.2.5 3.2.1.4 0 .9-.2 1.2l-2.2 2.2z"/>
+    </symbol>
+
+    <symbol id="i-ig" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 4.5A5.5 5.5 0 1 1 6.5 14 5.5 5.5 0 0 1 12 8.5zm0 2A3.5 3.5 0 1 0 15.5 14 3.5 3.5 0 0 0 12 10.5zM18 6.6a1 1 0 1 1-1 1 1 1 0 0 1 1-1z"/>
+    </symbol>
+
+    <symbol id="i-fb" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M13.5 22v-8h2.7l.4-3H13.5V9.1c0-.9.3-1.5 1.6-1.5h1.6V5a21 21 0 0 0-2.3-.1c-2.3 0-3.9 1.4-3.9 4V11H8v3h2.5v8h3z"/>
+    </symbol>
+
+    <symbol id="i-in" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M6.94 6.5A2.2 2.2 0 1 1 7 2.1a2.2 2.2 0 0 1-.06 4.4zM5.5 21.5h3V8.5h-3v13zM10.5 8.5h2.9v1.8h.04c.4-.75 1.4-1.55 2.9-1.55 3.1 0 3.7 2 3.7 4.7v8.05h-3v-7.14c0-1.7 0-3-1.9-3-1.9 0-2.2 1.45-2.2 2.95v7.19h-3V8.5z"/>
+    </symbol>
+
+    <symbol id="i-x" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M18.9 2H22l-6.8 7.8L22.7 22H17l-4.4-5.5L7.8 22H4.7l7.3-8.4L1.3 2H7.2l4 5 4.7-5z"/>
+    </symbol>
+
+    <symbol id="i-th" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 2c5.5 0 10 4.5 10 10s-4.5 10-10 10S2 17.5 2 12 6.5 2 12 2zm5.6 14.2-3.4-4.3 3.2-3.9h-2.4l-2 2.5-2-2.5H8.6l3.2 3.9-3.4 4.3h2.4l2.2-2.8 2.2 2.8h2.6z"/>
+    </symbol>
+
+    <symbol id="i-cart" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM6.2 6l.9 5h10.4l1.1-4.2c.1-.4-.2-.8-.6-.8H6.2zM5 4h16c1 0 1.8 1 1.5 2l-1.8 7c-.2.7-.8 1.1-1.5 1.1H7.2L7 15h12v2H6.4c-.8 0-1.5-.6-1.6-1.4L3.3 3H1V1h3c.8 0 1.4.5 1.6 1.3L5 4z"/>
+    </symbol>
+  </svg>
+
+  <header class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a class="brand" href="#inicio" aria-label="Retro Sport inicio">
+          <img id="logoTop" src="IMG_1434.png" alt="Retro Sport logo" />
           <span>Retro Sport</span>
-        </div>
+        </a>
 
-        <button class="menuBtn" id="menuBtn" aria-label="Abrir menu">☰ Menu</button>
-
-        <nav>
+        <nav class="links" aria-label="Navegacion principal">
           <a href="#quienes">Quienes somos</a>
           <a href="#servicios">Servicios</a>
           <a href="#productos">Productos</a>
@@ -411,9 +450,19 @@
           <a href="#contacto">Contacto</a>
           <a href="#terminos">Terminos</a>
         </nav>
+
+        <div class="nav-cta">
+          <button class="btn burger" id="btnMenu" aria-label="Abrir menu">
+            ☰
+          </button>
+          <a class="btn btn-wa" id="ctaWaTop" href="#" rel="noopener">
+            <svg class="icon"><use href="#i-wa"/></svg>
+            Hacer pedido
+          </a>
+        </div>
       </div>
 
-      <div class="mobileNav" id="mobileNav">
+      <div class="mobile-panel" id="mobilePanel">
         <a href="#quienes">Quienes somos</a>
         <a href="#servicios">Servicios</a>
         <a href="#productos">Productos</a>
@@ -421,483 +470,716 @@
         <a href="#contacto">Contacto</a>
         <a href="#terminos">Terminos</a>
       </div>
-
     </div>
   </header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="wrap">
-      <div class="heroGrid">
-
-        <div class="heroCard">
-          <span class="kicker">⚡ <b>Marca deportiva</b> minorista y mayorista</span>
-
-          <h1>Retro Sport</h1>
-          <p class="slogan">The classic never ends</p>
-
-          <p class="heroText">
-            Mas de <b>20,000 productos oficiales</b> de coleccion y de recuerdo.
-            Jerseys retro, ediciones especiales y productos originales.
-          </p>
-
-          <div class="ctaRow">
-            <a class="btn btnPrimary" id="btnPedido" href="#" rel="noopener">📲 Hacer pedido</a>
-            <a class="btn btnGhost" href="#comprar">🛒 Comprar producto</a>
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+      <div class="hero-grid">
+        <div class="card pad">
+          <div class="pill">
+            ⚡ Marca deportiva <span style="opacity:.8">minorista y mayorista</span>
           </div>
 
-          <p class="mini">
-            Si no te abre WhatsApp, revisa que tu navegador permita abrir enlaces wa.me.
+          <h1 class="title">Retro Sport</h1>
+          <p class="subtitle">
+            The classic never ends.<br>
+            Jerseys retro, ediciones especiales y productos de coleccion con enfoque en calidad, detalle y seguimiento.
           </p>
-        </div>
 
-        <div class="heroImage">
-          <img src="./hero.jpg" alt="Coleccion Retro Sport" />
-          <div class="badge">
-            <div class="t">Logistica nacional e internacional</div>
-            <div class="s">Importacion y exportacion dentro y fuera de Mexico</div>
+          <div class="hero-actions">
+            <a class="btn btn-wa" id="ctaWaHero" href="#" rel="noopener">
+              <svg class="icon"><use href="#i-wa"/></svg>
+              Hacer pedido (WhatsApp)
+            </a>
+            <a class="btn btn-dark" href="#comprar">
+              <svg class="icon"><use href="#i-cart"/></svg>
+              Comprar producto
+            </a>
+          </div>
+
+          <div class="social-row" aria-label="Redes sociales">
+            <a class="chip" href="https://wa.me/524445817329" target="_blank" rel="noopener">
+              <svg class="icon"><use href="#i-wa"/></svg> WhatsApp
+            </a>
+            <a class="chip" href="https://www.instagram.com/retrosportmx" target="_blank" rel="noopener">
+              <svg class="icon"><use href="#i-ig"/></svg> Instagram
+            </a>
+            <a class="chip" href="https://m.facebook.com/ElRetrosportMX/?" target="_blank" rel="noopener">
+              <svg class="icon"><use href="#i-fb"/></svg> Facebook
+            </a>
+            <a class="chip" href="#" id="linkX" target="_blank" rel="noopener">
+              <svg class="icon"><use href="#i-x"/></svg> X
+            </a>
+            <a class="chip" href="#" id="linkThreads" target="_blank" rel="noopener">
+              <svg class="icon"><use href="#i-th"/></svg> Threads
+            </a>
+            <a class="chip" href="#" id="linkLinkedIn" target="_blank" rel="noopener">
+              <svg class="icon"><use href="#i-in"/></svg> LinkedIn
+            </a>
+          </div>
+
+          <div class="note">
+            Tip: si una imagen no aparece, casi siempre es por el nombre exacto del archivo (jpg/jpeg, mayusculas).
           </div>
         </div>
 
+        <div class="card hero-media">
+          <div class="media-top">
+            <img id="heroImg" src="IMG_1365.jpeg" alt="Imagen principal Retro Sport" />
+            <div class="media-badge">
+              Logistica nacional e internacional • Seguimiento de pedidos
+            </div>
+          </div>
+          <div class="media-mini">
+            <div class="mini">
+              <h4>Entrega clara</h4>
+              <p>SLP • Economico 3-5 dias • Express 1-2 dias • Internacional 12-15 dias.</p>
+            </div>
+            <div class="mini">
+              <h4>Pedido rapido</h4>
+              <p>Formulario arma el mensaje y lo manda directo a WhatsApp.</p>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- QUIENES SOMOS -->
-  <section class="section" id="quienes">
-    <div class="wrap">
-      <div class="titleRow">
+    <!-- QUIENES -->
+    <section id="quienes">
+      <div class="section-title">
         <h2>Quienes somos</h2>
-        <p class="sub">Identidad clara. Operacion seria.</p>
+        <p>Identidad clara. Operacion seria.</p>
       </div>
 
-      <div class="grid2">
-        <div class="card">
-          <p>
-            Retro Sport es una marca deportiva dedicada a la comercializacion
-            <b>minorista y mayorista</b> de productos originales, jerseys retro y ediciones especiales.
+      <div class="grid-2">
+        <div class="card pad">
+          <p class="subtitle" style="margin:0">
+            Retro Sport es una marca deportiva dedicada a la comercializacion minorista y mayorista de productos originales,
+            jerseys retro y ediciones especiales.
           </p>
-
           <ul class="list">
-            <li><span class="dot"></span>Catalogo amplio y busqueda por pedido</li>
-            <li><span class="dot"></span>Atencion rapida por WhatsApp</li>
-            <li><span class="dot"></span>Operacion enfocada en calidad y control</li>
+            <li class="li"><span class="dot"></span> Catalogo amplio y busqueda por pedido</li>
+            <li class="li"><span class="dot"></span> Atencion rapida por WhatsApp</li>
+            <li class="li"><span class="dot"></span> Operacion enfocada en calidad y control</li>
           </ul>
         </div>
 
-        <div class="card">
-          <p>
-            Trabajamos con procesos alineados a estandares de calidad como
-            <b>ISO 9001</b> y <b>Six Sigma White Belt</b>, integrando logistica,
-            importacion y exportacion de productos y servicios.
+        <div class="card pad">
+          <p class="subtitle" style="margin:0">
+            Procesos alineados a estandares de calidad (ISO 9001 y Six Sigma White Belt) integrando logistica,
+            importacion y exportacion.
           </p>
-
           <ul class="list">
-            <li><span class="dot"></span>Logistica dentro y fuera de Mexico</li>
-            <li><span class="dot"></span>Gestion y seguimiento de pedidos</li>
-            <li><span class="dot"></span>Servicio para clientes y negocios</li>
+            <li class="li"><span class="dot"></span> Logistica dentro y fuera de Mexico</li>
+            <li class="li"><span class="dot"></span> Gestion y seguimiento de pedidos</li>
+            <li class="li"><span class="dot"></span> Servicio para clientes y negocios</li>
           </ul>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- SERVICIOS -->
-  <section class="section" id="servicios">
-    <div class="wrap">
-      <div class="titleRow">
+    <!-- SERVICIOS -->
+    <section id="servicios">
+      <div class="section-title">
         <h2>Servicios</h2>
-        <p class="sub">Dos caminos. Elige el que te convenga.</p>
+        <p>Dos caminos. Elige el que te convenga.</p>
       </div>
 
-      <div class="grid2">
-        <div class="card">
-          <p><b>1) Hacer pedido (WhatsApp directo)</b></p>
-          <p style="margin-top:8px;">
-            Ideal si ya sabes que buscas o quieres atencion inmediata.
-            Te llevamos a WhatsApp con un mensaje listo para enviar.
+      <div class="grid-2">
+        <div class="card pad">
+          <h3 style="margin:0 0 6px">1) Hacer pedido (WhatsApp directo)</h3>
+          <p class="subtitle" style="margin:0">
+            Ideal si ya sabes que buscas o quieres atencion inmediata. Te llevamos a WhatsApp con un mensaje listo.
           </p>
-        </div>
-
-        <div class="card">
-          <p><b>2) Comprar producto (Formulario)</b></p>
-          <p style="margin-top:8px;">
-            Llenas los datos y el sistema arma tu mensaje automaticamente para mandarlo por WhatsApp.
-            Rapido, claro y sin complicaciones.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRODUCTOS -->
-  <section class="section" id="productos">
-    <div class="wrap">
-      <div class="titleRow">
-        <h2>Mas de 20,000 productos oficiales</h2>
-        <p class="sub">Colecciones retro, ediciones especiales y version jugador.</p>
-      </div>
-
-      <div class="productGrid">
-        <article class="card product">
-          <div class="img">
-            <img src="./jersey1.jpg" alt="Jersey Retro" />
+          <div class="hero-actions" style="margin-top:14px">
+            <a class="btn btn-wa" id="ctaWaService" href="#" rel="noopener">
+              <svg class="icon"><use href="#i-wa"/></svg>
+              Hacer pedido
+            </a>
           </div>
-          <div class="body">
+        </div>
+
+        <div class="card pad">
+          <h3 style="margin:0 0 6px">2) Comprar producto (Formulario)</h3>
+          <p class="subtitle" style="margin:0">
+            Llenas datos (pais, CP, correo, producto, talla, envio) y armamos tu mensaje para enviarlo por WhatsApp.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCTOS -->
+    <section id="productos">
+      <div class="section-title">
+        <h2>Productos</h2>
+        <p>Vista previa. Aqui si deben aparecer tus imagenes.</p>
+      </div>
+
+      <div class="products">
+        <article class="card product-card">
+          <div class="product-img">
+            <img id="prodImg1" src="IMG_6804.jpeg" alt="Jersey Retro" />
+          </div>
+          <div class="product-body">
             <span class="tag">🏟️ Jersey Retro</span>
             <h3>Jerseys retro y ediciones especiales</h3>
-            <p>Modelos de coleccion. Parches, nombres y numeros disponibles segun modelo.</p>
+            <p>Modelos de coleccion y recuerdos. Pregunta por tu jersey ideal.</p>
           </div>
         </article>
 
-        <article class="card product">
-          <div class="img">
-            <img src="./hero.jpg" alt="Coleccion Retro Sport" />
+        <article class="card product-card">
+          <div class="product-img">
+            <img id="prodImg2" src="IMG_1365.jpeg" alt="Coleccion Retro" />
           </div>
-          <div class="body">
-            <span class="tag">🧩 Catalogo</span>
-            <h3>Busqueda por pedido</h3>
-            <p>Dinos equipo + temporada + jugador + talla y te damos opciones disponibles.</p>
+          <div class="product-body">
+            <span class="tag">🧩 Coleccion</span>
+            <h3>Catalogo amplio por pedido</h3>
+            <p>Si no lo ves aqui, lo buscamos. Dinos equipo, temporada y talla.</p>
           </div>
         </article>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- COMPRAR -->
-  <section class="section" id="comprar">
-    <div class="wrap">
-      <div class="titleRow">
+    <!-- COMPRAR -->
+    <section id="comprar">
+      <div class="section-title">
         <h2>Comprar producto</h2>
-        <p class="sub">Se manda directo a WhatsApp con todos los detalles.</p>
+        <p>Llenalo y se manda directo a WhatsApp.</p>
       </div>
 
-      <div class="card">
-        <p style="margin:0;color:var(--muted)">
-          Completa la informacion. Esto no cobra nada: solo arma el mensaje y abre WhatsApp.
-        </p>
-
-        <form id="buyForm">
-
+      <div class="card form-wrap">
+        <form id="orderForm">
+          <!-- PRIORIDAD: Pais + CP + Correo -->
           <div class="row">
-            <label>
-              Correo electronico
-              <input id="correo" type="email" placeholder="tucorreo@email.com" required />
-            </label>
-
-            <label>
-              Pais
-              <select id="pais" required>
-                <option value="">Selecciona pais</option>
-                <option>Mexico</option>
-                <option>Estados Unidos</option>
-                <option>España</option>
-                <option>Argentina</option>
-                <option>Colombia</option>
-                <option>Brasil</option>
-                <option>Chile</option>
-                <option>Peru</option>
-                <option>Francia</option>
-                <option>Alemania</option>
-                <option>Italia</option>
-                <option>Reino Unido</option>
-                <option>Canada</option>
-                <option>Otro pais</option>
-              </select>
-            </label>
-          </div>
-
-          <div class="row">
-            <label>
-              Codigo postal
-              <input id="cp" type="text" placeholder="Ej: 78430" required />
-            </label>
-
-            <label>
-              Nombre
-              <input id="nombre" type="text" placeholder="Tu nombre" required />
-            </label>
-          </div>
-
-          <div class="row">
-            <label>
-              Producto / Camisa
-              <input id="producto" type="text" placeholder="Ej: Real Madrid 2011-2012 (Cristiano Ronaldo)" required />
-            </label>
-
-            <label>
-              Talla
-              <select id="talla" required>
-                <option value="">Selecciona</option>
-                <option>S</option>
-                <option>M</option>
-                <option>L</option>
-                <option>XL</option>
-                <option>XXL</option>
-                <option>Otra / No se</option>
-              </select>
-            </label>
-          </div>
-
-          <div class="row">
-            <label>
-              Jugador (nombre)
-              <input id="jugador" type="text" placeholder="Ej: Cristiano Ronaldo" />
-            </label>
-
-            <label>
-              Numero del jugador
-              <input id="numero" type="number" min="0" placeholder="Ej: 7" />
-            </label>
-          </div>
-
-          <div class="row">
-            <label>
-              Ciudad / Estado
-              <input id="ubicacion" type="text" placeholder="Ej: San Luis Potosi" required />
-            </label>
-
-            <label>
-              Cantidad
-              <input id="cantidad" type="number" min="1" value="1" required />
-            </label>
-          </div>
-
-          <div class="row">
-            <label>
-              Color (escribelo)
-              <div class="colorWrap">
-                <input id="color" type="text" placeholder="Ej: blanco, negro, rojo, morado" />
-                <div class="colorDot" id="colorPreview" title="Vista previa"></div>
-              </div>
-            </label>
-
-            <label>
-              Variacion (opcional)
-              <select id="variacion">
-                <option value="">Selecciona</option>
-                <option>Local</option>
-                <option>Visitante</option>
-                <option>Tercera</option>
-                <option>Version jugador</option>
-                <option>Version aficionado</option>
-              </select>
-            </label>
-          </div>
-
-          <label>
-            Parches (selecciona los que quieres)
-            <div class="checksGrid" id="parchesBox">
-              <label class="checkRow"><input type="checkbox" value="Parche Champions League"><span>Parche Champions League</span></label>
-              <label class="checkRow"><input type="checkbox" value="Parche Liga"><span>Parche Liga</span></label>
-              <label class="checkRow"><input type="checkbox" value="Parche Mundial de Clubes"><span>Parche Mundial de Clubes</span></label>
-              <label class="checkRow"><input type="checkbox" value="Parche Campeon"><span>Parche Campeon</span></label>
-              <label class="checkRow"><input type="checkbox" value="Parche Seleccion / Federacion"><span>Parche Seleccion / Federacion</span></label>
-              <label class="checkRow"><input type="checkbox" value="Otro parche (especificar)"><span>Otro parche (especificar)</span></label>
+            <div>
+              <label for="country">Pais</label>
+              <select id="country" name="country" required></select>
+              <div class="hint">Selecciona tu pais (lista completa).</div>
             </div>
-          </label>
-
-          <div class="row">
-            <label>
-              Tipo de entrega
-              <select id="envio" required>
-                <option value="">Selecciona envio</option>
-                <option>Entrega local – San Luis Potosi (3 a 5 dias habiles)</option>
-                <option>Envio economico (3 a 5 dias habiles)</option>
-                <option>Envio express (1 a 2 dias habiles)</option>
-                <option>Envio internacional (12 a 15 dias habiles)</option>
-              </select>
-            </label>
-
-            <label>
-              Detalles extra (opcional)
-              <input id="detalles" type="text" placeholder="Ej: nombre y numero, version jugador, parches especificos, etc." />
-            </label>
+            <div>
+              <label for="postal">Codigo postal</label>
+              <input id="postal" name="postal" type="text" placeholder="Ej. 78430" required />
+            </div>
           </div>
 
-          <button class="btn btnPrimary" type="submit">
-            ✅ Enviar pedido por WhatsApp
-          </button>
+          <div class="row">
+            <div>
+              <label for="email">Correo electronico</label>
+              <input id="email" name="email" type="email" placeholder="tucorreo@gmail.com" required />
+            </div>
+            <div>
+              <label for="fullName">Nombre (cliente)</label>
+              <input id="fullName" name="fullName" type="text" placeholder="Tu nombre completo" required />
+            </div>
+          </div>
 
-          <p class="mini">
-            Si no te abre WhatsApp: revisa que estes en celular o que tu navegador permita abrir enlaces wa.me.
-          </p>
+          <div class="row">
+            <div>
+              <label for="product">Producto / Camisa</label>
+              <input id="product" name="product" type="text" placeholder="Ej. Manchester United 2008 Final" required />
+            </div>
+            <div>
+              <label for="size">Talla</label>
+              <select id="size" name="size" required>
+                <option value="" disabled selected>Selecciona</option>
+                <option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div>
+              <label for="cityState">Ciudad / Estado</label>
+              <input id="cityState" name="cityState" type="text" placeholder="Ej. Soledad de Graciano Sanchez, SLP" required />
+            </div>
+            <div>
+              <label for="qty">Cantidad</label>
+              <input id="qty" name="qty" type="number" min="1" value="1" required />
+            </div>
+          </div>
+
+          <div class="row">
+            <div>
+              <label for="playerName">Nombre del jugador (si aplica)</label>
+              <input id="playerName" name="playerName" type="text" placeholder="Ej. Cristiano Ronaldo" />
+            </div>
+            <div>
+              <label for="playerNumber">Numero del jugador</label>
+              <input id="playerNumber" name="playerNumber" type="number" min="0" max="99" placeholder="Ej. 7" />
+            </div>
+          </div>
+
+          <!-- COLOR (escrito por el cliente + preview) -->
+          <div class="row">
+            <div>
+              <label for="colorName">Variacion / Color (escribelo)</label>
+              <input id="colorName" name="colorName" type="text" placeholder="Ej. Rojo, Azul Marino, Amarillo" />
+              <div class="color-preview">
+                <span class="swatch" id="swatch"></span>
+                <span id="swatchText">Vista previa del color</span>
+              </div>
+              <div class="hint">Escribe el color y se muestra la bolita (si se reconoce el color).</div>
+            </div>
+            <div>
+              <label for="notes">Detalles (opcional)</label>
+              <textarea id="notes" name="notes" placeholder="Ej. Parche de campeon / manga larga / tipografia oficial..."></textarea>
+            </div>
+          </div>
+
+          <!-- PARCHES (clic en toda la tarjeta) -->
+          <div>
+            <label>Parches (toca la opcion completa para seleccionarla)</label>
+            <div class="choice-grid" id="patches">
+              <div class="choice" data-value="UEFA Champions League (manga)">
+                <div class="radio"></div>
+                <div>
+                  <div class="c-title">UEFA Champions League</div>
+                  <div class="c-sub">Parche manga (tipo estrella)</div>
+                </div>
+              </div>
+
+              <div class="choice" data-value="Final/Edicion especial (pecho)">
+                <div class="radio"></div>
+                <div>
+                  <div class="c-title">Final / Edicion especial</div>
+                  <div class="c-sub">Texto o badge en pecho</div>
+                </div>
+              </div>
+
+              <div class="choice" data-value="Liga (manga)">
+                <div class="radio"></div>
+                <div>
+                  <div class="c-title">Parche de Liga</div>
+                  <div class="c-sub">Liga local en manga</div>
+                </div>
+              </div>
+
+              <div class="choice" data-value="Mundial/Club World Cup">
+                <div class="radio"></div>
+                <div>
+                  <div class="c-title">Club World Cup / Mundial</div>
+                  <div class="c-sub">Parche especial</div>
+                </div>
+              </div>
+            </div>
+            <div class="hint">Puedes seleccionar varios parches.</div>
+          </div>
+
+          <!-- ENTREGA -->
+          <div>
+            <label>Tipo de entrega</label>
+            <div class="choice-grid" id="delivery">
+              <div class="choice" data-group="delivery" data-value="Envio a domicilio (solo San Luis Potosi) • 1-2 dias">
+                <div class="radio"></div>
+                <div>
+                  <div class="c-title">Domicilio SLP</div>
+                  <div class="c-sub">Solo San Luis Potosi • 1-2 dias habiles</div>
+                </div>
+              </div>
+
+              <div class="choice" data-group="delivery" data-value="Envio economico • 3-5 dias habiles">
+                <div class="radio"></div>
+                <div>
+                  <div class="c-title">Economico</div>
+                  <div class="c-sub">3-5 dias habiles</div>
+                </div>
+              </div>
+
+              <div class="choice" data-group="delivery" data-value="Envio express • 1-2 dias habiles">
+                <div class="radio"></div>
+                <div>
+                  <div class="c-title">Express</div>
+                  <div class="c-sub">1-2 dias habiles</div>
+                </div>
+              </div>
+
+              <div class="choice" data-group="delivery" data-value="Internacional (fuera de Mexico) • 12-15 dias habiles">
+                <div class="radio"></div>
+                <div>
+                  <div class="c-title">Internacional</div>
+                  <div class="c-sub">Fuera de Mexico • 12-15 dias habiles</div>
+                </div>
+              </div>
+            </div>
+            <div class="hint" id="deliveryHint">Selecciona una opcion para mostrar el tiempo estimado.</div>
+          </div>
+
+          <div class="sendbar">
+            <button class="btn btn-wa" type="submit" id="btnSend">
+              <svg class="icon"><use href="#i-wa"/></svg>
+              Enviar pedido por WhatsApp
+            </button>
+            <span class="small">
+              Si no abre WhatsApp: usa celular o permite abrir enlaces wa.me en tu navegador.
+            </span>
+          </div>
         </form>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CONTACTO -->
-  <section class="section" id="contacto">
-    <div class="wrap">
-      <div class="titleRow">
+    <!-- CONTACTO -->
+    <section id="contacto">
+      <div class="section-title">
         <h2>Contacto</h2>
-        <p class="sub">Respuestas rapidas y claras.</p>
+        <p>Respuestas rapidas y claras.</p>
       </div>
 
-      <div class="contactGrid">
-        <div class="card">
-          <div class="contactLine">📞 <span class="pill">WhatsApp: 444 581 7329</span></div>
-          <div class="contactLine">✉️ <span class="pill">contacto.retrosportmx@gmail.com</span></div>
+      <div class="contact-grid">
+        <div class="card pad">
+          <div class="contact-item">
+            <svg class="icon"><use href="#i-phone"/></svg>
+            <div>
+              <div class="k">Telefono / WhatsApp</div>
+              <div class="v">+52 444 581 7329</div>
+            </div>
+          </div>
 
-          <div class="socialRow">
-            <a class="pill" href="https://wa.me/524445817329" target="_blank" rel="noopener">📲 WhatsApp</a>
-            <a class="pill" href="https://www.instagram.com/retrosportmx?igsh=OGxhbjRqOHlwN2Ry&utm_source=qr" target="_blank" rel="noopener">📸 Instagram</a>
-            <a class="pill" href="https://facebook.com/EIRetrosportMX" target="_blank" rel="noopener">📘 Facebook</a>
-            <a class="pill" href="https://www.linkedin.com/company/retrosport/" target="_blank" rel="noopener">💼 LinkedIn</a>
-            <a class="pill" href="https://x.com/retrosportmx?s=21" target="_blank" rel="noopener">𝕏 X</a>
-            <a class="pill" href="https://www.threads.com/@retrosportmx?igshid=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener">🧵 Threads</a>
+          <div class="contact-item" style="margin-top:12px">
+            <svg class="icon"><use href="#i-mail"/></svg>
+            <div>
+              <div class="k">Correo</div>
+              <div class="v">contacto.retrosportmx@gmail.com</div>
+            </div>
+          </div>
+
+          <div class="social-row" style="margin-top:12px">
+            <a class="chip" href="https://wa.me/524445817329" target="_blank" rel="noopener">
+              <svg class="icon"><use href="#i-wa"/></svg> WhatsApp
+            </a>
+            <a class="chip" href="https://www.instagram.com/retrosportmx" target="_blank" rel="noopener">
+              <svg class="icon"><use href="#i-ig"/></svg> Instagram
+            </a>
+            <a class="chip" href="https://m.facebook.com/ElRetrosportMX/?" target="_blank" rel="noopener">
+              <svg class="icon"><use href="#i-fb"/></svg> Facebook
+            </a>
+            <a class="chip" href="#" id="linkLinkedIn2" target="_blank" rel="noopener">
+              <svg class="icon"><use href="#i-in"/></svg> LinkedIn
+            </a>
+            <a class="chip" href="#" id="linkX2" target="_blank" rel="noopener">
+              <svg class="icon"><use href="#i-x"/></svg> X
+            </a>
+            <a class="chip" href="#" id="linkThreads2" target="_blank" rel="noopener">
+              <svg class="icon"><use href="#i-th"/></svg> Threads
+            </a>
           </div>
         </div>
 
-        <div class="card">
-          <p>
-            ¿Buscas un modelo especifico? Dinos:
-            <b>equipo + temporada + jugador + talla</b> y te respondemos con disponibilidad y opciones.
+        <div class="card pad">
+          <p class="subtitle" style="margin:0 0 10px">
+            Buscas un modelo especifico? Dinos: <b>equipo + temporada + jugador + talla</b>
+            y te respondemos con disponibilidad y opciones.
           </p>
-
-          <div style="margin-top:12px;">
-            <a class="btn btnPrimary" href="#" id="btnPedido2" rel="noopener">📲 Hacer pedido</a>
-          </div>
+          <a class="btn btn-wa" href="https://wa.me/524445817329" target="_blank" rel="noopener">
+            <svg class="icon"><use href="#i-wa"/></svg>
+            Hacer pedido
+          </a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- TERMINOS -->
-  <section class="section" id="terminos">
-    <div class="wrap">
-      <div class="titleRow">
+    <!-- TERMINOS -->
+    <section id="terminos">
+      <div class="section-title">
         <h2>Terminos y condiciones</h2>
-        <p class="sub">Transparencia ante todo.</p>
+        <p>Transparencia ante todo.</p>
       </div>
 
-      <div class="card">
-        <p style="margin:0;color:var(--muted)">
-          La informacion y precios pueden variar segun disponibilidad, temporada, talla y tipo de envio.
+      <div class="card pad">
+        <p class="subtitle" style="margin:0">
+          La informacion y precios pueden variar segun disponibilidad, temporada, talla y tipo de entrega.
           Para confirmar un pedido se requiere validacion por WhatsApp. Retro Sport no comparte datos con terceros
           fuera de la gestion del pedido y envio.
         </p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <footer>
-    <div class="wrap">
-      © RetroSport 2025
+    <div class="footer">
+      © <span id="year"></span> RetroSport • Hecho para vender (sin rollos raros).
     </div>
-  </footer>
+  </main>
 
   <script>
-    // ===== MENU MOVIL =====
-    const menuBtn = document.getElementById("menuBtn");
-    const mobileNav = document.getElementById("mobileNav");
+    // =========================
+    // CONFIG (ajusta solo si quieres)
+    // =========================
+    const WHATSAPP_NUMBER = "524445817329";
 
-    if(menuBtn && mobileNav){
-      menuBtn.addEventListener("click", ()=>{
-        mobileNav.classList.toggle("open");
+    // Si un dia renombras archivos, cambia aqui:
+    // const ASSETS = { hero:"hero.jpg", logo:"logo.png", product1:"jersey1.jpg" };
+    const ASSETS = {
+      hero: "IMG_1365.jpeg",
+      logo: "IMG_1434.png",
+      product1: "IMG_6804.jpeg",
+      product2: "IMG_1365.jpeg"
+    };
+
+    // Tus redes (si tienes links exactos, pegalos aqui)
+    const LINKS = {
+      instagram: "https://www.instagram.com/retrosportmx",
+      facebook: "https://m.facebook.com/ElRetrosportMX/?",
+      linkedin: "#",
+      x: "#",
+      threads: "#"
+    };
+
+    // =========================
+    // Helpers
+    // =========================
+    const $ = (q)=>document.querySelector(q);
+    const $$ = (q)=>Array.from(document.querySelectorAll(q));
+
+    // Year
+    $("#year").textContent = new Date().getFullYear();
+
+    // Assets wiring
+    $("#heroImg").src = ASSETS.hero;
+    $("#logoTop").src = ASSETS.logo;
+    $("#prodImg1").src = ASSETS.product1;
+    $("#prodImg2").src = ASSETS.product2;
+
+    // Social links wiring
+    $("#linkLinkedIn").href = LINKS.linkedin;
+    $("#linkLinkedIn2").href = LINKS.linkedin;
+    $("#linkX").href = LINKS.x;
+    $("#linkX2").href = LINKS.x;
+    $("#linkThreads").href = LINKS.threads;
+    $("#linkThreads2").href = LINKS.threads;
+
+    // WhatsApp CTAs
+    function waLink(text){
+      return "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(text);
+    }
+    const quickMsg = "Hola! Vengo de la pagina de Retro Sport. Quiero hacer un pedido 🙌";
+    $("#ctaWaTop").href = waLink(quickMsg);
+    $("#ctaWaHero").href = waLink(quickMsg);
+    $("#ctaWaService").href = waLink(quickMsg);
+
+    // Mobile menu toggle
+    const btnMenu = $("#btnMenu");
+    const mobilePanel = $("#mobilePanel");
+    btnMenu.addEventListener("click", ()=> mobilePanel.classList.toggle("show"));
+    $$("#mobilePanel a").forEach(a=>{
+      a.addEventListener("click", ()=> mobilePanel.classList.remove("show"));
+    });
+
+    // Smooth scroll (nice)
+    $$(".links a, .mobile-panel a").forEach(a=>{
+      a.addEventListener("click", (e)=>{
+        const href = a.getAttribute("href");
+        if(href && href.startsWith("#")){
+          e.preventDefault();
+          const el = document.querySelector(href);
+          if(el) el.scrollIntoView({behavior:"smooth", block:"start"});
+        }
       });
-      mobileNav.querySelectorAll("a").forEach(a=>{
-        a.addEventListener("click", ()=> mobileNav.classList.remove("open"));
+    });
+
+    // =========================
+    // Countries (full list, populated by JS)
+    // =========================
+    const countries = [
+      "Afghanistan","Albania","Algeria","Andorra","Angola","Antigua and Barbuda","Argentina","Armenia","Australia","Austria",
+      "Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bhutan","Bolivia",
+      "Bosnia and Herzegovina","Botswana","Brazil","Brunei","Bulgaria","Burkina Faso","Burundi","Cabo Verde","Cambodia",
+      "Cameroon","Canada","Central African Republic","Chad","Chile","China","Colombia","Comoros","Congo","Costa Rica",
+      "Cote d'Ivoire","Croatia","Cuba","Cyprus","Czechia","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador",
+      "Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Eswatini","Ethiopia","Fiji","Finland","France","Gabon",
+      "Gambia","Georgia","Germany","Ghana","Greece","Grenada","Guatemala","Guinea","Guinea-Bissau","Guyana","Haiti",
+      "Honduras","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Israel","Italy","Jamaica","Japan","Jordan",
+      "Kazakhstan","Kenya","Kiribati","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein",
+      "Lithuania","Luxembourg","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania",
+      "Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Morocco","Mozambique","Myanmar","Namibia",
+      "Nauru","Nepal","Netherlands","New Zealand","Nicaragua","Niger","Nigeria","North Korea","North Macedonia","Norway","Oman",
+      "Pakistan","Palau","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Qatar","Romania","Russia",
+      "Rwanda","Saint Kitts and Nevis","Saint Lucia","Saint Vincent and the Grenadines","Samoa","San Marino","Sao Tome and Principe",
+      "Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia",
+      "South Africa","South Korea","South Sudan","Spain","Sri Lanka","Sudan","Suriname","Sweden","Switzerland","Syria","Taiwan",
+      "Tajikistan","Tanzania","Thailand","Timor-Leste","Togo","Tonga","Trinidad and Tobago","Tunisia","Turkey","Turkmenistan",
+      "Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States","Uruguay","Uzbekistan","Vanuatu","Vatican City",
+      "Venezuela","Vietnam","Yemen","Zambia","Zimbabwe"
+    ];
+
+    const countrySel = $("#country");
+    const defaultCountry = "Mexico";
+    countrySel.innerHTML = countries.map(c => {
+      const sel = (c === defaultCountry) ? "selected" : "";
+      return `<option value="${c}" ${sel}>${c}</option>`;
+    }).join("");
+
+    // =========================
+    // Choice components
+    // - Patches: multi-select
+    // - Delivery: single-select
+    // =========================
+    function setupChoices(containerId, {single=false, groupAttr=null} = {}){
+      const container = document.getElementById(containerId);
+      const items = Array.from(container.querySelectorAll(".choice"));
+      items.forEach(item=>{
+        item.addEventListener("click", ()=>{
+          if(single){
+            // if grouped, ensure only within same group
+            items.forEach(i=>{
+              if(groupAttr){
+                if(i.dataset[groupAttr] === item.dataset[groupAttr]) i.classList.remove("selected");
+              }else{
+                i.classList.remove("selected");
+              }
+            });
+            item.classList.add("selected");
+          }else{
+            item.classList.toggle("selected");
+          }
+        });
       });
+      return ()=> items.filter(i=>i.classList.contains("selected")).map(i=>i.dataset.value);
     }
 
-    // ===== WhatsApp config (Mexico) =====
-    const PHONE = "524445817329";
+    const getPatches = setupChoices("patches", {single:false});
+    const getDelivery = setupChoices("delivery", {single:true, groupAttr:"group"});
 
-    function waLink(message){
-      const text = encodeURIComponent(message);
-      return "https://wa.me/" + PHONE + "?text=" + text;
-    }
-
-    // Botones "Hacer pedido"
-    const quickMsg = `Hola Retro Sport 👋
-Quiero hacer un pedido.
-
-- Producto/Camisa:
-- Talla:
-- Ciudad/Estado:
-- Tipo de entrega:
-
-Gracias.`;
-
-    const btn1 = document.getElementById("btnPedido");
-    const btn2 = document.getElementById("btnPedido2");
-    if(btn1) btn1.href = waLink(quickMsg);
-    if(btn2) btn2.href = waLink(quickMsg);
-
-    // ===== Color escrito -> bolita (preview) =====
-    const colorInput = document.getElementById("color");
-    const preview = document.getElementById("colorPreview");
-    if(colorInput && preview){
-      colorInput.addEventListener("input", ()=>{
-        const val = colorInput.value.trim();
-        preview.style.background = val ? val : "transparent";
+    // Delivery hint
+    $$("#delivery .choice").forEach(ch=>{
+      ch.addEventListener("click", ()=>{
+        const val = ch.dataset.value || "";
+        $("#deliveryHint").textContent = "Seleccionado: " + val;
       });
+    });
+
+    // =========================
+    // Color preview (tries to resolve)
+    // =========================
+    const colorInput = $("#colorName");
+    const swatch = $("#swatch");
+    const swatchText = $("#swatchText");
+
+    function colorToCss(name){
+      if(!name) return "";
+      const t = name.trim().toLowerCase();
+
+      // Quick map (mejor que solo 4 opciones)
+      const map = {
+        "rojo":"red",
+        "azul":"dodgerblue",
+        "azul marino":"navy",
+        "marino":"navy",
+        "amarillo":"gold",
+        "negro":"black",
+        "blanco":"white",
+        "gris":"gray",
+        "verde":"green",
+        "morado":"purple",
+        "naranja":"orange",
+        "rosa":"hotpink",
+        "vino":"maroon",
+        "beige":"beige",
+        "cafe":"saddlebrown",
+        "café":"saddlebrown"
+      };
+
+      if(map[t]) return map[t];
+
+      // If user writes a valid CSS color name/hex, let browser try it
+      return t;
     }
 
-    // ===== Form -> WhatsApp =====
-    const form = document.getElementById("buyForm");
-    form.addEventListener("submit", function(e){
+    colorInput.addEventListener("input", ()=>{
+      const v = colorInput.value;
+      const css = colorToCss(v);
+
+      // Validate color by trying to set it
+      const test = document.createElement("div");
+      test.style.color = css;
+      const ok = test.style.color !== "";
+      swatch.style.background = ok ? css : "rgba(255,255,255,.10)";
+      swatchText.textContent = ok ? `Color: ${v}` : "Vista previa del color";
+      swatch.style.borderColor = ok ? "rgba(255,255,255,.25)" : "rgba(255,255,255,.16)";
+    });
+
+    // =========================
+    // Submit => WhatsApp message
+    // =========================
+    $("#orderForm").addEventListener("submit", (e)=>{
       e.preventDefault();
 
-      const correo   = document.getElementById("correo").value.trim();
-      const pais     = document.getElementById("pais").value.trim();
-      const cp       = document.getElementById("cp").value.trim();
+      const data = {
+        country: $("#country").value,
+        postal: $("#postal").value.trim(),
+        email: $("#email").value.trim(),
+        fullName: $("#fullName").value.trim(),
+        product: $("#product").value.trim(),
+        size: $("#size").value,
+        cityState: $("#cityState").value.trim(),
+        qty: $("#qty").value,
+        playerName: $("#playerName").value.trim(),
+        playerNumber: $("#playerNumber").value.trim(),
+        colorName: $("#colorName").value.trim(),
+        notes: $("#notes").value.trim(),
+        patches: getPatches(),
+        delivery: getDelivery()[0] || ""
+      };
 
-      const nombre   = document.getElementById("nombre").value.trim();
-      const producto = document.getElementById("producto").value.trim();
-      const talla    = document.getElementById("talla").value.trim();
-
-      const jugador  = document.getElementById("jugador").value.trim();
-      const numero   = document.getElementById("numero").value.trim();
-
-      const ubicacion = document.getElementById("ubicacion").value.trim();
-      const cantidad  = document.getElementById("cantidad").value.trim();
-
-      const color     = document.getElementById("color").value.trim();
-      const variacion = document.getElementById("variacion").value.trim();
-      const envio     = document.getElementById("envio").value.trim();
-      const detalles  = document.getElementById("detalles").value.trim();
-
-      // parches
-      const checks = document.querySelectorAll('#parchesBox input[type="checkbox"]:checked');
-      const parches = Array.from(checks).map(c => c.value);
-
-      let msg = `Hola Retro Sport 👋
-Soy ${nombre}.
-
-DATOS DE CONTACTO:
-- Correo: ${correo}
-- Pais: ${pais}
-- Codigo postal: ${cp}
-
-PRODUCTO:
-- Producto/Camisa: ${producto}
-- Talla: ${talla}
-- Cantidad: ${cantidad}
-- Ciudad/Estado: ${ubicacion}`;
-
-      if(jugador) msg += `\n- Jugador: ${jugador}`;
-      if(numero)  msg += `\n- Numero: ${numero}`;
-      if(color)   msg += `\n- Color: ${color}`;
-      if(variacion) msg += `\n- Variacion: ${variacion}`;
-
-      if(parches.length){
-        msg += `\n- Parches: ${parches.join(", ")}`;
+      if(!data.delivery){
+        alert("Selecciona un tipo de entrega.");
+        return;
       }
 
-      msg += `\n\nENTREGA:\n- ${envio}`;
-
-      if(detalles){
-        msg += `\n\nDETALLES EXTRA:\n${detalles}`;
+      const lines = [];
+      lines.push("Hola Retro Sport! Quiero hacer un pedido:");
+      lines.push("");
+      lines.push("DATOS DEL CLIENTE");
+      lines.push(`- Nombre: ${data.fullName}`);
+      lines.push(`- Correo: ${data.email}`);
+      lines.push(`- Pais: ${data.country}`);
+      lines.push(`- Codigo Postal: ${data.postal}`);
+      lines.push(`- Ciudad/Estado: ${data.cityState}`);
+      lines.push("");
+      lines.push("PRODUCTO");
+      lines.push(`- Producto/Camisa: ${data.product}`);
+      lines.push(`- Talla: ${data.size}`);
+      lines.push(`- Cantidad: ${data.qty}`);
+      if(data.colorName) lines.push(`- Color/Variacion: ${data.colorName}`);
+      if(data.playerName) lines.push(`- Jugador: ${data.playerName}`);
+      if(data.playerNumber) lines.push(`- Numero: ${data.playerNumber}`);
+      if(data.patches.length) lines.push(`- Parches: ${data.patches.join(", ")}`);
+      lines.push("");
+      lines.push("ENTREGA");
+      lines.push(`- Tipo: ${data.delivery}`);
+      lines.push("");
+      if(data.notes) {
+        lines.push("DETALLES");
+        lines.push(`- ${data.notes}`);
+        lines.push("");
       }
+      lines.push("Gracias! 🙌");
 
-      msg += `\n\nGracias.`;
+      window.open(waLink(lines.join("\n")), "_blank", "noopener");
+    });
 
-      window.open(waLink(msg), "_blank");
+    // =========================
+    // Image fallback (shows if broken)
+    // =========================
+    function attachImgFallback(img){
+      img.addEventListener("error", ()=>{
+        img.style.display = "none";
+        const parent = img.parentElement;
+        if(parent){
+          parent.style.background = "rgba(255,255,255,.03)";
+          parent.innerHTML = `<div style="padding:18px;color:rgba(233,233,242,.65);text-align:center">
+            <div style="font-weight:800;margin-bottom:6px">Imagen no encontrada</div>
+            <div style="font-size:13px;line-height:1.4">
+              Revisa el nombre exacto del archivo.<br>
+              (Mayusculas, extension .jpg/.jpeg, espacios)
+            </div>
+          </div>`;
+        }
+      });
+    }
+    ["heroImg","prodImg1","prodImg2","logoTop"].forEach(id=>{
+      const el = document.getElementById(id);
+      if(el && el.tagName === "IMG") attachImgFallback(el);
     });
   </script>
-
 </body>
 </html>
