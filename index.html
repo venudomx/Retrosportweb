@@ -1,275 +1,1444 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Retro Sport</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0b0b12" />
+  <title>Retro Sport</title>
+  <style>
+    :root{
+      --bg:#07070c;
+      --panel:#0c0c14cc;
+      --panel2:#0d0d18;
+      --text:#e9e9f2;
+      --muted:#b9b9c8;
+      --line:#1a1a2a;
+      --purple:#8b5cf6;
+      --purple2:#a78bfa;
+      --green:#25D366;
+      --green2:#19b957;
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --radius: 22px;
+    }
 
-<style>
-/* ================== BASE ================== */
-:root{
-  --bg:#07070c;
-  --panel:#0c0c14;
-  --text:#e9e9f2;
-  --muted:#b9b9c8;
-  --purple:#8b5cf6;
-  --green:#25D366;
-  --radius:22px;
-}
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
-  background:linear-gradient(180deg,#06060a,#09091a);
-  color:var(--text);
-}
-a{color:inherit;text-decoration:none}
-.container{width:min(1100px,92vw);margin:auto}
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(900px 420px at 18% 15%, rgba(139,92,246,.22), transparent 60%),
+        radial-gradient(900px 420px at 82% 12%, rgba(167,139,250,.16), transparent 60%),
+        radial-gradient(900px 520px at 20% 90%, rgba(139,92,246,.10), transparent 55%),
+        linear-gradient(180deg, #06060a 0%, #070714 55%, #06060a 100%);
+      overflow-x:hidden;
+    }
 
-/* ================== NAV ================== */
-nav{
-  position:sticky;top:0;z-index:20;
-  background:rgba(8,8,14,.85);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid #1a1a2a;
-}
-.nav-inner{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:14px 0;
-}
-nav a{font-size:14px;color:var(--muted);margin-left:14px}
-nav a:hover{color:var(--text)}
-.logo{display:flex;align-items:center;gap:10px;font-weight:700}
-.logo img{width:28px}
+    a{color:inherit; text-decoration:none}
+    .container{width:min(1120px, 92vw); margin:0 auto}
 
-/* ================== HERO ================== */
-.hero{padding:40px 0}
-.hero-grid{
-  display:grid;
-  grid-template-columns:1.2fr .8fr;
-  gap:20px;
-}
-@media(max-width:900px){.hero-grid{grid-template-columns:1fr}}
+    /* NAV */
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(10,10,16,.82), rgba(10,10,16,.55));
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:700; letter-spacing:.3px;
+    }
+    .brand img{
+      width:28px; height:28px; object-fit:contain;
+      filter: drop-shadow(0 8px 20px rgba(139,92,246,.25));
+    }
+    .links{display:flex; gap:18px; align-items:center}
+    .links a{
+      font-size:14px; color:var(--muted);
+      padding:8px 10px; border-radius:12px;
+    }
+    .links a:hover{background:rgba(139,92,246,.10); color:var(--text)}
+    .nav-cta{display:flex; gap:10px; align-items:center}
 
-.card{
-  background:rgba(255,255,255,.03);
-  border:1px solid #1a1a2a;
-  border-radius:var(--radius);
-  padding:22px;
-}
-h1{font-size:44px;margin:0}
-.subtitle{color:var(--muted);margin:10px 0}
+    .btn{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color:var(--text);
+      padding:10px 14px;
+      border-radius:14px;
+      font-weight:650;
+      cursor:pointer;
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      transition: transform .08s ease, background .15s ease, border .15s ease;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .btn:hover{background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.16)}
+    .btn:active{transform: translateY(1px)}
+    .btn-wa{
+      background: linear-gradient(180deg, var(--green) 0%, var(--green2) 100%);
+      border-color: rgba(0,0,0,.12);
+      color:#07110a;
+      box-shadow: 0 16px 40px rgba(37,211,102,.20);
+    }
+    .btn-wa:hover{filter:brightness(1.02)}
+    .btn-dark{background: rgba(255,255,255,.02)}
+    .icon{width:18px; height:18px; display:inline-block; flex:0 0 auto}
 
-.btn{
-  display:inline-flex;align-items:center;gap:10px;
-  padding:12px 18px;border-radius:14px;
-  border:1px solid #1a1a2a;
-}
-.btn-wa{
-  background:var(--green);
-  color:#07110a;
-  font-weight:700;
-}
+    /* Mobile menu */
+    .burger{display:none}
+    .mobile-panel{
+      display:none;
+      padding:10px 0 16px;
+    }
+    .mobile-panel a{
+      display:block;
+      padding:12px 10px;
+      border-radius:14px;
+      color:var(--muted);
+      border: 1px solid rgba(255,255,255,.06);
+      background: rgba(255,255,255,.02);
+      margin-top:10px;
+    }
+    .mobile-panel a:hover{color:var(--text); border-color:rgba(139,92,246,.25)}
+    @media (max-width: 860px){
+      .links{display:none}
+      .burger{display:inline-flex}
+      .mobile-panel.show{display:block}
+    }
 
-/* ================== VIDEO ================== */
-video{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  border-radius:18px;
-}
+    /* Quitar el boton verde del menu en celular (el que marcaste) */
+    @media (max-width: 520px){
+      #ctaWaTop{display:none !important;}
+      .nav-inner{gap:10px}
+      .btn{padding:10px 12px}
+    }
 
-/* ================== SECTIONS ================== */
-section{padding:30px 0}
-.section-title{margin-bottom:14px}
+    /* HERO */
+    .hero{padding: 34px 0 26px;}
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    @media (max-width: 980px){ .hero-grid{grid-template-columns:1fr;} }
 
-/* ================== PRODUCTS ================== */
-.products{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:16px;
-}
-@media(max-width:900px){.products{grid-template-columns:1fr}}
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .card.pad{padding:22px}
+    .pill{
+      display:inline-flex; gap:10px; align-items:center;
+      font-size:12px; color:var(--muted);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding:8px 12px; border-radius:999px;
+      margin-bottom:10px;
+    }
+    .title{
+      font-size:44px; line-height:1.05; margin:6px 0 10px;
+      letter-spacing:-.8px;
+    }
+    @media (max-width: 520px){ .title{font-size:36px} }
+    .subtitle{color:var(--muted); font-size:15px; line-height:1.55; margin:0 0 16px}
+    .hero-actions{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:14px}
+    .note{color:rgba(233,233,242,.70); font-size:12.5px; margin-top:12px}
+    .social-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+    .chip{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.02);
+      color:rgba(233,233,242,.88);
+      font-size:13px;
+    }
+    .chip:hover{border-color: rgba(139,92,246,.25); background: rgba(139,92,246,.08)}
 
-.product-img{height:260px}
+    .hero-media{
+      min-height: 320px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+    .media-top{
+      position:relative;
+      flex:1;
+      border-radius: var(--radius);
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.02);
+      display:flex; align-items:center; justify-content:center;
+    }
+    .media-top img{
+      width:100%; height:100%;
+      object-fit:cover;
+      display:block;
+      filter: contrast(1.03) saturate(1.05);
+      opacity:.92;
+    }
+    .media-badge{
+      position:absolute; bottom:12px; left:12px;
+      padding:10px 12px;
+      border-radius: 14px;
+      background: rgba(7,7,12,.55);
+      border: 1px solid rgba(255,255,255,.10);
+      color: rgba(233,233,242,.88);
+      backdrop-filter: blur(10px);
+      font-size:13px;
+    }
+    .media-mini{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+    .mini{
+      border-radius: var(--radius);
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.02);
+      padding:14px;
+      min-height:92px;
+    }
+    .mini h4{margin:0 0 6px; font-size:14px}
+    .mini p{margin:0; color:var(--muted); font-size:13px; line-height:1.4}
 
-/* ================== TABLE ================== */
-table{
-  width:100%;
-  border-collapse:collapse;
-  min-width:700px;
-}
-th,td{
-  padding:12px;
-  border-bottom:1px solid #1a1a2a;
-  text-align:left;
-}
+    /* Sections */
+    section{padding: 22px 0}
+    .section-title{
+      display:flex; align-items:end; justify-content:space-between; gap:16px;
+      margin: 10px 0 14px;
+    }
+    .section-title h2{margin:0; font-size:26px}
+    .section-title p{margin:0; color:var(--muted); font-size:13px}
 
-/* ================== FORM ================== */
-form{display:grid;gap:14px}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@media(max-width:700px){.row{grid-template-columns:1fr}}
-input,select,textarea{
-  padding:12px;border-radius:14px;
-  background:#0a0a14;border:1px solid #1a1a2a;
-  color:var(--text);
-}
+    .grid-2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:16px;
+    }
+    @media (max-width: 980px){ .grid-2{grid-template-columns:1fr} }
 
-/* ================== RADIO ================== */
-.radio-group{display:flex;gap:12px}
-.radio-option{
-  padding:12px;border:1px solid #1a1a2a;
-  border-radius:14px;cursor:pointer;
-}
-.radio-option input{accent-color:var(--green)}
+    .list{margin:12px 0 0; padding:0; list-style:none; display:grid; gap:10px;}
+    .li{display:flex; gap:10px; align-items:flex-start; color:rgba(233,233,242,.88); font-size:14px;}
+    .dot{
+      width:10px; height:10px; margin-top:6px;
+      border-radius:999px;
+      background: rgba(139,92,246,.65);
+      box-shadow: 0 0 0 3px rgba(139,92,246,.14);
+      flex:0 0 auto;
+    }
 
-footer{padding:30px 0;color:var(--muted);font-size:13px}
-</style>
+    /* Products */
+    .products{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:16px;
+    }
+    @media (max-width: 980px){ .products{grid-template-columns:1fr} }
+
+    .product-card{display:grid; grid-template-columns: 1fr; overflow:hidden}
+    .product-img{
+      height: 260px;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      background: rgba(255,255,255,.02);
+      display:flex; align-items:center; justify-content:center;
+      position:relative;
+    }
+    .product-img img{
+      width:100%; height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    .product-img video{
+      width:100%; height:100%;
+      object-fit:cover;
+      display:block;
+      filter: contrast(1.03) saturate(1.05);
+    }
+    .product-body{padding:16px}
+    .tag{
+      display:inline-flex; align-items:center; gap:8px;
+      font-size:12px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.02);
+      color:rgba(233,233,242,.86);
+      margin-bottom:10px;
+    }
+    .product-body h3{margin:0 0 6px; font-size:18px}
+    .product-body p{margin:0; color:var(--muted); font-size:14px}
+
+    /* Form */
+    .form-wrap{padding:18px}
+    form{display:grid; gap:14px}
+    .row{display:grid; grid-template-columns: 1fr 1fr; gap:14px}
+    @media (max-width: 720px){ .row{grid-template-columns:1fr} }
+    label{font-size:12.5px; color:rgba(233,233,242,.80); display:block; margin:0 0 6px}
+    input, select, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(10,10,16,.55);
+      color:var(--text);
+      outline:none;
+    }
+    input::placeholder, textarea::placeholder{color:rgba(185,185,200,.55)}
+    input:focus, select:focus, textarea:focus{
+      border-color: rgba(139,92,246,.55);
+      box-shadow: 0 0 0 4px rgba(139,92,246,.14);
+    }
+    textarea{min-height:92px; resize:vertical}
+    .hint{margin-top:6px; font-size:12px; color:rgba(233,233,242,.60)}
+
+    .choice-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+    @media (max-width: 720px){ .choice-grid{grid-template-columns:1fr} }
+
+    .choice{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:12px 12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      cursor:pointer;
+      user-select:none;
+      transition: border .15s ease, background .15s ease, transform .06s ease;
+    }
+    .choice:hover{
+      border-color: rgba(139,92,246,.28);
+      background: rgba(139,92,246,.08);
+    }
+    .choice:active{transform: translateY(1px)}
+    .radio{
+      width:18px; height:18px; border-radius:999px;
+      border:2px solid rgba(255,255,255,.28);
+      display:grid; place-items:center;
+      flex:0 0 auto;
+    }
+    .radio::after{
+      content:"";
+      width:10px; height:10px; border-radius:999px;
+      background: transparent;
+    }
+    .choice.selected .radio{border-color: rgba(37,211,102,.9)}
+    .choice.selected .radio::after{background: rgba(37,211,102,.9)}
+    .choice .c-title{font-weight:700; font-size:13.5px}
+    .choice .c-sub{color:var(--muted); font-size:12.5px; margin-top:2px}
+
+    .color-preview{
+      display:flex; align-items:center; gap:10px;
+      margin-top:10px;
+      color:rgba(233,233,242,.75);
+      font-size:12.5px;
+    }
+    .swatch{
+      width:18px; height:18px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.10);
+      box-shadow: 0 0 0 4px rgba(255,255,255,.06);
+    }
+
+    .sendbar{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      padding-top:6px;
+    }
+    .small{font-size:12px; color:rgba(233,233,242,.62)}
+
+    /* Contact */
+    .contact-grid{display:grid; grid-template-columns: 1fr 1fr; gap:16px}
+    @media (max-width: 980px){ .contact-grid{grid-template-columns:1fr} }
+
+    .contact-item{
+      display:flex; gap:12px; align-items:center;
+      padding:12px 12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.02);
+    }
+    .contact-item .k{color:var(--muted); font-size:12.5px}
+    .contact-item .v{font-weight:700; font-size:13.5px}
+    .footer{
+      padding:22px 0 34px;
+      border-top:1px solid rgba(255,255,255,.06);
+      margin-top:10px;
+      color:rgba(233,233,242,.55);
+      font-size:12.5px;
+    }
+
+    /* === MANGAS (arreglado pro) === */
+    .radio-group{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-top:8px;
+    }
+    @media (max-width: 720px){ .radio-group{grid-template-columns:1fr} }
+
+    .radio-option{
+      position:relative;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      cursor:pointer;
+      padding:12px 12px 12px 46px; /* deja espacio al circulo */
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      user-select:none;
+      transition: border .15s ease, background .15s ease, transform .06s ease;
+      min-height:46px;
+      font-weight:700;
+      color:rgba(233,233,242,.90);
+    }
+    .radio-option:hover{
+      border-color: rgba(139,92,246,.28);
+      background: rgba(139,92,246,.08);
+    }
+    .radio-option:active{transform: translateY(1px)}
+
+    .radio-option input{
+      position:absolute;
+      opacity:0;
+      pointer-events:none;
+    }
+    .radio-option::before{
+      content:"";
+      position:absolute;
+      left:14px;
+      width:18px;
+      height:18px;
+      border-radius:999px;
+      border:2px solid rgba(255,255,255,.28);
+      box-shadow: 0 0 0 4px rgba(255,255,255,.06);
+      background: transparent;
+    }
+    .radio-option::after{
+      content:"";
+      position:absolute;
+      left:18px;
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      background: transparent;
+    }
+    .radio-option:has(input:checked){
+      border-color: rgba(37,211,102,.55);
+      box-shadow: 0 0 0 4px rgba(37,211,102,.10);
+      background: rgba(37,211,102,.06);
+    }
+    .radio-option:has(input:checked)::before{
+      border-color: rgba(37,211,102,.9);
+    }
+    .radio-option:has(input:checked)::after{
+      background: rgba(37,211,102,.9);
+    }
+
+    /* Guia de tallas */
+    .tabs{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin:10px 0 14px;
+    }
+    .tabbtn{
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      color:rgba(233,233,242,.88);
+      cursor:pointer;
+      font-weight:700;
+      transition:.15s;
+    }
+    .tabbtn.active{
+      border-color: rgba(37,211,102,.55);
+      box-shadow: 0 0 0 4px rgba(37,211,102,.12);
+    }
+    .table-wrap{
+      overflow:auto;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.02);
+    }
+
+    /* Base table */
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width:640px;
+    }
+    th,td{
+      padding:12px 14px;
+      border-bottom:1px solid rgba(255,255,255,.06);
+      text-align:left;
+      font-size:13.5px;
+      color:rgba(233,233,242,.88);
+      white-space:nowrap;
+    }
+    th{color:rgba(233,233,242,.95); font-size:12.5px; letter-spacing:.3px; text-transform:uppercase;}
+
+    /* === SOLO ADULTO: arreglado (sin verse raro en movil) === */
+    #panelAdulto .table-wrap{
+      -webkit-overflow-scrolling: touch;
+    }
+    #panelAdulto table{
+      min-width: 0;                 /* clave: ya no obliga scroll enorme */
+      width:100%;
+    }
+    #panelAdulto th, #panelAdulto td{
+      white-space: normal;          /* permite envolver texto si hace falta */
+    }
+    #panelAdulto tbody tr:nth-child(even){
+      background: rgba(255,255,255,.02);
+    }
+    #panelAdulto td:nth-child(1){
+      font-weight:800;
+      color:rgba(233,233,242,.95);
+    }
+    #panelAdulto td:nth-child(2),
+    #panelAdulto td:nth-child(3){
+      font-variant-numeric: tabular-nums;
+    }
+    @media (max-width: 520px){
+      #panelAdulto th, #panelAdulto td{
+        padding:10px 12px;
+        font-size:13px;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <!-- SVG ICONS (inline) -->
+  <svg width="0" height="0" style="position:absolute">
+    <symbol id="i-wa" viewBox="0 0 32 32">
+      <path fill="currentColor" d="M19.11 17.24c-.22-.11-1.33-.66-1.54-.74-.21-.08-.36-.11-.51.11-.15.22-.59.74-.72.89-.13.15-.27.17-.49.06-.22-.11-.94-.35-1.8-1.12-.67-.6-1.12-1.34-1.25-1.56-.13-.22-.01-.34.1-.45.1-.1.22-.27.33-.4.11-.13.15-.22.22-.37.07-.15.04-.28-.02-.4-.06-.11-.51-1.24-.7-1.7-.18-.44-.36-.38-.51-.39l-.43-.01c-.15 0-.4.06-.61.28-.21.22-.8.78-.8 1.9 0 1.12.82 2.2.93 2.35.11.15 1.62 2.47 3.92 3.47.55.24.98.39 1.31.5.55.17 1.05.15 1.44.09.44-.07 1.33-.55 1.52-1.08.19-.53.19-.99.13-1.08-.06-.09-.21-.15-.43-.26z"/>
+      <path fill="currentColor" d="M16 3C9.37 3 4 8.37 4 15c0 2.3.65 4.45 1.78 6.28L4 29l7.93-1.74A11.96 11.96 0 0 0 16 27c6.63 0 12-5.37 12-12S22.63 3 16 3zm0 21.8c-1.82 0-3.5-.5-4.95-1.36l-.36-.21-4.7 1.03 1.02-4.58-.24-.38A9.76 9.76 0 0 1 6.2 15 9.8 9.8 0 1 1 16 24.8z"/>
+    </symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8c1.6 3.2 3.4 5 6.6 6.6l2.2-2.2c.3-.3.8-.4 1.2-.2 1 .3 2.1.5 3.2.5.7 0 1.2.5 1.2 1.2V20c0 .7-.5 1.2-1.2 1.2C10.4 21.2 2.8 13.6 2.8 4.2 2.8 3.5 3.3 3 4 3h3.3c.7 0 1.2.5 1.2 1.2 0 1.1.2 2.2.5 3.2.1.4 0 .9-.2 1.2l-2.2 2.2z"/></symbol>
+    <symbol id="i-ig" viewBox="0 0 24 24"><path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 4.5A5.5 5.5 0 1 1 6.5 14 5.5 5.5 0 0 1 12 8.5zm0 2A3.5 3.5 0 1 0 15.5 14 3.5 3.5 0 0 0 12 10.5zM18 6.6a1 1 0 1 1-1 1 1 1 0 0 1 1-1z"/></symbol>
+    <symbol id="i-fb" viewBox="0 0 24 24"><path fill="currentColor" d="M13.5 22v-8h2.7l.4-3H13.5V9.1c0-.9.3-1.5 1.6-1.5h1.6V5a21 21 0 0 0-2.3-.1c-2.3 0-3.9 1.4-3.9 4V11H8v3h2.5v8h3z"/></symbol>
+    <symbol id="i-in" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 6.5A2.2 2.2 0 1 1 7 2.1a2.2 2.2 0 0 1-.06 4.4zM5.5 21.5h3V8.5h-3v13zM10.5 8.5h2.9v1.8h.04c.4-.75 1.4-1.55 2.9-1.55 3.1 0 3.7 2 3.7 4.7v8.05h-3v-7.14c0-1.7 0-3-1.9-3-1.9 0-2.2 1.45-2.2 2.95v7.19h-3V8.5z"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path fill="currentColor" d="M18.9 2H22l-6.8 7.8L22.7 22H17l-4.4-5.5L7.8 22H4.7l7.3-8.4L1.3 2H7.2l4 5 4.7-5z"/></symbol>
+    <symbol id="i-th" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2c5.5 0 10 4.5 10 10s-4.5 10-10 10S2 17.5 2 12 6.5 2 12 2zm5.6 14.2-3.4-4.3 3.2-3.9h-2.4l-2 2.5-2-2.5H8.6l3.2 3.9-3.4 4.3h2.4l2.2-2.8 2.2 2.8h2.6z"/></symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24"><path fill="currentColor" d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM6.2 6l.9 5h10.4l1.1-4.2c.1-.4-.2-.8-.6-.8H6.2zM5 4h16c1 0 1.8 1 1.5 2l-1.8 7c-.2.7-.8 1.1-1.5 1.1H7.2L7 15h12v2H6.4c-.8 0-1.5-.6-1.6-1.4L3.3 3H1V1h3c.8 0 1.4.5 1.6 1.3L5 4z"/></symbol>
+  </svg>
 
-<nav>
-  <div class="container nav-inner">
-    <div class="logo">
-      <img src="IMG_1434.png">
-      Retro Sport
-    </div>
-    <div>
-      <a href="#catalogo">Catálogo</a>
-      <a href="#guiatallas">Guía de tallas</a>
-      <a href="#comprar">Comprar</a>
-    </div>
-  </div>
-</nav>
+  <header class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a class="brand" href="#inicio" aria-label="Retro Sport inicio">
+          <img id="logoTop" src="IMG_1434.png" alt="Retro Sport logo" />
+          <span>Retro Sport</span>
+        </a>
 
-<main class="container">
+        <nav class="links" aria-label="Navegacion principal">
+          <a href="#inicio">Inicio</a>
+          <a href="#quienes">Quienes somos</a>
+          <a href="#catalogo">Catalogo</a>
+          <a href="#jerseys-retro">Jerseys Retro</a>
+          <a href="#colecciones">Colecciones</a>
+          <a href="#guiatallas">Guia de tallas</a>
+          <a href="#comprar">Comprar</a>
+          <a href="#contacto">Contacto</a>
+          <a href="#terminos">Terminos</a>
+        </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-grid">
-    <div class="card">
-      <h1>Retro Sport</h1>
-      <p class="subtitle">The classic never ends.</p>
-      <a class="btn btn-wa" href="https://wa.me/524445817329" target="_blank">
-        Hacer pedido
-      </a>
-    </div>
-
-    <div class="card">
-      <video autoplay muted loop playsinline>
-        <source src="video-retro.mp4" type="video/mp4">
-      </video>
-    </div>
-  </div>
-</section>
-
-<!-- CATALOGO -->
-<section id="catalogo">
-  <h2>Catálogo</h2>
-  <div class="products">
-    <div class="card">
-      <div class="product-img">
-        <video autoplay muted loop playsinline>
-          <source src="video-retro.mp4">
-        </video>
+        <div class="nav-cta">
+          <button class="btn burger" id="btnMenu" aria-label="Abrir menu">☰</button>
+          <a class="btn btn-wa" id="ctaWaTop" href="#" rel="noopener">
+            <svg class="icon"><use href="#i-wa"></use></svg>
+            Hacer pedido
+          </a>
+        </div>
       </div>
-      <h3>Jerseys Retro</h3>
-    </div>
 
-    <div class="card">
-      <div class="product-img">
-        <video autoplay muted loop playsinline>
-          <source src="video-coleccion.mp4">
-        </video>
-      </div>
-      <h3>Colecciones</h3>
-    </div>
-  </div>
-</section>
-
-<!-- GUIA DE TALLAS -->
-<section id="guiatallas">
-  <h2>Guía de tallas – Adulto</h2>
-  <div style="overflow:auto">
-  <table>
-    <thead>
-      <tr>
-        <th>Talla</th>
-        <th>Pecho</th>
-        <th>Largo</th>
-        <th>Altura</th>
-        <th>Peso</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>S</td><td>48–50 cm</td><td>67–69 cm</td><td>1.50–1.70 m</td><td>50–65 kg</td></tr>
-      <tr><td>M</td><td>50–52 cm</td><td>69–72 cm</td><td>1.65–1.75 m</td><td>60–70 kg</td></tr>
-      <tr><td>L</td><td>52–55 cm</td><td>72–74 cm</td><td>1.70–1.80 m</td><td>70–80 kg</td></tr>
-      <tr><td>XL</td><td>55–57 cm</td><td>74–77 cm</td><td>1.75–1.85 m</td><td>75–85 kg</td></tr>
-      <tr><td>XXL</td><td>57–60 cm</td><td>77–80 cm</td><td>1.80–1.90 m</td><td>85–110 kg</td></tr>
-    </tbody>
-  </table>
-  </div>
-</section>
-
-<!-- COMPRAR -->
-<section id="comprar">
-  <h2>Comprar producto</h2>
-
-  <form onsubmit="sendWA(event)">
-    <div class="row">
-      <input id="name" placeholder="Nombre completo" required>
-      <input id="product" placeholder="Producto" required>
-    </div>
-
-    <div class="row">
-      <select id="size" required>
-        <option value="">Talla</option>
-        <option>S</option><option>M</option><option>L</option>
-        <option>XL</option><option>XXL</option>
-      </select>
-
-      <div class="radio-group">
-        <label class="radio-option">
-          <input type="radio" name="manga" value="Manga corta" checked> Manga corta
-        </label>
-        <label class="radio-option">
-          <input type="radio" name="manga" value="Manga larga"> Manga larga
-        </label>
+      <div class="mobile-panel" id="mobilePanel">
+        <a href="#inicio">Inicio</a>
+        <a href="#quienes">Quienes somos</a>
+        <a href="#catalogo">Catalogo</a>
+        <a href="#jerseys-retro">Jerseys Retro</a>
+        <a href="#colecciones">Colecciones</a>
+        <a href="#guiatallas">Guia de tallas</a>
+        <a href="#comprar">Comprar</a>
+        <a href="#contacto">Contacto</a>
+        <a href="#terminos">Terminos</a>
       </div>
     </div>
+  </header>
 
-    <button class="btn btn-wa">Enviar a WhatsApp</button>
-  </form>
-</section>
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+      <div class="hero-grid">
+        <div class="card pad">
+          <div class="pill">Marca deportiva <span style="opacity:.8">minorista y mayorista</span></div>
 
-<footer>
-© <span id="year"></span> Retro Sport
-</footer>
+          <h1 class="title">Retro Sport</h1>
+          <p class="subtitle">
+            The classic never ends.<br>
+            Jerseys retro, ediciones especiales y productos de coleccion con enfoque en calidad, detalle y seguimiento.
+          </p>
 
-</main>
+          <div class="hero-actions">
+            <a class="btn btn-wa" id="ctaWaHero" href="#" rel="noopener">
+              <svg class="icon"><use href="#i-wa"></use></svg>
+              Hacer pedido (WhatsApp)
+            </a>
+            <a class="btn btn-dark" href="#comprar">
+              <svg class="icon"><use href="#i-cart"></use></svg>
+              Comprar producto
+            </a>
+          </div>
 
-<script>
-document.getElementById("year").textContent=new Date().getFullYear();
+          <div class="social-row" aria-label="Redes sociales">
+            <a class="chip" href="https://wa.me/524445817329" target="_blank" rel="noopener">
+              <svg class="icon"><use href="#i-wa"></use></svg> WhatsApp
+            </a>
+            <a class="chip" href="https://www.instagram.com/retrosportmx" target="_blank" rel="noopener">
+              <svg class="icon"><use href="#i-ig"></use></svg> Instagram
+            </a>
+            <a class="chip" href="https://m.facebook.com/ElRetrosportMX/?" target="_blank" rel="noopener">
+              <svg class="icon"><use href="#i-fb"></use></svg> Facebook
+            </a>
+            <a class="chip" id="linkX" href="#" target="_blank" rel="noopener">
+              <svg class="icon"><use href="#i-x"></use></svg> X
+            </a>
+            <a class="chip" id="linkThreads" href="#" target="_blank" rel="noopener">
+              <svg class="icon"><use href="#i-th"></use></svg> Threads
+            </a>
+            <a class="chip" id="linkLinkedIn" href="#" target="_blank" rel="noopener">
+              <svg class="icon"><use href="#i-in"></use></svg> LinkedIn
+            </a>
+          </div>
 
-function sendWA(e){
-  e.preventDefault();
-  const name=name.value;
-  const product=document.getElementById("product").value;
-  const size=document.getElementById("size").value;
-  const manga=document.querySelector("input[name=manga]:checked").value;
+          <div class="note">
+            Tip: si una imagen no aparece, casi siempre es por el nombre exacto del archivo (jpg/jpeg, mayusculas).
+          </div>
+        </div>
 
-  const msg=`Hola Retro Sport!%0A%0ACliente: ${name}%0AProducto: ${product}%0ATalla: ${size}%0AManga: ${manga}`;
-  window.open("https://wa.me/524445817329?text="+msg,"_blank");
-}
+        <div class="card hero-media">
+          <div class="media-top">
+            <img id="heroImg" src="IMG_1365.jpeg" alt="Imagen principal Retro Sport" />
+            <div class="media-badge">Logistica nacional e internacional • Seguimiento de pedidos</div>
+          </div>
+          <div class="media-mini">
+            <div class="mini">
+              <h4>Entrega clara</h4>
+              <p>SLP • Economico 3-5 dias • Express 1-2 dias • Internacional 12-15 dias.</p>
+            </div>
+            <div class="mini">
+              <h4>Pedido rapido</h4>
+              <p>Formulario arma el mensaje y lo manda directo a WhatsApp.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-/* AUTOPLAY FIX iOS */
-document.querySelectorAll("video").forEach(v=>{
-  v.muted=true;
-  v.play().catch(()=>{});
-});
-</script>
+    <!-- QUIENES -->
+    <section id="quienes">
+      <div class="section-title">
+        <h2>Quienes somos</h2>
+        <p>Identidad clara. Operacion seria.</p>
+      </div>
 
+      <div class="grid-2">
+        <div class="card pad">
+          <p class="subtitle" style="margin:0">
+            Retro Sport es una marca deportiva dedicada a la comercializacion minorista y mayorista de jerseys retro,
+            ediciones especiales y productos de coleccion. Trabajamos con enfoque en calidad visual, detalle, y experiencia del cliente.
+          </p>
+          <ul class="list">
+            <li class="li"><span class="dot"></span> Catalogo amplio y busqueda por pedido (equipo + temporada + jugador + talla)</li>
+            <li class="li"><span class="dot"></span> Atencion rapida por WhatsApp con seguimiento claro</li>
+            <li class="li"><span class="dot"></span> Control de calidad en parches, tipografias y acabados</li>
+          </ul>
+        </div>
+
+        <div class="card pad">
+          <p class="subtitle" style="margin:0">
+            Nuestros procesos priorizan orden, comunicacion y entrega. Cada pedido se valida por WhatsApp y se confirma con datos completos
+            para evitar errores de talla, envio o modelo.
+          </p>
+          <ul class="list">
+            <li class="li"><span class="dot"></span> Logistica dentro y fuera de Mexico</li>
+            <li class="li"><span class="dot"></span> Gestion y seguimiento de pedidos paso a paso</li>
+            <li class="li"><span class="dot"></span> Servicio para clientes finales y negocios</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section id="servicios">
+      <div class="section-title">
+        <h2>Servicios</h2>
+        <p>Dos caminos. Elige el que te convenga.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card pad">
+          <h3 style="margin:0 0 6px">1) Hacer pedido (WhatsApp directo)</h3>
+          <p class="subtitle" style="margin:0">
+            Ideal si ya sabes que buscas o quieres atencion inmediata. Te llevamos a WhatsApp con un mensaje listo.
+          </p>
+          <div class="hero-actions" style="margin-top:14px">
+            <a class="btn btn-wa" id="ctaWaService" href="#" rel="noopener">
+              <svg class="icon"><use href="#i-wa"></use></svg>
+              Hacer pedido
+            </a>
+          </div>
+        </div>
+
+        <div class="card pad">
+          <h3 style="margin:0 0 6px">2) Comprar producto (Formulario)</h3>
+          <p class="subtitle" style="margin:0">
+            Llenas datos (pais, CP, correo, producto, talla, tipo de manga, envio) y armamos tu mensaje para enviarlo por WhatsApp.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATALOGO (HUB) -->
+    <section id="catalogo">
+      <div class="section-title">
+        <h2>Catalogo</h2>
+        <p>Entra por linea y navega por secciones.</p>
+      </div>
+
+      <div class="products">
+        <a href="#jerseys-retro" class="card product-card" aria-label="Ir a Jerseys Retro">
+          <div class="product-img">
+            <video autoplay muted loop playsinline webkit-playsinline preload="auto">
+              <source src="video-retro.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="product-body">
+            <span class="tag">Jerseys Retro</span>
+            <h3>Jerseys Retro</h3>
+            <p>Clasicos historicos y ediciones iconicas.</p>
+          </div>
+        </a>
+
+        <a href="#colecciones" class="card product-card" aria-label="Ir a Colecciones">
+          <div class="product-img">
+            <video autoplay muted loop playsinline webkit-playsinline preload="auto">
+              <source src="video-coleccion.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="product-body">
+            <span class="tag">Colecciones</span>
+            <h3>Colecciones especiales</h3>
+            <p>Certificaciones y validaciones.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- JERSEYS RETRO -->
+    <section id="jerseys-retro">
+      <div class="section-title">
+        <h2>Jerseys Retro</h2>
+        <p>Ejemplos (aqui metes tu catalogo real despues).</p>
+      </div>
+
+      <div class="products">
+        <article class="card product-card">
+          <div class="product-img">
+            <img src="IMG_6804.jpeg" alt="Jersey Retro ejemplo" />
+          </div>
+          <div class="product-body">
+            <span class="tag">Retro</span>
+            <h3>Modelo Retro</h3>
+            <p>Pregunta por equipo, temporada, jugador y talla.</p>
+          </div>
+        </article>
+
+        <article class="card product-card">
+          <div class="product-img">
+            <img src="IMG_1365.jpeg" alt="Jersey Retro ejemplo 2" />
+          </div>
+          <div class="product-body">
+            <span class="tag">Retro</span>
+            <h3>Edicion especial</h3>
+            <p>Disponible en varias tallas y opciones de parches.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- COLECCIONES (AHORA: CERTIFICACIONES) -->
+    <!-- (Borrado: Coleccion alternativa y Coleccion destacada) -->
+    <section id="colecciones">
+      <div class="section-title">
+        <h2>Certificaciones</h2>
+        <p>Validaciones y confianza.</p>
+      </div>
+
+      <div class="products">
+        <article class="card product-card">
+          <div class="product-img" style="height:220px;">
+            <img src="cert-sehizo.png" alt="Certificacion Se Hizo" style="object-fit:contain; padding:18px; opacity:.95;">
+          </div>
+          <div class="product-body">
+            <span class="tag">Certificacion</span>
+            <h3>Se Hizo</h3>
+            <p>Certificacion agregada a la seccion de confianza y validacion.</p>
+          </div>
+        </article>
+
+        <article class="card product-card">
+          <div class="product-img" style="height:220px;">
+            <img src="cert-sixsixman.png" alt="Certificacion Six Six Man" style="object-fit:contain; padding:18px; opacity:.95;">
+          </div>
+          <div class="product-body">
+            <span class="tag">Certificacion</span>
+            <h3>Six Six Man</h3>
+            <p>Certificacion agregada (marca/aval) para reforzar credibilidad.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="hint" style="margin-top:10px">
+        Nota: si no vas a usar imagenes, borra los <b>cert-sehizo.png</b> y <b>cert-sixsixman.png</b> o cambialos por tus archivos reales.
+      </div>
+    </section>
+
+    <!-- GUIA DE TALLAS -->
+    <section id="guiatallas">
+      <div class="section-title">
+        <h2>Guia de tallas</h2>
+        <p>Selecciona Nino o Adulto.</p>
+      </div>
+
+      <div class="card pad">
+        <div class="tabs" role="tablist" aria-label="Guia de tallas">
+          <button class="tabbtn active" id="tabAdulto" type="button">Adulto</button>
+          <button class="tabbtn" id="tabNino" type="button">Nino</button>
+        </div>
+
+        <div id="panelAdulto">
+          <p class="subtitle" style="margin:0 0 10px">
+            Medidas aproximadas en centimetros (cm). Recomendacion: medir una camiseta que ya te quede bien y comparar.
+          </p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Talla</th>
+                  <th>Pecho</th>
+                  <th>Largo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>S</td><td>50 cm</td><td>67 cm</td></tr>
+                <tr><td>M</td><td>52 cm</td><td>70 cm</td></tr>
+                <tr><td>L</td><td>54 cm</td><td>73 cm</td></tr>
+                <tr><td>XL</td><td>56 cm</td><td>75 cm</td></tr>
+                <tr><td>2XL</td><td>58 cm</td><td>77 cm</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="panelNino" style="display:none">
+          <p class="subtitle" style="margin:0 0 10px">
+            Tabla para ninos (medidas aproximadas). Si dudas entre dos, elige una mas grande.
+          </p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Talla</th>
+                  <th>Largo playera</th>
+                  <th>Pecho</th>
+                  <th>Largo pantalon</th>
+                  <th>Cintura</th>
+                  <th>Edad</th>
+                  <th>Altura</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>XXXS-16</td><td>43</td><td>32</td><td>32</td><td>20-37</td><td>2-3</td><td>95-105</td></tr>
+                <tr><td>XXS-18</td><td>47</td><td>34</td><td>34</td><td>21-39</td><td>3-4</td><td>105-115</td></tr>
+                <tr><td>XS-20</td><td>50</td><td>36</td><td>36</td><td>22-41</td><td>4-5</td><td>115-125</td></tr>
+                <tr><td>S-22</td><td>53</td><td>38</td><td>38</td><td>23-42</td><td>6-7</td><td>125-135</td></tr>
+                <tr><td>M-24</td><td>56</td><td>40</td><td>39</td><td>24-44</td><td>8-9</td><td>135-145</td></tr>
+                <tr><td>L-26</td><td>58</td><td>42</td><td>40</td><td>25-47</td><td>10-11</td><td>145-155</td></tr>
+                <tr><td>XL-28</td><td>61</td><td>44</td><td>43</td><td>26-50</td><td>12-13</td><td>155-165</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="hint" style="margin-top:10px">
+          Nota: las medidas pueden variar ligeramente segun modelo, temporada y version.
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPRAR -->
+    <section id="comprar">
+      <div class="section-title">
+        <h2>Comprar producto</h2>
+        <p>Llenalo y se manda directo a WhatsApp.</p>
+      </div>
+
+      <div class="card form-wrap">
+        <form id="orderForm">
+          <div class="row">
+            <div>
+              <label for="country">Pais</label>
+              <select id="country" name="country" required></select>
+              <div class="hint">Selecciona tu pais (lista completa).</div>
+            </div>
+            <div>
+              <label for="postal">Codigo postal</label>
+              <input id="postal" name="postal" type="text" placeholder="Ej. 78430" required />
+            </div>
+          </div>
+
+          <div class="row">
+            <div>
+              <label for="email">Correo electronico</label>
+              <input id="email" name="email" type="email" placeholder="tucorreo@gmail.com" required />
+            </div>
+            <div>
+              <label for="fullName">Nombre (cliente)</label>
+              <input id="fullName" name="fullName" type="text" placeholder="Tu nombre completo" required />
+            </div>
+          </div>
+
+          <div class="row">
+            <div>
+              <label for="product">Producto / Camisa</label>
+              <input id="product" name="product" type="text" placeholder="Ej. Manchester United 2008 Final" required />
+            </div>
+            <div>
+              <label for="size">Talla</label>
+              <select id="size" name="size" required>
+                <option value="" disabled selected>Selecciona</option>
+                <option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
+              </select>
+
+              <div style="margin-top:12px">
+                <label>Tipo de manga</label>
+                <div class="radio-group">
+                  <label class="radio-option">
+                    <input type="radio" name="manga" value="Manga corta" checked>
+                    Manga corta
+                  </label>
+                  <label class="radio-option">
+                    <input type="radio" name="manga" value="Manga larga">
+                    Manga larga
+                  </label>
+                </div>
+                <div class="hint">Selecciona si la quieres de manga corta o manga larga.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div>
+              <label for="cityState">Ciudad / Estado</label>
+              <input id="cityState" name="cityState" type="text" placeholder="Ej. Soledad de Graciano Sanchez, SLP" required />
+            </div>
+            <div>
+              <label for="qty">Cantidad</label>
+              <input id="qty" name="qty" type="number" min="1" value="1" required />
+            </div>
+          </div>
+
+          <div class="row">
+            <div>
+              <label for="playerName">Nombre del jugador (si aplica)</label>
+              <input id="playerName" name="playerName" type="text" placeholder="Ej. Cristiano Ronaldo" />
+            </div>
+            <div>
+              <label for="playerNumber">Numero del jugador</label>
+              <input id="playerNumber" name="playerNumber" type="number" min="0" max="99" placeholder="Ej. 7" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div>
+              <label for="colorName">Variacion / Color (escribelo)</label>
+              <input id="colorName" name="colorName" type="text" placeholder="Ej. Rojo, Azul Marino, Amarillo" />
+              <div class="color-preview">
+                <span class="swatch" id="swatch"></span>
+                <span id="swatchText">Vista previa del color</span>
+              </div>
+              <div class="hint">Escribe el color y se muestra la bolita (si se reconoce el color).</div>
+            </div>
+            <div>
+              <label for="notes">Detalles (opcional)</label>
+              <textarea id="notes" name="notes" placeholder="Ej. Parche de campeon / manga larga / tipografia oficial..."></textarea>
+            </div>
+          </div>
+
+          <div>
+            <label>Parches (toca la opcion completa para seleccionarla)</label>
+            <div class="choice-grid" id="patches">
+              <div class="choice" data-value="UEFA Champions League (manga)">
+                <div class="radio"></div>
+                <div>
+                  <div class="c-title">UEFA Champions League</div>
+                  <div class="c-sub">Parche manga (tipo estrella)</div>
+                </div>
+              </div>
+
+              <div class="choice" data-value="Final/Edicion especial (pecho)">
+                <div class="radio"></div>
+                <div>
+                  <div class="c-title">Final / Edicion especial</div>
+                  <div class="c-sub">Texto o badge en pecho</div>
+                </div>
+              </div>
+
+              <div class="choice" data-value="Liga (manga)">
+                <div class="radio"></div>
+                <div>
+                  <div class="c-title">Parche de Liga</div>
+                  <div class="c-sub">Liga local en manga</div>
+                </div>
+              </div>
+
+              <div class="choice" data-value="Mundial/Club World Cup">
+                <div class="radio"></div>
+                <div>
+                  <div class="c-title">Club World Cup / Mundial</div>
+                  <div class="c-sub">Parche especial</div>
+                </div>
+              </div>
+            </div>
+            <div class="hint">Puedes seleccionar varios parches.</div>
+          </div>
+
+          <div>
+            <label>Tipo de entrega</label>
+            <div class="choice-grid" id="delivery">
+              <div class="choice" data-group="delivery" data-value="Envio a domicilio (solo San Luis Potosi) • 1-2 dias">
+                <div class="radio"></div>
+                <div>
+                  <div class="c-title">Domicilio SLP</div>
+                  <div class="c-sub">Solo San Luis Potosi • 1-2 dias habiles</div>
+                </div>
+              </div>
+
+              <div class="choice" data-group="delivery" data-value="Envio economico • 3-5 dias habiles">
+                <div class="radio"></div>
+                <div>
+                  <div class="c-title">Economico</div>
+                  <div class="c-sub">3-5 dias habiles</div>
+                </div>
+              </div>
+
+              <div class="choice" data-group="delivery" data-value="Envio express • 1-2 dias habiles">
+                <div class="radio"></div>
+                <div>
+                  <div class="c-title">Express</div>
+                  <div class="c-sub">1-2 dias habiles</div>
+                </div>
+              </div>
+
+              <div class="choice" data-group="delivery" data-value="Internacional (fuera de Mexico) • 12-15 dias habiles">
+                <div class="radio"></div>
+                <div>
+                  <div class="c-title">Internacional</div>
+                  <div class="c-sub">Fuera de Mexico • 12-15 dias habiles</div>
+                </div>
+              </div>
+            </div>
+            <div class="hint" id="deliveryHint">Selecciona una opcion para mostrar el tiempo estimado.</div>
+          </div>
+
+          <div class="sendbar">
+            <button class="btn btn-wa" type="submit" id="btnSend">
+              <svg class="icon"><use href="#i-wa"></use></svg>
+              Enviar pedido por WhatsApp
+            </button>
+            <span class="small">Si no abre WhatsApp: usa celular o permite abrir enlaces wa.me en tu navegador.</span>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto">
+      <div class="section-title">
+        <h2>Contacto</h2>
+        <p>Respuestas rapidas y claras.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="card pad">
+          <div class="contact-item">
+            <svg class="icon"><use href="#i-phone"></use></svg>
+            <div>
+              <div class="k">Telefono / WhatsApp</div>
+              <div class="v">+52 444 581 7329</div>
+            </div>
+          </div>
+
+          <div class="contact-item" style="margin-top:12px">
+            <svg class="icon"><use href="#i-mail"></use></svg>
+            <div>
+              <div class="k">Correo</div>
+              <div class="v">contacto.retrosportmx@gmail.com</div>
+            </div>
+          </div>
+
+          <div class="social-row" style="margin-top:12px">
+            <a class="chip" href="https://wa.me/524445817329" target="_blank" rel="noopener">
+              <svg class="icon"><use href="#i-wa"></use></svg> WhatsApp
+            </a>
+            <a class="chip" href="https://www.instagram.com/retrosportmx" target="_blank" rel="noopener">
+              <svg class="icon"><use href="#i-ig"></use></svg> Instagram
+            </a>
+            <a class="chip" href="https://m.facebook.com/ElRetrosportMX/?" target="_blank" rel="noopener">
+              <svg class="icon"><use href="#i-fb"></use></svg> Facebook
+            </a>
+            <a class="chip" id="linkLinkedIn2" href="#" target="_blank" rel="noopener">
+              <svg class="icon"><use href="#i-in"></use></svg> LinkedIn
+            </a>
+            <a class="chip" id="linkX2" href="#" target="_blank" rel="noopener">
+              <svg class="icon"><use href="#i-x"></use></svg> X
+            </a>
+            <a class="chip" id="linkThreads2" href="#" target="_blank" rel="noopener">
+              <svg class="icon"><use href="#i-th"></use></svg> Threads
+            </a>
+          </div>
+        </div>
+
+        <div class="card pad">
+          <p class="subtitle" style="margin:0 0 10px">
+            Buscas un modelo especifico? Dinos: <b>equipo + temporada + jugador + talla</b> y te respondemos con disponibilidad y opciones.
+          </p>
+          <a class="btn btn-wa" href="https://wa.me/524445817329" target="_blank" rel="noopener">
+            <svg class="icon"><use href="#i-wa"></use></svg>
+            Hacer pedido
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- TERMINOS -->
+    <section id="terminos">
+      <div class="section-title">
+        <h2>Terminos y condiciones</h2>
+        <p>Transparencia ante todo.</p>
+      </div>
+
+      <div class="card pad">
+        <p class="subtitle" style="margin:0">
+          La informacion y precios pueden variar segun disponibilidad, temporada, talla y tipo de entrega.
+          Para confirmar un pedido se requiere validacion por WhatsApp. Retro Sport no comparte datos con terceros
+          fuera de la gestion del pedido y envio.
+        </p>
+      </div>
+    </section>
+
+    <div class="footer">
+      © <span id="year"></span> RetroSport
+    </div>
+  </main>
+
+  <script>
+    // =========================
+    // CONFIG
+    // =========================
+    const WHATSAPP_NUMBER = "524445817329";
+
+    const ASSETS = {
+      hero: "IMG_1365.jpeg",
+      logo: "IMG_1434.png"
+    };
+
+    // LINKS reales (los que me mandaste)
+    const LINKS = {
+      instagram: "https://www.instagram.com/retrosportmx",
+      facebook: "https://m.facebook.com/ElRetrosportMX/?",
+      linkedin: "https://www.linkedin.com/company/retrosport/",
+      x: "https://x.com/retrosportmx?s=21",
+      threads: "https://www.threads.com/@retrosportmx?igshid=NTc4MTIwNjQ2YQ=="
+    };
+
+    const $ = (q)=>document.querySelector(q);
+    const $$ = (q)=>Array.from(document.querySelectorAll(q));
+
+    // Year
+    $("#year").textContent = new Date().getFullYear();
+
+    // Assets wiring
+    $("#heroImg").src = ASSETS.hero;
+    $("#logoTop").src = ASSETS.logo;
+
+    // Social links wiring
+    $("#linkLinkedIn").href = LINKS.linkedin;
+    $("#linkLinkedIn2").href = LINKS.linkedin;
+    $("#linkX").href = LINKS.x;
+    $("#linkX2").href = LINKS.x;
+    $("#linkThreads").href = LINKS.threads;
+    $("#linkThreads2").href = LINKS.threads;
+
+    // WhatsApp CTAs
+    function waLink(text){
+      return "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(text);
+    }
+    const quickMsg = "Hola! Vengo de la pagina de Retro Sport. Quiero hacer un pedido 🙌";
+    $("#ctaWaTop").href = waLink(quickMsg);
+    $("#ctaWaHero").href = waLink(quickMsg);
+    $("#ctaWaService").href = waLink(quickMsg);
+
+    // Mobile menu toggle
+    const btnMenu = $("#btnMenu");
+    const mobilePanel = $("#mobilePanel");
+    btnMenu.addEventListener("click", ()=> mobilePanel.classList.toggle("show"));
+    $$("#mobilePanel a").forEach(a=>{
+      a.addEventListener("click", ()=> mobilePanel.classList.remove("show"));
+    });
+
+    // Smooth scroll
+    $$(".links a, .mobile-panel a").forEach(a=>{
+      a.addEventListener("click", (e)=>{
+        const href = a.getAttribute("href");
+        if(href && href.startsWith("#")){
+          e.preventDefault();
+          const el = document.querySelector(href);
+          if(el) el.scrollIntoView({behavior:"smooth", block:"start"});
+        }
+      });
+    });
+
+    // =========================
+    // Fix iconos en Safari iOS (use xlink:href)
+    // =========================
+    document.querySelectorAll("use").forEach(u=>{
+      const h = u.getAttribute("href");
+      if(h && !u.getAttribute("xlink:href")){
+        u.setAttribute("xlink:href", h);
+      }
+    });
+
+    // =========================
+    // Autoplay seguro en iOS (si Safari bloquea, intentamos play())
+    // =========================
+    function forcePlayVideos(){
+      document.querySelectorAll("video[autoplay]").forEach(v=>{
+        v.muted = true;
+        v.playsInline = true;
+        v.setAttribute("playsinline","");
+        v.setAttribute("webkit-playsinline","");
+        const p = v.play();
+        if(p && typeof p.catch === "function"){ p.catch(()=>{}); }
+      });
+    }
+    document.addEventListener("DOMContentLoaded", forcePlayVideos);
+    document.addEventListener("visibilitychange", ()=>{ if(!document.hidden) forcePlayVideos(); });
+
+    // =========================
+    // Countries
+    // =========================
+    const countries = [
+      "Afghanistan","Albania","Algeria","Andorra","Angola","Antigua and Barbuda","Argentina","Armenia","Australia","Austria",
+      "Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bhutan","Bolivia",
+      "Bosnia and Herzegovina","Botswana","Brazil","Brunei","Bulgaria","Burkina Faso","Burundi","Cabo Verde","Cambodia",
+      "Cameroon","Canada","Central African Republic","Chad","Chile","China","Colombia","Comoros","Congo","Costa Rica",
+      "Cote d'Ivoire","Croatia","Cuba","Cyprus","Czechia","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador",
+      "Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Eswatini","Ethiopia","Fiji","Finland","France","Gabon",
+      "Gambia","Georgia","Germany","Ghana","Greece","Grenada","Guatemala","Guinea","Guinea-Bissau","Guyana","Haiti",
+      "Honduras","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Israel","Italy","Jamaica","Japan","Jordan",
+      "Kazakhstan","Kenya","Kiribati","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein",
+      "Lithuania","Luxembourg","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania",
+      "Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Morocco","Mozambique","Myanmar","Namibia",
+      "Nauru","Nepal","Netherlands","New Zealand","Nicaragua","Niger","Nigeria","North Korea","North Macedonia","Norway","Oman",
+      "Pakistan","Palau","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Qatar","Romania","Russia",
+      "Rwanda","Saint Kitts and Nevis","Saint Lucia","Saint Vincent and the Grenadines","Samoa","San Marino","Sao Tome and Principe",
+      "Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia",
+      "South Africa","South Korea","South Sudan","Spain","Sri Lanka","Sudan","Suriname","Sweden","Switzerland","Syria","Taiwan",
+      "Tajikistan","Tanzania","Thailand","Timor-Leste","Togo","Tonga","Trinidad and Tobago","Tunisia","Turkey","Turkmenistan",
+      "Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States","Uruguay","Uzbekistan","Vanuatu","Vatican City",
+      "Venezuela","Vietnam","Yemen","Zambia","Zimbabwe"
+    ];
+
+    const countrySel = $("#country");
+    const defaultCountry = "Mexico";
+    countrySel.innerHTML = countries.map(c => {
+      const sel = (c === defaultCountry) ? "selected" : "";
+      return `<option value="${c}" ${sel}>${c}</option>`;
+    }).join("");
+
+    // =========================
+    // Choice components
+    // =========================
+    function setupChoices(containerId, {single=false, groupAttr=null} = {}){
+      const container = document.getElementById(containerId);
+      const items = Array.from(container.querySelectorAll(".choice"));
+      items.forEach(item=>{
+        item.addEventListener("click", ()=>{
+          if(single){
+            items.forEach(i=>{
+              if(groupAttr){
+                if(i.dataset[groupAttr] === item.dataset[groupAttr]) i.classList.remove("selected");
+              }else{
+                i.classList.remove("selected");
+              }
+            });
+            item.classList.add("selected");
+          }else{
+            item.classList.toggle("selected");
+          }
+        });
+      });
+      return ()=> items.filter(i=>i.classList.contains("selected")).map(i=>i.dataset.value);
+    }
+
+    const getPatches = setupChoices("patches", {single:false});
+    const getDelivery = setupChoices("delivery", {single:true, groupAttr:"group"});
+
+    $$("#delivery .choice").forEach(ch=>{
+      ch.addEventListener("click", ()=>{
+        const val = ch.dataset.value || "";
+        $("#deliveryHint").textContent = "Seleccionado: " + val;
+      });
+    });
+
+    // =========================
+    // Color preview
+    // =========================
+    const colorInput = $("#colorName");
+    const swatch = $("#swatch");
+    const swatchText = $("#swatchText");
+
+    function colorToCss(name){
+      if(!name) return "";
+      const t = name.trim().toLowerCase();
+      const map = {
+        "rojo":"red","azul":"dodgerblue","azul marino":"navy","marino":"navy","amarillo":"gold",
+        "negro":"black","blanco":"white","gris":"gray","verde":"green","morado":"purple",
+        "naranja":"orange","rosa":"hotpink","vino":"maroon","beige":"beige","cafe":"saddlebrown","café":"saddlebrown"
+      };
+      if(map[t]) return map[t];
+      return t;
+    }
+
+    colorInput.addEventListener("input", ()=>{
+      const v = colorInput.value;
+      const css = colorToCss(v);
+      const test = document.createElement("div");
+      test.style.color = css;
+      const ok = test.style.color !== "";
+      swatch.style.background = ok ? css : "rgba(255,255,255,.10)";
+      swatchText.textContent = ok ? `Color: ${v}` : "Vista previa del color";
+      swatch.style.borderColor = ok ? "rgba(255,255,255,.25)" : "rgba(255,255,255,.16)";
+    });
+
+    // =========================
+    // Guia de tallas tabs
+    // =========================
+    const tabAdulto = $("#tabAdulto");
+    const tabNino = $("#tabNino");
+    const panelAdulto = $("#panelAdulto");
+    const panelNino = $("#panelNino");
+
+    tabAdulto.addEventListener("click", ()=>{
+      tabAdulto.classList.add("active");
+      tabNino.classList.remove("active");
+      panelAdulto.style.display = "block";
+      panelNino.style.display = "none";
+    });
+    tabNino.addEventListener("click", ()=>{
+      tabNino.classList.add("active");
+      tabAdulto.classList.remove("active");
+      panelAdulto.style.display = "none";
+      panelNino.style.display = "block";
+    });
+
+    // =========================
+    // Submit => WhatsApp message
+    // =========================
+    $("#orderForm").addEventListener("submit", (e)=>{
+      e.preventDefault();
+
+      const data = {
+        country: $("#country").value,
+        postal: $("#postal").value.trim(),
+        email: $("#email").value.trim(),
+        fullName: $("#fullName").value.trim(),
+        product: $("#product").value.trim(),
+        size: $("#size").value,
+        manga: document.querySelector('input[name="manga"]:checked')?.value || "Manga corta",
+        cityState: $("#cityState").value.trim(),
+        qty: $("#qty").value,
+        playerName: $("#playerName").value.trim(),
+        playerNumber: $("#playerNumber").value.trim(),
+        colorName: $("#colorName").value.trim(),
+        notes: $("#notes").value.trim(),
+        patches: getPatches(),
+        delivery: getDelivery()[0] || ""
+      };
+
+      if(!data.delivery){
+        alert("Selecciona un tipo de entrega.");
+        return;
+      }
+
+      const lines = [];
+      lines.push("Hola Retro Sport! Quiero hacer un pedido:");
+      lines.push("");
+      lines.push("DATOS DEL CLIENTE");
+      lines.push(`- Nombre: ${data.fullName}`);
+      lines.push(`- Correo: ${data.email}`);
+      lines.push(`- Pais: ${data.country}`);
+      lines.push(`- Codigo Postal: ${data.postal}`);
+      lines.push(`- Ciudad/Estado: ${data.cityState}`);
+      lines.push("");
+      lines.push("PRODUCTO");
+      lines.push(`- Producto/Camisa: ${data.product}`);
+      lines.push(`- Talla: ${data.size}`);
+      lines.push(`- Tipo de manga: ${data.manga}`);
+      lines.push(`- Cantidad: ${data.qty}`);
+      if(data.colorName) lines.push(`- Color/Variacion: ${data.colorName}`);
+      if(data.playerName) lines.push(`- Jugador: ${data.playerName}`);
+      if(data.playerNumber) lines.push(`- Numero: ${data.playerNumber}`);
+      if(data.patches.length) lines.push(`- Parches: ${data.patches.join(", ")}`);
+      lines.push("");
+      lines.push("ENTREGA");
+      lines.push(`- Tipo: ${data.delivery}`);
+      lines.push("");
+      if(data.notes) {
+        lines.push("DETALLES");
+        lines.push(`- ${data.notes}`);
+        lines.push("");
+      }
+      lines.push("Gracias! 🙌");
+
+      window.open(waLink(lines.join("\n")), "_blank", "noopener");
+    });
+  </script>
 </body>
 </html>
