@@ -1,174 +1,715 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Retro Sport</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Retro Sport | The classic never ends</title>
+  <meta name="description" content="Retro Sport: marca deportiva minorista y mayorista de productos originales, jerseys retro y ediciones especiales. Logistica, exportacion e importacion dentro y fuera de Mexico." />
 
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #0b0b0b;
-      color: #ffffff;
-      text-align: center;
+    :root{
+      --bg:#07090c;
+      --card:#0c1017;
+      --text:#e9eef7;
+      --muted:#a9b4c7;
+      --line:rgba(255,255,255,.08);
+      --accent:#24d366; /* WhatsApp vibe */
+      --accent2:#2dd4bf; /* detalle pro */
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --radius: 18px;
+      --max: 1100px;
     }
 
-    header {
-      padding: 60px 20px;
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(900px 500px at 50% -100px, rgba(45,212,191,.18), transparent 60%),
+                  radial-gradient(700px 450px at 0% 20%, rgba(36,211,102,.12), transparent 60%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.55;
     }
 
-    header img {
-      max-width: 120px;
-      margin-bottom: 20px;
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 18px;}
+
+    /* Top bar */
+    .topbar{
+      position:sticky; top:0; z-index:10;
+      backdrop-filter: blur(10px);
+      background: rgba(7,9,12,.65);
+      border-bottom:1px solid var(--line);
+    }
+    .topbar .inner{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px;
+      padding:12px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:800;
+      letter-spacing:.4px;
+    }
+    .brand img{
+      width:34px; height:34px; object-fit:contain;
+      filter: drop-shadow(0 10px 25px rgba(0,0,0,.6));
+    }
+    nav{
+      display:flex; gap:14px; flex-wrap:wrap;
+      font-size:14px; color:var(--muted);
+    }
+    nav a{padding:8px 10px; border-radius:999px}
+    nav a:hover{background:rgba(255,255,255,.06); color:var(--text)}
+
+    /* Hero */
+    .hero{
+      padding:44px 0 22px;
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    .heroCard{
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:26px;
+      overflow:hidden;
+      position:relative;
+    }
+    .kicker{
+      display:inline-flex; gap:10px; align-items:center;
+      color:var(--muted);
+      font-size:13px;
+      border:1px solid var(--line);
+      padding:7px 10px;
+      border-radius:999px;
+      background: rgba(255,255,255,.03);
+    }
+    .kicker b{color:var(--text)}
+    h1{
+      margin:14px 0 6px;
+      font-size:44px;
+      line-height:1.05;
+      letter-spacing:-.7px;
+    }
+    .slogan{
+      margin:0 0 14px;
+      color:var(--muted);
+      font-size:16px;
+    }
+    .heroText{
+      margin:0 0 18px;
+      color: var(--muted);
+      font-size:15.5px;
+      max-width: 58ch;
     }
 
-    h1 {
-      font-size: 42px;
-      margin-bottom: 10px;
+    .ctaRow{
+      display:flex; gap:12px; flex-wrap:wrap;
+      margin-top: 10px;
+    }
+    .btn{
+      border:0; cursor:pointer;
+      padding:13px 16px;
+      border-radius:999px;
+      font-weight:750;
+      letter-spacing:.2px;
+      display:inline-flex; align-items:center; gap:10px;
+      transition: transform .06s ease, filter .2s ease;
+      user-select:none;
+      font-size:14.5px;
+    }
+    .btn:active{transform: translateY(1px)}
+    .btnPrimary{
+      background: var(--accent);
+      color:#0a0f0c;
+      box-shadow: 0 10px 30px rgba(36,211,102,.22);
+    }
+    .btnGhost{
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      border:1px solid var(--line);
+    }
+    .mini{
+      font-size:12.5px; color:var(--muted);
+      margin-top:12px;
     }
 
-    .slogan {
-      font-size: 18px;
-      opacity: 0.85;
-      margin-bottom: 30px;
+    .heroImage{
+      border-radius: var(--radius);
+      border:1px solid var(--line);
+      overflow:hidden;
+      background: rgba(255,255,255,.02);
+      box-shadow: var(--shadow);
+      position:relative;
+      min-height: 330px;
+    }
+    .heroImage img{
+      width:100%; height:100%;
+      object-fit: cover;
+      display:block;
+      opacity:.95;
+    }
+    .badge{
+      position:absolute;
+      left:14px; bottom:14px;
+      background: rgba(7,9,12,.7);
+      border:1px solid var(--line);
+      padding:10px 12px;
+      border-radius: 14px;
+      max-width: 85%;
+    }
+    .badge .t{font-weight:800}
+    .badge .s{color:var(--muted); font-size:12.5px; margin-top:2px}
+
+    /* Sections */
+    .section{padding:22px 0}
+    .titleRow{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:12px;
+      margin: 6px 0 12px;
+    }
+    h2{
+      margin:0;
+      font-size:26px;
+      letter-spacing:-.3px;
+    }
+    .sub{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
     }
 
-    .btn {
-      display: inline-block;
-      padding: 18px 35px;
-      background: #25D366;
-      color: #000;
-      font-size: 18px;
-      border-radius: 40px;
-      text-decoration: none;
-      font-weight: bold;
+    .grid2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+    .card{
+      background: rgba(255,255,255,.03);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      padding:18px;
+    }
+    .card p{margin:0; color:var(--muted)}
+    .list{
+      margin:12px 0 0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:10px;
+    }
+    .list li{
+      display:flex; gap:10px; align-items:flex-start;
+      color: var(--muted);
+    }
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: var(--accent2);
+      margin-top:6px;
+      flex:0 0 auto;
+      box-shadow: 0 0 0 6px rgba(45,212,191,.08);
     }
 
-    section {
-      padding: 60px 20px;
-      max-width: 900px;
-      margin: auto;
+    /* Products */
+    .productGrid{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:14px;
+    }
+    .product{
+      overflow:hidden;
+      padding:0;
+    }
+    .product .img{
+      height: 280px;
+      background: rgba(255,255,255,.03);
+      border-bottom:1px solid var(--line);
+      position:relative;
+    }
+    .product img{
+      width:100%; height:100%;
+      object-fit: cover;
+      display:block;
+    }
+    .product .body{
+      padding:16px 16px 18px;
+    }
+    .tag{
+      display:inline-flex; align-items:center; gap:8px;
+      font-size:12px; color:var(--muted);
+      border:1px solid var(--line);
+      padding:6px 10px; border-radius:999px;
+      background: rgba(255,255,255,.03);
+    }
+    .product h3{
+      margin:10px 0 6px;
+      font-size:18px;
+      letter-spacing:-.2px;
+    }
+    .product p{margin:0; color:var(--muted); font-size:14px}
+
+    /* Form */
+    form{
+      display:grid;
+      gap:12px;
+      margin-top:12px;
+    }
+    .row{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+    label{
+      display:grid;
+      gap:6px;
+      color: var(--muted);
+      font-size:13px;
+    }
+    input, select, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius: 14px;
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.25);
+      color: var(--text);
+      outline:none;
+    }
+    textarea{min-height:110px; resize:vertical}
+    input:focus, select:focus, textarea:focus{
+      border-color: rgba(45,212,191,.45);
+      box-shadow: 0 0 0 6px rgba(45,212,191,.10);
     }
 
-    h2 {
-      font-size: 32px;
-      margin-bottom: 20px;
+    /* Contact */
+    .contactGrid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:14px;
+      align-items: start;
     }
-
-    p {
-      font-size: 17px;
-      line-height: 1.6;
-      opacity: 0.9;
+    .contactLine{
+      display:flex; gap:10px; align-items:center;
+      color:var(--muted);
+      margin:8px 0 0;
+      flex-wrap:wrap;
     }
+    .pill{
+      display:inline-flex;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      font-size:13px;
+    }
+    .socialRow{
+      display:flex; flex-wrap:wrap; gap:10px;
+      margin-top:12px;
+    }
+    .socialRow a:hover{filter:brightness(1.06)}
 
-    ul {
-      list-style: none;
-      padding: 0;
+    /* Footer */
+    footer{
+      padding:26px 0 34px;
+      border-top:1px solid var(--line);
+      color: var(--muted);
+      font-size:13px;
       margin-top: 20px;
     }
 
-    ul li {
-      margin: 10px 0;
-      font-size: 16px;
-    }
-
-    .gallery img {
-      width: 100%;
-      max-width: 280px;
-      border-radius: 12px;
-      margin: 15px;
-    }
-
-    footer {
-      padding: 30px 20px;
-      font-size: 14px;
-      opacity: 0.7;
-      border-top: 1px solid #222;
-    }
-
-    .social a {
-      margin: 0 10px;
-      color: #fff;
-      text-decoration: none;
-      font-size: 14px;
+    /* Responsive */
+    @media (max-width: 900px){
+      .heroGrid{grid-template-columns: 1fr}
+      h1{font-size:38px}
+      .grid2{grid-template-columns:1fr}
+      .productGrid{grid-template-columns:1fr}
+      .contactGrid{grid-template-columns:1fr}
+      .row{grid-template-columns:1fr}
+      .heroImage{min-height:260px}
     }
   </style>
 </head>
 
 <body>
 
-  <!-- HERO -->
-  <header>
-    <!-- LOGO -->
-    <img src="logo.png" alt="Retro Sport Logo">
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <div class="wrap">
+      <div class="inner">
+        <div class="brand">
+          <!-- LOGO: asegurate que exista EXACTO como logo.png -->
+          <img src="logo.png" alt="Logo Retro Sport" />
+          <span>Retro Sport</span>
+        </div>
 
-    <h1>Retro Sport</h1>
-    <div class="slogan">The classic never ends</div>
-
-    <a class="btn" 
-       href="https://wa.me/524445817329?text=Hola%20quiero%20hacer%20un%20pedido%20con%20Retro%20Sport">
-       Hacer pedido
-    </a>
+        <nav>
+          <a href="#quienes">Quienes somos</a>
+          <a href="#servicios">Servicios</a>
+          <a href="#productos">Productos</a>
+          <a href="#comprar">Comprar</a>
+          <a href="#contacto">Contacto</a>
+          <a href="#terminos">Terminos</a>
+        </nav>
+      </div>
+    </div>
   </header>
 
-  <!-- QUIÉNES SOMOS -->
-  <section>
-    <h2>Quiénes somos</h2>
-    <p>
-      Retro Sport es una marca deportiva dedicada a la comercialización minorista
-      y mayorista de productos originales, jerseys retro y ediciones especiales.
-    </p>
-    <p>
-      Operamos con procesos certificados bajo estándares de calidad como
-      <strong>ISO 9001</strong> y <strong>Six Sigma White Belt</strong>,
-      integrando logística, importación y exportación de productos y servicios
-      dentro y fuera de México.
-    </p>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="heroGrid">
+
+        <div class="heroCard">
+          <span class="kicker">⚡ <b>Marca deportiva</b> minorista y mayorista</span>
+
+          <h1>Retro Sport</h1>
+          <p class="slogan">The classic never ends</p>
+
+          <p class="heroText">
+            Mas de <b>20,000 productos oficiales</b> de coleccion y de recuerdo.
+            Pregunta por el jersey de tus suenos: retro, ediciones especiales y productos originales.
+          </p>
+
+          <div class="ctaRow">
+            <!-- BOTON 1: WhatsApp directo -->
+            <a class="btn btnPrimary" id="btnPedido" href="#" rel="noopener">
+              📲 Hacer pedido
+            </a>
+
+            <!-- BOTON 2: baja al formulario de compra -->
+            <a class="btn btnGhost" href="#comprar">
+              🛒 Comprar producto
+            </a>
+          </div>
+
+          <p class="mini">
+            Tip rapido: si algo no aparece, casi siempre es el nombre del archivo (jpg / jpeg / mayusculas).
+          </p>
+        </div>
+
+        <div class="heroImage">
+          <!-- HERO: asegurate que exista EXACTO como hero.jpg -->
+          <img src="hero.jpg" alt="Coleccion Retro Sport" />
+          <div class="badge">
+            <div class="t">Logistica nacional e internacional</div>
+            <div class="s">Importacion y exportacion dentro y fuera de Mexico</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIENES SOMOS -->
+  <section class="section" id="quienes">
+    <div class="wrap">
+      <div class="titleRow">
+        <h2>Quienes somos</h2>
+        <p class="sub">Identidad clara. Operacion seria.</p>
+      </div>
+
+      <div class="grid2">
+        <div class="card">
+          <p>
+            Retro Sport es una marca deportiva dedicada a la comercializacion
+            <b>minorista y mayorista</b> de productos originales, jerseys retro y ediciones especiales.
+          </p>
+
+          <ul class="list">
+            <li><span class="dot"></span>Catalogo amplio y busqueda por pedido</li>
+            <li><span class="dot"></span>Atencion rapida por WhatsApp</li>
+            <li><span class="dot"></span>Operacion enfocada en calidad y control</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <p>
+            Trabajamos con procesos alineados a estandares de calidad como
+            <b>ISO 9001</b> y <b>Six Sigma White Belt</b>, integrando logistica,
+            importacion y exportacion de productos y servicios.
+          </p>
+
+          <ul class="list">
+            <li><span class="dot"></span>Logistica dentro y fuera de Mexico</li>
+            <li><span class="dot"></span>Gestion y seguimiento de pedidos</li>
+            <li><span class="dot"></span>Servicio para clientes y negocios</li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- SERVICIOS -->
-  <section>
-    <h2>Nuestros servicios</h2>
-    <ul>
-      <li>✔ Venta de jerseys retro y de colección</li>
-      <li>✔ Ediciones especiales y conmemorativas</li>
-      <li>✔ Pedidos personalizados</li>
-      <li>✔ Distribución mayorista</li>
-      <li>✔ Logística nacional e internacional</li>
-    </ul>
+  <section class="section" id="servicios">
+    <div class="wrap">
+      <div class="titleRow">
+        <h2>Servicios</h2>
+        <p class="sub">Dos caminos. Elige el que te convenga.</p>
+      </div>
+
+      <div class="grid2">
+        <div class="card">
+          <p><b>1) Hacer pedido (WhatsApp directo)</b></p>
+          <p style="margin-top:8px;">
+            Ideal si ya sabes que buscas o quieres atencion inmediata.
+            Te llevamos a WhatsApp con un mensaje listo para enviar.
+          </p>
+        </div>
+
+        <div class="card">
+          <p><b>2) Comprar producto (Formulario)</b></p>
+          <p style="margin-top:8px;">
+            Llenas los datos (producto, talla, envio) y el sistema arma tu mensaje automaticamente
+            para mandarlo por WhatsApp. Sin complicaciones, sin apps raras.
+          </p>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- GALERÍA (TÚ AGREGAS FOTOS) -->
-  <section>
-    <h2>Más de 20,000 productos oficiales</h2>
-    <p>Pregunta por el jersey de tus sueños</p>
+  <!-- PRODUCTOS -->
+  <section class="section" id="productos">
+    <div class="wrap">
+      <div class="titleRow">
+        <h2>Mas de 20,000 productos oficiales</h2>
+        <p class="sub">Aqui solo es muestra. Tu metes las fotos finales.</p>
+      </div>
 
-    <div class="gallery">
-      <img src="jersey1.jpg" alt="Jersey Retro">
-      <img src="hero.jpg" alt="Colección Retro">
+      <div class="productGrid">
+        <article class="card product">
+          <div class="img">
+            <!-- PRODUCTO 1: asegurate que exista EXACTO como jersey1.jpg -->
+            <img src="jersey1.jpg" alt="Jersey Retro" />
+          </div>
+          <div class="body">
+            <span class="tag">🏟️ Jersey Retro</span>
+            <h3>Jerseys retro y ediciones especiales</h3>
+            <p>Modelos de coleccion y recuerdos. Pregunta por tu jersey ideal.</p>
+          </div>
+        </article>
+
+        <article class="card product">
+          <div class="img">
+            <!-- PRODUCTO 2: por ahora usa hero.jpg como placeholder. Luego lo cambias -->
+            <img src="hero.jpg" alt="Coleccion Retro" />
+          </div>
+          <div class="body">
+            <span class="tag">🧩 Coleccion</span>
+            <h3>Catalogo amplio por pedido</h3>
+            <p>Si no lo ves aqui, lo buscamos. Dinos equipo, temporada y talla.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPRAR (FORM A WHATSAPP) -->
+  <section class="section" id="comprar">
+    <div class="wrap">
+      <div class="titleRow">
+        <h2>Comprar producto</h2>
+        <p class="sub">Llenalo y se manda directo a WhatsApp.</p>
+      </div>
+
+      <div class="card">
+        <p style="margin:0;color:var(--muted)">
+          Completa lo basico y listo. Esto no cobra nada: solo arma el mensaje y abre WhatsApp.
+        </p>
+
+        <form id="buyForm">
+          <div class="row">
+            <label>
+              Producto / Jersey
+              <input id="producto" type="text" placeholder="Ej: Real Madrid 2011-2012 Cristiano Ronaldo" required />
+            </label>
+
+            <label>
+              Talla
+              <select id="talla" required>
+                <option value="">Selecciona</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+                <option>XXL</option>
+                <option>Otra / No se</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="row">
+            <label>
+              Nombre
+              <input id="nombre" type="text" placeholder="Tu nombre" required />
+            </label>
+
+            <label>
+              Ciudad / Estado
+              <input id="ubicacion" type="text" placeholder="Ej: San Luis Potosi" required />
+            </label>
+          </div>
+
+          <div class="row">
+            <label>
+              Tipo de envio
+              <select id="envio" required>
+                <option value="">Selecciona</option>
+                <option>Domicilio (San Luis Potosi)</option>
+                <option>Autobus express (12 horas)</option>
+                <option>Paqueteria (1 a 2 dias)</option>
+                <option>Mercado Pago (garantizado 4 dias)</option>
+              </select>
+            </label>
+
+            <label>
+              Cantidad
+              <input id="cantidad" type="number" min="1" value="1" required />
+            </label>
+          </div>
+
+          <label>
+            Detalles (opcional)
+            <textarea id="detalles" placeholder="Ej: version jugador / parches / nombre y numero / etc."></textarea>
+          </label>
+
+          <button class="btn btnPrimary" type="submit">
+            ✅ Enviar pedido por WhatsApp
+          </button>
+
+          <p class="mini">
+            Si no te abre WhatsApp: revisa que estes en celular o que tu navegador permita abrir enlaces wa.me.
+          </p>
+        </form>
+      </div>
     </div>
   </section>
 
   <!-- CONTACTO -->
-  <section>
-    <h2>Contacto</h2>
-    <p>📞 WhatsApp: 444 581 7329</p>
-    <p>📧 contacto.retrosportmx@gmail.com</p>
+  <section class="section" id="contacto">
+    <div class="wrap">
+      <div class="titleRow">
+        <h2>Contacto</h2>
+        <p class="sub">Respuestas rapidas y claras.</p>
+      </div>
 
-    <div class="social">
-      <a href="https://www.instagram.com/retrosportmx" target="_blank">Instagram</a>
-      <a href="https://facebook.com/EIRetrosportMX" target="_blank">Facebook</a>
-      <a href="https://www.linkedin.com/company/retrosport/" target="_blank">LinkedIn</a>
-      <a href="https://x.com/retrosportmx" target="_blank">X</a>
-      <a href="https://www.threads.com/@retrosportmx" target="_blank">Threads</a>
+      <div class="contactGrid">
+        <div class="card">
+          <div class="contactLine">📞 <span class="pill">WhatsApp: 444 581 7329</span></div>
+          <div class="contactLine">✉️ <span class="pill">contacto.retrosportmx@gmail.com</span></div>
+
+          <div class="socialRow">
+            <a class="pill" href="https://www.instagram.com/retrosportmx?igsh=OGxhbjRqOHlwN2Ry&utm_source=qr" target="_blank" rel="noopener">Instagram</a>
+            <a class="pill" href="https://facebook.com/EIRetrosportMX" target="_blank" rel="noopener">Facebook</a>
+            <a class="pill" href="https://www.linkedin.com/company/retrosport/" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="pill" href="https://x.com/retrosportmx?s=21" target="_blank" rel="noopener">X</a>
+            <a class="pill" href="https://www.threads.com/@retrosportmx?igshid=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener">Threads</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <p>
+            ¿Buscas un modelo especifico? Dinos:
+            <b>equipo + temporada + jugador + talla</b> y te respondemos con disponibilidad y opciones.
+          </p>
+
+          <div style="margin-top:12px;">
+            <a class="btn btnPrimary" href="#" id="btnPedido2" rel="noopener">📲 Hacer pedido</a>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- TERMINOS -->
+  <section class="section" id="terminos">
+    <div class="wrap">
+      <div class="titleRow">
+        <h2>Terminos y condiciones</h2>
+        <p class="sub">Transparencia ante todo.</p>
+      </div>
+
+      <div class="card">
+        <p style="margin:0;color:var(--muted)">
+          La informacion y precios pueden variar segun disponibilidad, temporada, talla y tipo de envio.
+          Para confirmar un pedido se requiere validacion por WhatsApp. Retro Sport no comparte datos con terceros
+          fuera de la gestion del pedido y envio.
+        </p>
+      </div>
+    </div>
+  </section>
+
   <footer>
-    © RetroSport 2025
+    <div class="wrap">
+      © RetroSport 2025
+    </div>
   </footer>
+
+  <script>
+    // WhatsApp config (Mexico)
+    const PHONE = "524445817329"; // wa.me requiere pais + numero
+
+    function waLink(message){
+      const text = encodeURIComponent(message);
+      return "https://wa.me/" + PHONE + "?text=" + text;
+    }
+
+    // Boton "Hacer pedido" (mensaje rapido)
+    const quickMsg = `Hola Retro Sport 👋
+Quiero hacer un pedido. Me interesa:
+- Producto/Jersey:
+- Talla:
+- Ciudad/Estado:
+- Tipo de envio:
+Gracias.`;
+
+    const btn1 = document.getElementById("btnPedido");
+    const btn2 = document.getElementById("btnPedido2");
+
+    if(btn1) btn1.href = waLink(quickMsg);
+    if(btn2) btn2.href = waLink(quickMsg);
+
+    // Form -> WhatsApp
+    const form = document.getElementById("buyForm");
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+
+      const producto  = document.getElementById("producto").value.trim();
+      const talla     = document.getElementById("talla").value.trim();
+      const nombre    = document.getElementById("nombre").value.trim();
+      const ubicacion = document.getElementById("ubicacion").value.trim();
+      const envio     = document.getElementById("envio").value.trim();
+      const cantidad  = document.getElementById("cantidad").value.trim();
+      const detalles  = document.getElementById("detalles").value.trim();
+
+      let msg = `Hola Retro Sport 👋
+Soy ${nombre}.
+Quiero comprar:
+
+Producto/Jersey: ${producto}
+Talla: ${talla}
+Cantidad: ${cantidad}
+Ubicacion: ${ubicacion}
+Tipo de envio: ${envio}`;
+
+      if(detalles){
+        msg += `
+
+Detalles: ${detalles}`;
+      }
+
+      msg += `
+
+Gracias.`;
+
+      window.open(waLink(msg), "_blank");
+    });
+  </script>
 
 </body>
 </html>
