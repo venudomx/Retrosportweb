@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Retro Sport | The classic never ends</title>
+
   <meta name="description" content="Retro Sport: marca deportiva minorista y mayorista de productos originales, jerseys retro y ediciones especiales. Logistica, exportacion e importacion dentro y fuera de Mexico." />
 
   <style>
@@ -13,11 +14,14 @@
       --text:#e9eef7;
       --muted:#a9b4c7;
       --line:rgba(255,255,255,.08);
-      --accent:#24d366; /* WhatsApp vibe */
+      --accent:#24d366; /* WhatsApp */
       --accent2:#2dd4bf; /* detalle pro */
       --shadow: 0 18px 60px rgba(0,0,0,.55);
       --radius: 18px;
       --max: 1100px;
+      --danger:#ef4444;
+      --warn:#f59e0b;
+      --info:#3b82f6;
     }
 
     *{box-sizing:border-box}
@@ -25,9 +29,10 @@
     body{
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: radial-gradient(900px 500px at 50% -100px, rgba(45,212,191,.18), transparent 60%),
-                  radial-gradient(700px 450px at 0% 20%, rgba(36,211,102,.12), transparent 60%),
-                  var(--bg);
+      background:
+        radial-gradient(900px 500px at 50% -100px, rgba(45,212,191,.18), transparent 60%),
+        radial-gradient(700px 450px at 0% 20%, rgba(36,211,102,.12), transparent 60%),
+        var(--bg);
       color:var(--text);
       line-height:1.55;
     }
@@ -56,6 +61,7 @@
       width:34px; height:34px; object-fit:contain;
       filter: drop-shadow(0 10px 25px rgba(0,0,0,.6));
     }
+
     nav{
       display:flex; gap:14px; flex-wrap:wrap;
       font-size:14px; color:var(--muted);
@@ -64,9 +70,7 @@
     nav a:hover{background:rgba(255,255,255,.06); color:var(--text)}
 
     /* Hero */
-    .hero{
-      padding:44px 0 22px;
-    }
+    .hero{ padding:44px 0 22px; }
     .heroGrid{
       display:grid;
       grid-template-columns: 1.05fr .95fr;
@@ -222,10 +226,7 @@
       grid-template-columns: repeat(2, 1fr);
       gap:14px;
     }
-    .product{
-      overflow:hidden;
-      padding:0;
-    }
+    .product{ overflow:hidden; padding:0; }
     .product .img{
       height: 280px;
       background: rgba(255,255,255,.03);
@@ -237,9 +238,7 @@
       object-fit: cover;
       display:block;
     }
-    .product .body{
-      padding:16px 16px 18px;
-    }
+    .product .body{ padding:16px 16px 18px; }
     .tag{
       display:inline-flex; align-items:center; gap:8px;
       font-size:12px; color:var(--muted);
@@ -255,11 +254,7 @@
     .product p{margin:0; color:var(--muted); font-size:14px}
 
     /* Form */
-    form{
-      display:grid;
-      gap:12px;
-      margin-top:12px;
-    }
+    form{ display:grid; gap:12px; margin-top:12px; }
     .row{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -286,6 +281,84 @@
       box-shadow: 0 0 0 6px rgba(45,212,191,.10);
     }
 
+    .help{
+      margin-top:8px;
+      color:var(--muted);
+      font-size:12.5px;
+    }
+
+    /* Parches */
+    .checks{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+      margin-top:6px;
+    }
+    .check{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.02);
+      border-radius:14px;
+      padding:10px 12px;
+      color:var(--muted);
+      cursor:pointer;
+      user-select:none;
+    }
+    .check input{width:auto; margin-top:3px}
+    .check b{color:var(--text); font-weight:700}
+
+    /* Variacion color */
+    .varRow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:6px;
+    }
+    .var{
+      display:flex; gap:10px; align-items:center;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.02);
+      border-radius:999px;
+      padding:10px 12px;
+      cursor:pointer;
+      color:var(--muted);
+      user-select:none;
+    }
+    .var input{width:auto}
+    .chip{
+      width:12px;height:12px;border-radius:999px;
+      box-shadow: 0 0 0 6px rgba(255,255,255,.05);
+    }
+    .chip.blue{background:var(--info)}
+    .chip.red{background:var(--danger)}
+    .chip.yellow{background:var(--warn)}
+
+    /* Delivery note */
+    .note{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.02);
+      border-radius: 14px;
+      padding:12px;
+      color:var(--muted);
+      font-size:13px;
+      margin-top:10px;
+    }
+    .note b{color:var(--text)}
+    .note .pilltime{
+      display:inline-flex;
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:6px 10px;
+      margin:6px 6px 0 0;
+      background: rgba(255,255,255,.03);
+      color:var(--text);
+      font-size:12.5px;
+      gap:8px;
+      align-items:center;
+    }
+
     /* Contact */
     .contactGrid{
       display:grid;
@@ -307,6 +380,8 @@
       background: rgba(255,255,255,.03);
       color: var(--text);
       font-size:13px;
+      align-items:center;
+      gap:8px;
     }
     .socialRow{
       display:flex; flex-wrap:wrap; gap:10px;
@@ -323,6 +398,12 @@
       margin-top: 20px;
     }
 
+    /* Icons */
+    .ico{ width:18px; height:18px; display:inline-block; vertical-align:-3px; }
+    .ico svg{ width:100%; height:100%; display:block; fill:currentColor; }
+    .btn .ico{width:18px;height:18px}
+    .pill .ico{width:16px;height:16px}
+
     /* Responsive */
     @media (max-width: 900px){
       .heroGrid{grid-template-columns: 1fr}
@@ -331,6 +412,7 @@
       .productGrid{grid-template-columns:1fr}
       .contactGrid{grid-template-columns:1fr}
       .row{grid-template-columns:1fr}
+      .checks{grid-template-columns:1fr}
       .heroImage{min-height:260px}
     }
   </style>
@@ -338,13 +420,35 @@
 
 <body>
 
+  <!-- ICONOS (inline SVG, sin librerias) -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+    <symbol id="i-wa" viewBox="0 0 32 32">
+      <path d="M19.11 17.56c-.29-.15-1.73-.85-2-.95-.27-.1-.47-.15-.66.15-.2.29-.76.95-.93 1.15-.17.2-.34.22-.63.07-.29-.15-1.22-.45-2.32-1.43-.86-.76-1.44-1.7-1.61-1.99-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.2-.29.29-.49.1-.2.05-.37-.02-.51-.07-.15-.66-1.58-.9-2.17-.24-.58-.49-.5-.66-.51h-.56c-.2 0-.51.07-.78.37-.27.29-1.02.99-1.02 2.41s1.05 2.8 1.19 2.99c.15.2 2.07 3.16 5.01 4.43.7.3 1.25.48 1.68.61.71.23 1.36.2 1.87.12.57-.09 1.73-.71 1.98-1.39.24-.68.24-1.27.17-1.39-.07-.12-.27-.2-.56-.34z"/>
+      <path d="M26.82 5.17A14.86 14.86 0 0 0 16.04.8C7.86.8 1.2 7.46 1.2 15.64c0 2.62.69 5.17 2 7.41L1.06 31.2l8.33-2.12a14.8 14.8 0 0 0 6.65 1.6h.01c8.18 0 14.84-6.66 14.84-14.84 0-3.96-1.54-7.69-4.07-10.67zM16.05 28.2h-.01a12.36 12.36 0 0 1-6.3-1.73l-.45-.27-4.95 1.26 1.32-4.82-.29-.49a12.34 12.34 0 0 1-1.9-6.51c0-6.82 5.55-12.37 12.38-12.37 3.3 0 6.39 1.29 8.72 3.62a12.28 12.28 0 0 1 3.63 8.75c0 6.82-5.55 12.56-12.15 12.56z"/>
+    </symbol>
+    <symbol id="i-ig" viewBox="0 0 24 24">
+      <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5zM17.75 6.25a.75.75 0 1 1-.75.75.75.75 0 0 1 .75-.75z"/>
+    </symbol>
+    <symbol id="i-fb" viewBox="0 0 24 24">
+      <path d="M13.5 22v-8h2.7l.4-3H13.5V9.1c0-.9.3-1.6 1.6-1.6h1.7V4.8c-.3 0-1.4-.1-2.7-.1-2.7 0-4.6 1.6-4.6 4.6V11H7v3h2.5v8h4z"/>
+    </symbol>
+    <symbol id="i-in" viewBox="0 0 24 24">
+      <path d="M6.94 6.5A2.44 2.44 0 1 1 7 1.62a2.44 2.44 0 0 1-.06 4.88zM2.5 22h4.9V8.5H2.5V22zM9.3 8.5H14v1.85h.07c.65-1.23 2.24-2.52 4.6-2.52 4.92 0 5.83 3.24 5.83 7.45V22h-4.9v-5.76c0-1.37-.03-3.13-1.91-3.13-1.92 0-2.21 1.5-2.21 3.03V22H9.3V8.5z"/>
+    </symbol>
+    <symbol id="i-x" viewBox="0 0 24 24">
+      <path d="M18.9 2H22l-6.8 7.8L23 22h-6.7l-5.2-6.7L5.7 22H2.6l7.3-8.4L1 2h6.9l4.7 6.1L18.9 2zm-1.2 18h1.7L7.1 3.9H5.3L17.7 20z"/>
+    </symbol>
+    <symbol id="i-th" viewBox="0 0 24 24">
+      <path d="M12.1 2C6.6 2 2.2 6.3 2.2 11.7c0 5.8 3.8 10.1 9.7 10.1 4.8 0 8.2-2.8 8.2-7.1 0-3.4-2.2-5.6-5.7-6.1-1.5-.2-3 0-4 .4-.8.3-1.2.8-1.2 1.4 0 .7.5 1.2 1.2 1.2.3 0 .6-.1.9-.2.7-.3 1.6-.4 2.6-.3 2.1.3 3.2 1.4 3.2 3.3 0 2.6-2 4.2-5.1 4.2-4.1 0-6.8-3-6.8-7.1 0-4.2 3.3-7.6 7.6-7.6 3.5 0 6.3 2 7 5.1.2.8.7 1.2 1.4 1.2.8 0 1.4-.6 1.4-1.4 0-.1 0-.3-.1-.4C20.4 5 16.6 2 12.1 2z"/>
+    </symbol>
+  </svg>
+
   <!-- TOP BAR -->
   <header class="topbar">
     <div class="wrap">
       <div class="inner">
         <div class="brand">
-          <!-- LOGO: asegurate que exista EXACTO como logo.png -->
-          <img src="logo.png" alt="Logo Retro Sport" />
+          <img src="logo.png" alt="Logo Retro Sport" onerror="this.style.display='none'" />
           <span>Retro Sport</span>
         </div>
 
@@ -360,8 +464,8 @@
     </div>
   </header>
 
-  <!-- HERO -->
-  <section class="hero">
+  <!-- HERO / PORTADA -->
+  <section class="hero" id="inicio">
     <div class="wrap">
       <div class="heroGrid">
 
@@ -377,12 +481,11 @@
           </p>
 
           <div class="ctaRow">
-            <!-- BOTON 1: WhatsApp directo -->
             <a class="btn btnPrimary" id="btnPedido" href="#" rel="noopener">
-              📲 Hacer pedido
+              <span class="ico"><svg><use href="#i-wa"></use></svg></span>
+              Hacer pedido
             </a>
 
-            <!-- BOTON 2: baja al formulario de compra -->
             <a class="btn btnGhost" href="#comprar">
               🛒 Comprar producto
             </a>
@@ -394,8 +497,7 @@
         </div>
 
         <div class="heroImage">
-          <!-- HERO: asegurate que exista EXACTO como hero.jpg -->
-          <img src="hero.jpg" alt="Coleccion Retro Sport" />
+          <img src="hero.jpg" alt="Portada Retro Sport" />
           <div class="badge">
             <div class="t">Logistica nacional e internacional</div>
             <div class="s">Importacion y exportacion dentro y fuera de Mexico</div>
@@ -465,9 +567,19 @@
         <div class="card">
           <p><b>2) Comprar producto (Formulario)</b></p>
           <p style="margin-top:8px;">
-            Llenas los datos (producto, talla, envio) y el sistema arma tu mensaje automaticamente
-            para mandarlo por WhatsApp. Sin complicaciones, sin apps raras.
+            Llenas los datos (camisa, talla, parches, variacion y entrega) y el sistema arma tu mensaje
+            automaticamente para mandarlo por WhatsApp.
           </p>
+        </div>
+      </div>
+
+      <div class="note">
+        <b>Tiempos de entrega:</b><br/>
+        <span class="pilltime">📍 Local (3 a 5 dias habiles)</span>
+        <span class="pilltime">⚡ Disponible (1 a 3 dias)</span>
+        <span class="pilltime">🌎 Pedido internacional (12 a 15 dias)</span>
+        <div class="help">
+          Si la camisa esta disponible, se procesa y se envia al dia siguiente (segun confirmacion por WhatsApp).
         </div>
       </div>
     </div>
@@ -478,13 +590,12 @@
     <div class="wrap">
       <div class="titleRow">
         <h2>Mas de 20,000 productos oficiales</h2>
-        <p class="sub">Aqui solo es muestra. Tu metes las fotos finales.</p>
+        <p class="sub">Muestra. Tu metes las fotos finales.</p>
       </div>
 
       <div class="productGrid">
         <article class="card product">
           <div class="img">
-            <!-- PRODUCTO 1: asegurate que exista EXACTO como jersey1.jpg -->
             <img src="jersey1.jpg" alt="Jersey Retro" />
           </div>
           <div class="body">
@@ -496,7 +607,6 @@
 
         <article class="card product">
           <div class="img">
-            <!-- PRODUCTO 2: por ahora usa hero.jpg como placeholder. Luego lo cambias -->
             <img src="hero.jpg" alt="Coleccion Retro" />
           </div>
           <div class="body">
@@ -519,14 +629,15 @@
 
       <div class="card">
         <p style="margin:0;color:var(--muted)">
-          Completa lo basico y listo. Esto no cobra nada: solo arma el mensaje y abre WhatsApp.
+          Completa el formulario. No es pago en linea: solo arma el mensaje y abre WhatsApp para confirmar.
         </p>
 
         <form id="buyForm">
+
           <div class="row">
             <label>
-              Producto / Jersey
-              <input id="producto" type="text" placeholder="Ej: Real Madrid 2011-2012 Cristiano Ronaldo" required />
+              Camisa / Producto
+              <input id="producto" type="text" placeholder="Ej: Real Madrid 2011-2012 (local) - Cristiano Ronaldo" required />
             </label>
 
             <label>
@@ -550,40 +661,121 @@
             </label>
 
             <label>
-              Ciudad / Estado
-              <input id="ubicacion" type="text" placeholder="Ej: San Luis Potosi" required />
+              Codigo postal
+              <input id="cp" type="text" inputmode="numeric" placeholder="Ej: 78430" required />
             </label>
           </div>
 
           <div class="row">
             <label>
-              Tipo de envio
-              <select id="envio" required>
-                <option value="">Selecciona</option>
-                <option>Domicilio (San Luis Potosi)</option>
-                <option>Autobus express (12 horas)</option>
-                <option>Paqueteria (1 a 2 dias)</option>
-                <option>Mercado Pago (garantizado 4 dias)</option>
-              </select>
+              Ciudad / Estado
+              <input id="ubicacion" type="text" placeholder="Ej: Soledad de Graciano Sanchez, SLP" required />
             </label>
 
             <label>
+              Pais
+              <input id="pais" type="text" placeholder="Ej: Mexico" required />
+            </label>
+          </div>
+
+          <div class="row">
+            <label>
+              Jugador (nombre)
+              <input id="jugador" type="text" placeholder="Ej: Cristiano Ronaldo" required />
+            </label>
+
+            <label>
+              Numero del jugador
+              <input id="numeroJugador" type="number" min="0" max="99" placeholder="Ej: 7" required />
+            </label>
+          </div>
+
+          <label>
+            Parches (elige los que llevara la camisa)
+            <div class="checks" id="patches">
+              <div class="check">
+                <input type="checkbox" value="Liga" />
+                <div><b>Parche de Liga</b><br/><span style="font-size:12px">Ej: Liga MX / LaLiga / Premier</span></div>
+              </div>
+              <div class="check">
+                <input type="checkbox" value="Champions" />
+                <div><b>Champions / Torneo</b><br/><span style="font-size:12px">Ej: UCL / Libertadores</span></div>
+              </div>
+              <div class="check">
+                <input type="checkbox" value="Mundial Clubes" />
+                <div><b>Mundial de Clubes</b><br/><span style="font-size:12px">Parche conmemorativo</span></div>
+              </div>
+              <div class="check">
+                <input type="checkbox" value="Campeon" />
+                <div><b>Campeon</b><br/><span style="font-size:12px">Ej: Campeon 23/24</span></div>
+              </div>
+              <div class="check">
+                <input type="checkbox" value="Sponsor extra" />
+                <div><b>Sponsor extra</b><br/><span style="font-size:12px">Ej: manga / pecho</span></div>
+              </div>
+              <div class="check">
+                <input type="checkbox" value="Sin parches" />
+                <div><b>Sin parches</b><br/><span style="font-size:12px">Solo camisa</span></div>
+              </div>
+            </div>
+          </label>
+
+          <label>
+            Variacion / Color (elige una)
+            <div class="varRow" id="variaciones">
+              <label class="var">
+                <input type="radio" name="variacion" value="Azul" required />
+                <span class="chip blue"></span>
+                Azul
+              </label>
+              <label class="var">
+                <input type="radio" name="variacion" value="Rojo" />
+                <span class="chip red"></span>
+                Rojo
+              </label>
+              <label class="var">
+                <input type="radio" name="variacion" value="Amarillo" />
+                <span class="chip yellow"></span>
+                Amarillo
+              </label>
+              <label class="var">
+                <input type="radio" name="variacion" value="Otro / Indicar en detalles" />
+                <span class="chip" style="background:#9ca3af"></span>
+                Otro
+              </label>
+            </div>
+            <div class="help">Si es “Otro”, describelo en Detalles.</div>
+          </label>
+
+          <div class="row">
+            <label>
               Cantidad
               <input id="cantidad" type="number" min="1" value="1" required />
+            </label>
+
+            <label>
+              Tipo de entrega
+              <select id="entrega" required>
+                <option value="">Selecciona</option>
+                <option value="Disponible (1 a 3 dias)">Disponible (1 a 3 dias)</option>
+                <option value="Local (3 a 5 dias habiles)">Local (3 a 5 dias habiles)</option>
+                <option value="Pedido internacional (12 a 15 dias)">Pedido internacional (12 a 15 dias)</option>
+              </select>
             </label>
           </div>
 
           <label>
             Detalles (opcional)
-            <textarea id="detalles" placeholder="Ej: version jugador / parches / nombre y numero / etc."></textarea>
+            <textarea id="detalles" placeholder="Ej: version jugador / parches especificos / nombre en espalda / tipografia / etc."></textarea>
           </label>
 
           <button class="btn btnPrimary" type="submit">
-            ✅ Enviar pedido por WhatsApp
+            <span class="ico"><svg><use href="#i-wa"></use></svg></span>
+            Enviar pedido por WhatsApp
           </button>
 
           <p class="mini">
-            Si no te abre WhatsApp: revisa que estes en celular o que tu navegador permita abrir enlaces wa.me.
+            Si no te abre WhatsApp: revisa que tu navegador permita abrir enlaces wa.me.
           </p>
         </form>
       </div>
@@ -600,15 +792,32 @@
 
       <div class="contactGrid">
         <div class="card">
-          <div class="contactLine">📞 <span class="pill">WhatsApp: 444 581 7329</span></div>
-          <div class="contactLine">✉️ <span class="pill">contacto.retrosportmx@gmail.com</span></div>
+          <div class="contactLine">
+            <span class="pill">
+              <span class="ico"><svg><use href="#i-wa"></use></svg></span>
+              WhatsApp: 444 581 7329
+            </span>
+          </div>
+          <div class="contactLine">
+            <span class="pill">✉️ contacto.retrosportmx@gmail.com</span>
+          </div>
 
           <div class="socialRow">
-            <a class="pill" href="https://www.instagram.com/retrosportmx?igsh=OGxhbjRqOHlwN2Ry&utm_source=qr" target="_blank" rel="noopener">Instagram</a>
-            <a class="pill" href="https://facebook.com/EIRetrosportMX" target="_blank" rel="noopener">Facebook</a>
-            <a class="pill" href="https://www.linkedin.com/company/retrosport/" target="_blank" rel="noopener">LinkedIn</a>
-            <a class="pill" href="https://x.com/retrosportmx?s=21" target="_blank" rel="noopener">X</a>
-            <a class="pill" href="https://www.threads.com/@retrosportmx?igshid=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener">Threads</a>
+            <a class="pill" href="https://www.instagram.com/retrosportmx?igsh=OGxhbjRqOHlwN2Ry&utm_source=qr" target="_blank" rel="noopener">
+              <span class="ico"><svg><use href="#i-ig"></use></svg></span> Instagram
+            </a>
+            <a class="pill" href="https://m.facebook.com/ElRetrosportMX/?" target="_blank" rel="noopener">
+              <span class="ico"><svg><use href="#i-fb"></use></svg></span> Facebook
+            </a>
+            <a class="pill" href="https://www.linkedin.com/company/retrosport/" target="_blank" rel="noopener">
+              <span class="ico"><svg><use href="#i-in"></use></svg></span> LinkedIn
+            </a>
+            <a class="pill" href="https://x.com/retrosportmx?s=21" target="_blank" rel="noopener">
+              <span class="ico"><svg><use href="#i-x"></use></svg></span> X
+            </a>
+            <a class="pill" href="https://www.threads.com/@retrosportmx?igshid=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener">
+              <span class="ico"><svg><use href="#i-th"></use></svg></span> Threads
+            </a>
           </div>
         </div>
 
@@ -619,7 +828,10 @@
           </p>
 
           <div style="margin-top:12px;">
-            <a class="btn btnPrimary" href="#" id="btnPedido2" rel="noopener">📲 Hacer pedido</a>
+            <a class="btn btnPrimary" href="#" id="btnPedido2" rel="noopener">
+              <span class="ico"><svg><use href="#i-wa"></use></svg></span>
+              Hacer pedido
+            </a>
           </div>
         </div>
       </div>
@@ -636,7 +848,7 @@
 
       <div class="card">
         <p style="margin:0;color:var(--muted)">
-          La informacion y precios pueden variar segun disponibilidad, temporada, talla y tipo de envio.
+          La informacion y precios pueden variar segun disponibilidad, temporada, talla, parches, variacion y tipo de entrega.
           Para confirmar un pedido se requiere validacion por WhatsApp. Retro Sport no comparte datos con terceros
           fuera de la gestion del pedido y envio.
         </p>
@@ -645,34 +857,52 @@
   </section>
 
   <footer>
-    <div class="wrap">
-      © RetroSport 2025
-    </div>
+    <div class="wrap">© RetroSport 2025</div>
   </footer>
 
   <script>
     // WhatsApp config (Mexico)
-    const PHONE = "524445817329"; // wa.me requiere pais + numero
+    const PHONE = "524445817329";
 
     function waLink(message){
       const text = encodeURIComponent(message);
       return "https://wa.me/" + PHONE + "?text=" + text;
     }
 
-    // Boton "Hacer pedido" (mensaje rapido)
+    // Botones "Hacer pedido" (mensaje rapido)
     const quickMsg = `Hola Retro Sport 👋
-Quiero hacer un pedido. Me interesa:
-- Producto/Jersey:
-- Talla:
-- Ciudad/Estado:
-- Tipo de envio:
+Quiero hacer un pedido.
+
+Producto/Camisa:
+Talla:
+Jugador y numero:
+Ubicacion (ciudad/estado, pais):
+Codigo postal:
+Entrega (Disponible / Local / Pedido internacional):
+Parches:
+Variacion/color:
+
 Gracias.`;
 
     const btn1 = document.getElementById("btnPedido");
     const btn2 = document.getElementById("btnPedido2");
-
     if(btn1) btn1.href = waLink(quickMsg);
     if(btn2) btn2.href = waLink(quickMsg);
+
+    // Obtener parches seleccionados
+    function getSelectedPatches(){
+      const container = document.getElementById("patches");
+      const checks = container.querySelectorAll('input[type="checkbox"]');
+      const selected = [];
+      checks.forEach(c => { if(c.checked) selected.push(c.value); });
+      return selected.length ? selected.join(", ") : "No especificado";
+    }
+
+    // Obtener variacion
+    function getVariacion(){
+      const sel = document.querySelector('input[name="variacion"]:checked');
+      return sel ? sel.value : "No especificado";
+    }
 
     // Form -> WhatsApp
     const form = document.getElementById("buyForm");
@@ -682,25 +912,47 @@ Gracias.`;
       const producto  = document.getElementById("producto").value.trim();
       const talla     = document.getElementById("talla").value.trim();
       const nombre    = document.getElementById("nombre").value.trim();
+      const cp        = document.getElementById("cp").value.trim();
       const ubicacion = document.getElementById("ubicacion").value.trim();
-      const envio     = document.getElementById("envio").value.trim();
+      const pais      = document.getElementById("pais").value.trim();
+      const jugador   = document.getElementById("jugador").value.trim();
+      const numeroJug = document.getElementById("numeroJugador").value.trim();
       const cantidad  = document.getElementById("cantidad").value.trim();
+      const entrega   = document.getElementById("entrega").value.trim();
       const detalles  = document.getElementById("detalles").value.trim();
+
+      const parches = getSelectedPatches();
+      const variacion = getVariacion();
 
       let msg = `Hola Retro Sport 👋
 Soy ${nombre}.
-Quiero comprar:
 
-Producto/Jersey: ${producto}
+Quiero comprar / cotizar:
+
+Camisa: ${producto}
 Talla: ${talla}
+Jugador: ${jugador}
+Numero: ${numeroJug}
 Cantidad: ${cantidad}
+
+Parches: ${parches}
+Variacion/Color: ${variacion}
+
 Ubicacion: ${ubicacion}
-Tipo de envio: ${envio}`;
+Pais: ${pais}
+Codigo postal: ${cp}
+
+Entrega seleccionada: ${entrega}
+
+Nota de tiempos:
+- Disponible: 1 a 3 dias
+- Local: 3 a 5 dias habiles
+- Pedido internacional: 12 a 15 dias`;
 
       if(detalles){
         msg += `
 
-Detalles: ${detalles}`;
+Detalles extra: ${detalles}`;
       }
 
       msg += `
