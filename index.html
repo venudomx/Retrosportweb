@@ -87,7 +87,11 @@
     }
     .btn-wa:hover{filter:brightness(1.02)}
     .btn-dark{background: rgba(255,255,255,.02)}
-    .icon{width:18px; height:18px; display:inline-block}
+    .icon{
+      width:18px; height:18px;
+      display:inline-block;
+      flex:0 0 auto;
+    }
 
     /* Mobile menu */
     .burger{display:none}
@@ -112,9 +116,7 @@
     }
 
     /* HERO */
-    .hero{
-      padding: 34px 0 26px;
-    }
+    .hero{ padding: 34px 0 26px; }
     .hero-grid{
       display:grid;
       grid-template-columns: 1.2fr .8fr;
@@ -122,7 +124,7 @@
       align-items:stretch;
     }
     @media (max-width: 980px){
-      .hero-grid{grid-template-columns:1fr; }
+      .hero-grid{grid-template-columns:1fr;}
     }
     .card{
       background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
@@ -160,7 +162,9 @@
       background: rgba(255,255,255,.02);
       color:rgba(233,233,242,.88);
       font-size:13px;
+      white-space:nowrap;
     }
+    .chip svg{flex:0 0 auto}
     .chip:hover{border-color: rgba(139,92,246,.25); background: rgba(139,92,246,.08)}
     .hero-media{
       min-height: 320px;
@@ -198,6 +202,9 @@
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap:14px;
+    }
+    @media (max-width: 520px){
+      .media-mini{grid-template-columns:1fr}
     }
     .mini{
       border-radius: var(--radius);
@@ -284,8 +291,11 @@
     /* Form */
     .form-wrap{padding:18px}
     form{display:grid; gap:14px}
+
+    /* OPTIMIZADO PARA iPad + celular */
     .row{display:grid; grid-template-columns: 1fr 1fr; gap:14px}
-    @media (max-width: 720px){ .row{grid-template-columns:1fr} }
+    @media (max-width: 900px){ .row{grid-template-columns:1fr} }
+
     label{font-size:12.5px; color:rgba(233,233,242,.80); display:block; margin:0 0 6px}
     input, select, textarea{
       width:100%;
@@ -309,7 +319,7 @@
       grid-template-columns: 1fr 1fr;
       gap:12px;
     }
-    @media (max-width: 720px){ .choice-grid{grid-template-columns:1fr} }
+    @media (max-width: 900px){ .choice-grid{grid-template-columns:1fr} }
 
     .choice{
       display:flex;
@@ -391,11 +401,16 @@
       font-size:12.5px;
     }
 
-    /* === MANGAS (radio pro) === */
+    /* === MANGAS (MEJORADO y RESPONSIVO) === */
+    .manga-wrap{margin-top:12px}
     .radio-group{
-      display:flex;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
       gap:12px;
-      flex-wrap:wrap;
+      align-items:stretch;
+    }
+    @media (max-width: 520px){
+      .radio-group{grid-template-columns:1fr}
     }
     .radio-option{
       display:flex;
@@ -408,6 +423,7 @@
       background: rgba(255,255,255,.02);
       user-select:none;
       transition: border .15s ease, background .15s ease, transform .06s ease;
+      min-height:48px;
     }
     .radio-option:hover{
       border-color: rgba(139,92,246,.28);
@@ -416,13 +432,17 @@
     .radio-option:active{transform: translateY(1px)}
     .radio-option input{
       accent-color: var(--green);
+      width:18px; height:18px;
+      margin:0;
     }
   </style>
 </head>
 
 <body>
-  <!-- SVG ICONS (inline, no falla por links externos) -->
-  <svg width="0" height="0" style="position:absolute">
+  <!-- SVG ICONS (inline) + compat iOS (xlink) -->
+  <svg width="0" height="0" style="position:absolute"
+       xmlns="http://www.w3.org/2000/svg"
+       xmlns:xlink="http://www.w3.org/1999/xlink">
     <symbol id="i-wa" viewBox="0 0 32 32">
       <path fill="currentColor" d="M19.11 17.24c-.22-.11-1.33-.66-1.54-.74-.21-.08-.36-.11-.51.11-.15.22-.59.74-.72.89-.13.15-.27.17-.49.06-.22-.11-.94-.35-1.8-1.12-.67-.6-1.12-1.34-1.25-1.56-.13-.22-.01-.34.1-.45.1-.1.22-.27.33-.4.11-.13.15-.22.22-.37.07-.15.04-.28-.02-.4-.06-.11-.51-1.24-.7-1.7-.18-.44-.36-.38-.51-.39l-.43-.01c-.15 0-.4.06-.61.28-.21.22-.8.78-.8 1.9 0 1.12.82 2.2.93 2.35.11.15 1.62 2.47 3.92 3.47.55.24.98.39 1.31.5.55.17 1.05.15 1.44.09.44-.07 1.33-.55 1.52-1.08.19-.53.19-.99.13-1.08-.06-.09-.21-.15-.43-.26z"/>
       <path fill="currentColor" d="M16 3C9.37 3 4 8.37 4 15c0 2.3.65 4.45 1.78 6.28L4 29l7.93-1.74A11.96 11.96 0 0 0 16 27c6.63 0 12-5.37 12-12S22.63 3 16 3zm0 21.8c-1.82 0-3.5-.5-4.95-1.36l-.36-.21-4.7 1.03 1.02-4.58-.24-.38A9.76 9.76 0 0 1 6.2 15 9.8 9.8 0 1 1 16 24.8z"/>
@@ -479,11 +499,9 @@
         </nav>
 
         <div class="nav-cta">
-          <button class="btn burger" id="btnMenu" aria-label="Abrir menu">
-            ☰
-          </button>
+          <button class="btn burger" id="btnMenu" aria-label="Abrir menu">☰</button>
           <a class="btn btn-wa" id="ctaWaTop" href="#" rel="noopener">
-            <svg class="icon"><use href="#i-wa"/></svg>
+            <svg class="icon" aria-hidden="true"><use href="#i-wa" xlink:href="#i-wa"/></svg>
             Hacer pedido
           </a>
         </div>
@@ -506,7 +524,7 @@
       <div class="hero-grid">
         <div class="card pad">
           <div class="pill">
-             Marca deportiva <span style="opacity:.8">minorista y mayorista</span>
+            Marca deportiva <span style="opacity:.8">minorista y mayorista</span>
           </div>
 
           <h1 class="title">Retro Sport</h1>
@@ -517,33 +535,33 @@
 
           <div class="hero-actions">
             <a class="btn btn-wa" id="ctaWaHero" href="#" rel="noopener">
-              <svg class="icon"><use href="#i-wa"/></svg>
+              <svg class="icon" aria-hidden="true"><use href="#i-wa" xlink:href="#i-wa"/></svg>
               Hacer pedido (WhatsApp)
             </a>
             <a class="btn btn-dark" href="#comprar">
-              <svg class="icon"><use href="#i-cart"/></svg>
+              <svg class="icon" aria-hidden="true"><use href="#i-cart" xlink:href="#i-cart"/></svg>
               Comprar producto
             </a>
           </div>
 
           <div class="social-row" aria-label="Redes sociales">
             <a class="chip" href="https://wa.me/524445817329" target="_blank" rel="noopener">
-              <svg class="icon"><use href="#i-wa"/></svg> WhatsApp
+              <svg class="icon" aria-hidden="true"><use href="#i-wa" xlink:href="#i-wa"/></svg> WhatsApp
             </a>
             <a class="chip" href="https://www.instagram.com/retrosportmx" target="_blank" rel="noopener">
-              <svg class="icon"><use href="#i-ig"/></svg> Instagram
+              <svg class="icon" aria-hidden="true"><use href="#i-ig" xlink:href="#i-ig"/></svg> Instagram
             </a>
             <a class="chip" href="https://m.facebook.com/ElRetrosportMX/?" target="_blank" rel="noopener">
-              <svg class="icon"><use href="#i-fb"/></svg> Facebook
+              <svg class="icon" aria-hidden="true"><use href="#i-fb" xlink:href="#i-fb"/></svg> Facebook
             </a>
             <a class="chip" href="#" id="linkX" target="_blank" rel="noopener">
-              <svg class="icon"><use href="#i-x"/></svg> X
+              <svg class="icon" aria-hidden="true"><use href="#i-x" xlink:href="#i-x"/></svg> X
             </a>
             <a class="chip" href="#" id="linkThreads" target="_blank" rel="noopener">
-              <svg class="icon"><use href="#i-th"/></svg> Threads
+              <svg class="icon" aria-hidden="true"><use href="#i-th" xlink:href="#i-th"/></svg> Threads
             </a>
             <a class="chip" href="#" id="linkLinkedIn" target="_blank" rel="noopener">
-              <svg class="icon"><use href="#i-in"/></svg> LinkedIn
+              <svg class="icon" aria-hidden="true"><use href="#i-in" xlink:href="#i-in"/></svg> LinkedIn
             </a>
           </div>
 
@@ -622,7 +640,7 @@
           </p>
           <div class="hero-actions" style="margin-top:14px">
             <a class="btn btn-wa" id="ctaWaService" href="#" rel="noopener">
-              <svg class="icon"><use href="#i-wa"/></svg>
+              <svg class="icon" aria-hidden="true"><use href="#i-wa" xlink:href="#i-wa"/></svg>
               Hacer pedido
             </a>
           </div>
@@ -678,7 +696,6 @@
 
       <div class="card form-wrap">
         <form id="orderForm">
-          <!-- PRIORIDAD: Pais + CP + Correo -->
           <div class="row">
             <div>
               <label for="country">Pais</label>
@@ -714,8 +731,7 @@
                 <option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
               </select>
 
-              <!-- === TIPO DE MANGA (AGREGADO) === -->
-              <div style="margin-top:12px">
+              <div class="manga-wrap">
                 <label>Tipo de manga</label>
                 <div class="radio-group">
                   <label class="radio-option">
@@ -729,7 +745,6 @@
                 </div>
                 <div class="hint">Selecciona si la quieres de manga corta o manga larga.</div>
               </div>
-              <!-- === FIN MANGA === -->
             </div>
           </div>
 
@@ -755,7 +770,6 @@
             </div>
           </div>
 
-          <!-- COLOR (escrito por el cliente + preview) -->
           <div class="row">
             <div>
               <label for="colorName">Variacion / Color (escribelo)</label>
@@ -772,7 +786,6 @@
             </div>
           </div>
 
-          <!-- PARCHES (clic en toda la tarjeta) -->
           <div>
             <label>Parches (toca la opcion completa para seleccionarla)</label>
             <div class="choice-grid" id="patches">
@@ -811,7 +824,6 @@
             <div class="hint">Puedes seleccionar varios parches.</div>
           </div>
 
-          <!-- ENTREGA -->
           <div>
             <label>Tipo de entrega</label>
             <div class="choice-grid" id="delivery">
@@ -852,7 +864,7 @@
 
           <div class="sendbar">
             <button class="btn btn-wa" type="submit" id="btnSend">
-              <svg class="icon"><use href="#i-wa"/></svg>
+              <svg class="icon" aria-hidden="true"><use href="#i-wa" xlink:href="#i-wa"/></svg>
               Enviar pedido por WhatsApp
             </button>
             <span class="small">
@@ -873,7 +885,7 @@
       <div class="contact-grid">
         <div class="card pad">
           <div class="contact-item">
-            <svg class="icon"><use href="#i-phone"/></svg>
+            <svg class="icon" aria-hidden="true"><use href="#i-phone" xlink:href="#i-phone"/></svg>
             <div>
               <div class="k">Telefono / WhatsApp</div>
               <div class="v">+52 444 581 7329</div>
@@ -881,7 +893,7 @@
           </div>
 
           <div class="contact-item" style="margin-top:12px">
-            <svg class="icon"><use href="#i-mail"/></svg>
+            <svg class="icon" aria-hidden="true"><use href="#i-mail" xlink:href="#i-mail"/></svg>
             <div>
               <div class="k">Correo</div>
               <div class="v">contacto.retrosportmx@gmail.com</div>
@@ -890,22 +902,22 @@
 
           <div class="social-row" style="margin-top:12px">
             <a class="chip" href="https://wa.me/524445817329" target="_blank" rel="noopener">
-              <svg class="icon"><use href="#i-wa"/></svg> WhatsApp
+              <svg class="icon" aria-hidden="true"><use href="#i-wa" xlink:href="#i-wa"/></svg> WhatsApp
             </a>
             <a class="chip" href="https://www.instagram.com/retrosportmx" target="_blank" rel="noopener">
-              <svg class="icon"><use href="#i-ig"/></svg> Instagram
+              <svg class="icon" aria-hidden="true"><use href="#i-ig" xlink:href="#i-ig"/></svg> Instagram
             </a>
             <a class="chip" href="https://m.facebook.com/ElRetrosportMX/?" target="_blank" rel="noopener">
-              <svg class="icon"><use href="#i-fb"/></svg> Facebook
+              <svg class="icon" aria-hidden="true"><use href="#i-fb" xlink:href="#i-fb"/></svg> Facebook
             </a>
             <a class="chip" href="#" id="linkLinkedIn2" target="_blank" rel="noopener">
-              <svg class="icon"><use href="#i-in"/></svg> LinkedIn
+              <svg class="icon" aria-hidden="true"><use href="#i-in" xlink:href="#i-in"/></svg> LinkedIn
             </a>
             <a class="chip" href="#" id="linkX2" target="_blank" rel="noopener">
-              <svg class="icon"><use href="#i-x"/></svg> X
+              <svg class="icon" aria-hidden="true"><use href="#i-x" xlink:href="#i-x"/></svg> X
             </a>
             <a class="chip" href="#" id="linkThreads2" target="_blank" rel="noopener">
-              <svg class="icon"><use href="#i-th"/></svg> Threads
+              <svg class="icon" aria-hidden="true"><use href="#i-th" xlink:href="#i-th"/></svg> Threads
             </a>
           </div>
         </div>
@@ -916,7 +928,7 @@
             y te respondemos con disponibilidad y opciones.
           </p>
           <a class="btn btn-wa" href="https://wa.me/524445817329" target="_blank" rel="noopener">
-            <svg class="icon"><use href="#i-wa"/></svg>
+            <svg class="icon" aria-hidden="true"><use href="#i-wa" xlink:href="#i-wa"/></svg>
             Hacer pedido
           </a>
         </div>
@@ -946,11 +958,10 @@
 
   <script>
     // =========================
-    // CONFIG (ajusta solo si quieres)
+    // CONFIG
     // =========================
     const WHATSAPP_NUMBER = "524445817329";
 
-    // Si un dia renombras archivos, cambia aqui:
     const ASSETS = {
       hero: "IMG_1365.jpeg",
       logo: "IMG_1434.png",
@@ -958,25 +969,20 @@
       product2: "IMG_1365.jpeg"
     };
 
-    // Tus redes (si tienes links exactos, pegalos aqui)
+    // LINKS (YA CON TUS URLS)
     const LINKS = {
       instagram: "https://www.instagram.com/retrosportmx",
       facebook: "https://m.facebook.com/ElRetrosportMX/?",
-      linkedin: "#",
-      x: "#",
-      threads: "#"
+      linkedin: "https://www.linkedin.com/company/retrosport/",
+      x: "https://x.com/retrosportmx?s=21",
+      threads: "https://www.threads.com/@retrosportmx?igshid=NTc4MTIwNjQ2YQ=="
     };
 
-    // =========================
-    // Helpers
-    // =========================
     const $ = (q)=>document.querySelector(q);
     const $$ = (q)=>Array.from(document.querySelectorAll(q));
 
-    // Year
     $("#year").textContent = new Date().getFullYear();
 
-    // Assets wiring
     $("#heroImg").src = ASSETS.hero;
     $("#logoTop").src = ASSETS.logo;
     $("#prodImg1").src = ASSETS.product1;
@@ -990,7 +996,6 @@
     $("#linkThreads").href = LINKS.threads;
     $("#linkThreads2").href = LINKS.threads;
 
-    // WhatsApp CTAs
     function waLink(text){
       return "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(text);
     }
@@ -1019,9 +1024,7 @@
       });
     });
 
-    // =========================
-    // Countries (full list, populated by JS)
-    // =========================
+    // Countries list
     const countries = [
       "Afghanistan","Albania","Algeria","Andorra","Angola","Antigua and Barbuda","Argentina","Armenia","Australia","Austria",
       "Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bhutan","Bolivia",
@@ -1051,11 +1054,7 @@
       return `<option value="${c}" ${sel}>${c}</option>`;
     }).join("");
 
-    // =========================
-    // Choice components
-    // - Patches: multi-select
-    // - Delivery: single-select
-    // =========================
+    // Choices
     function setupChoices(containerId, {single=false, groupAttr=null} = {}){
       const container = document.getElementById(containerId);
       const items = Array.from(container.querySelectorAll(".choice"));
@@ -1081,7 +1080,6 @@
     const getPatches = setupChoices("patches", {single:false});
     const getDelivery = setupChoices("delivery", {single:true, groupAttr:"group"});
 
-    // Delivery hint
     $$("#delivery .choice").forEach(ch=>{
       ch.addEventListener("click", ()=>{
         const val = ch.dataset.value || "";
@@ -1089,9 +1087,7 @@
       });
     });
 
-    // =========================
     // Color preview
-    // =========================
     const colorInput = $("#colorName");
     const swatch = $("#swatch");
     const swatchText = $("#swatchText");
@@ -1099,7 +1095,6 @@
     function colorToCss(name){
       if(!name) return "";
       const t = name.trim().toLowerCase();
-
       const map = {
         "rojo":"red",
         "azul":"dodgerblue",
@@ -1118,7 +1113,6 @@
         "cafe":"saddlebrown",
         "café":"saddlebrown"
       };
-
       if(map[t]) return map[t];
       return t;
     }
@@ -1126,7 +1120,6 @@
     colorInput.addEventListener("input", ()=>{
       const v = colorInput.value;
       const css = colorToCss(v);
-
       const test = document.createElement("div");
       test.style.color = css;
       const ok = test.style.color !== "";
@@ -1135,9 +1128,7 @@
       swatch.style.borderColor = ok ? "rgba(255,255,255,.25)" : "rgba(255,255,255,.16)";
     });
 
-    // =========================
     // Submit => WhatsApp message
-    // =========================
     $("#orderForm").addEventListener("submit", (e)=>{
       e.preventDefault();
 
@@ -1148,10 +1139,7 @@
         fullName: $("#fullName").value.trim(),
         product: $("#product").value.trim(),
         size: $("#size").value,
-
-        // === MANGA (AGREGADO) ===
         manga: document.querySelector('input[name="manga"]:checked')?.value || "Manga corta",
-
         cityState: $("#cityState").value.trim(),
         qty: $("#qty").value,
         playerName: $("#playerName").value.trim(),
@@ -1180,10 +1168,7 @@
       lines.push("PRODUCTO");
       lines.push(`- Producto/Camisa: ${data.product}`);
       lines.push(`- Talla: ${data.size}`);
-
-      // === MANGA EN WHATSAPP (AGREGADO) ===
       lines.push(`- Tipo de manga: ${data.manga}`);
-
       lines.push(`- Cantidad: ${data.qty}`);
       if(data.colorName) lines.push(`- Color/Variacion: ${data.colorName}`);
       if(data.playerName) lines.push(`- Jugador: ${data.playerName}`);
@@ -1203,9 +1188,7 @@
       window.open(waLink(lines.join("\n")), "_blank", "noopener");
     });
 
-    // =========================
-    // Image fallback (shows if broken)
-    // =========================
+    // Image fallback
     function attachImgFallback(img){
       img.addEventListener("error", ()=>{
         img.style.display = "none";
