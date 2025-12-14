@@ -2,8 +2,9 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>RetroSport MX</title>
+  <title>Retro Sport</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     body {
       margin: 0;
@@ -12,64 +13,161 @@
       color: #ffffff;
       text-align: center;
     }
+
     header {
-      padding: 40px 20px;
+      padding: 60px 20px;
     }
+
+    header img {
+      max-width: 120px;
+      margin-bottom: 20px;
+    }
+
     h1 {
-      font-size: 2.5rem;
+      font-size: 42px;
       margin-bottom: 10px;
     }
-    p {
-      color: #cccccc;
-      max-width: 600px;
-      margin: 0 auto 30px;
-      font-size: 1.1rem;
+
+    .slogan {
+      font-size: 18px;
+      opacity: 0.85;
+      margin-bottom: 30px;
     }
+
     .btn {
       display: inline-block;
+      padding: 18px 35px;
       background: #25D366;
       color: #000;
-      padding: 15px 25px;
-      border-radius: 30px;
+      font-size: 18px;
+      border-radius: 40px;
       text-decoration: none;
       font-weight: bold;
-      font-size: 1.1rem;
     }
+
     section {
-      padding: 40px 20px;
+      padding: 60px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 17px;
+      line-height: 1.6;
+      opacity: 0.9;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+    }
+
+    ul li {
+      margin: 10px 0;
+      font-size: 16px;
+    }
+
+    .gallery img {
+      width: 100%;
+      max-width: 280px;
+      border-radius: 12px;
+      margin: 15px;
+    }
+
+    footer {
+      padding: 30px 20px;
+      font-size: 14px;
+      opacity: 0.7;
       border-top: 1px solid #222;
     }
-    footer {
-      padding: 20px;
-      font-size: 0.9rem;
-      color: #777;
+
+    .social a {
+      margin: 0 10px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
     }
   </style>
 </head>
+
 <body>
 
+  <!-- HERO -->
   <header>
-    <h1>RetroSport MX</h1>
-    <p>
-      Jerseys retro, ediciones especiales y versiones jugador.
-      Calidad premium y envíos a todo México.
-    </p>
-    <a class="btn" href="https://wa.me/524445817329" target="_blank">
-      📲 Contáctanos por WhatsApp
+    <!-- LOGO -->
+    <img src="logo.png" alt="Retro Sport Logo">
+
+    <h1>Retro Sport</h1>
+    <div class="slogan">The classic never ends</div>
+
+    <a class="btn" 
+       href="https://wa.me/524445817329?text=Hola%20quiero%20hacer%20un%20pedido%20con%20Retro%20Sport">
+       Hacer pedido
     </a>
   </header>
 
+  <!-- QUIÉNES SOMOS -->
   <section>
-    <h2>¿Por qué RetroSport?</h2>
+    <h2>Quiénes somos</h2>
     <p>
-      • Tela tecnológica<br>
-      • Detalles premium<br>
-      • Verificación JRC
+      Retro Sport es una marca deportiva dedicada a la comercialización minorista
+      y mayorista de productos originales, jerseys retro y ediciones especiales.
+    </p>
+    <p>
+      Operamos con procesos certificados bajo estándares de calidad como
+      <strong>ISO 9001</strong> y <strong>Six Sigma White Belt</strong>,
+      integrando logística, importación y exportación de productos y servicios
+      dentro y fuera de México.
     </p>
   </section>
 
+  <!-- SERVICIOS -->
+  <section>
+    <h2>Nuestros servicios</h2>
+    <ul>
+      <li>✔ Venta de jerseys retro y de colección</li>
+      <li>✔ Ediciones especiales y conmemorativas</li>
+      <li>✔ Pedidos personalizados</li>
+      <li>✔ Distribución mayorista</li>
+      <li>✔ Logística nacional e internacional</li>
+    </ul>
+  </section>
+
+  <!-- GALERÍA (TÚ AGREGAS FOTOS) -->
+  <section>
+    <h2>Más de 20,000 productos oficiales</h2>
+    <p>Pregunta por el jersey de tus sueños</p>
+
+    <div class="gallery">
+      <img src="jersey1.jpg" alt="Jersey Retro">
+      <img src="hero.jpg" alt="Colección Retro">
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section>
+    <h2>Contacto</h2>
+    <p>📞 WhatsApp: 444 581 7329</p>
+    <p>📧 contacto.retrosportmx@gmail.com</p>
+
+    <div class="social">
+      <a href="https://www.instagram.com/retrosportmx" target="_blank">Instagram</a>
+      <a href="https://facebook.com/EIRetrosportMX" target="_blank">Facebook</a>
+      <a href="https://www.linkedin.com/company/retrosport/" target="_blank">LinkedIn</a>
+      <a href="https://x.com/retrosportmx" target="_blank">X</a>
+      <a href="https://www.threads.com/@retrosportmx" target="_blank">Threads</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
   <footer>
-    © 2025 RetroSport MX
+    © RetroSport 2025
   </footer>
 
 </body>
