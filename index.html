@@ -5,6 +5,20 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="theme-color" content="#0b0b12" />
   <title>Retro Sport</title>
+
+  <!-- =========================
+       ICONOS / PWA (Chrome / Safari iOS / Android / Tablets)
+       Cambia rutas si tus iconos están en otro lugar
+  ========================= -->
+  <link rel="icon" href="icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="icons/favicon-16.png" sizes="16x16" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" sizes="180x180">
+  <link rel="mask-icon" href="icons/safari-pinned-tab.svg" color="#8b5cf6">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="apple-mobile-web-app-title" content="Retro Sport">
+  <meta name="application-name" content="Retro Sport">
+  <meta name="msapplication-TileColor" content="#0b0b12">
+
   <style>
     :root{
       --bg:#07070c;
@@ -113,7 +127,7 @@
       .mobile-panel.show{display:block}
     }
 
-    /* Quitar el boton verde del menu en celular (el que marcaste) */
+    /* Quitar el boton verde del menu en celular */
     @media (max-width: 520px){
       #ctaWaTop{display:none !important;}
       .nav-inner{gap:10px}
@@ -155,6 +169,7 @@
     .subtitle{color:var(--muted); font-size:15px; line-height:1.55; margin:0 0 16px}
     .hero-actions{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:14px}
     .note{color:rgba(233,233,242,.70); font-size:12.5px; margin-top:12px}
+
     .social-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
     .chip{
       display:inline-flex; align-items:center; gap:10px;
@@ -214,6 +229,24 @@
     }
     .mini h4{margin:0 0 6px; font-size:14px}
     .mini p{margin:0; color:var(--muted); font-size:13px; line-height:1.4}
+
+    /* Navegacion rapida en bienvenida */
+    .quicknav{
+      display:flex; flex-wrap:wrap; gap:10px;
+      margin-top:14px;
+    }
+    .qbtn{
+      font-size:12.5px;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      color:rgba(233,233,242,.90);
+      cursor:pointer;
+      transition:.15s;
+    }
+    .qbtn:hover{border-color: rgba(139,92,246,.35); background: rgba(139,92,246,.10)}
+    .qbtn:active{transform: translateY(1px)}
 
     /* Sections */
     section{padding: 22px 0}
@@ -342,6 +375,11 @@
     }
     .choice.selected .radio{border-color: rgba(37,211,102,.9)}
     .choice.selected .radio::after{background: rgba(37,211,102,.9)}
+    .choice.selected{
+      border-color: rgba(37,211,102,.35);
+      box-shadow: 0 0 0 4px rgba(37,211,102,.10);
+      background: rgba(37,211,102,.06);
+    }
     .choice .c-title{font-weight:700; font-size:13.5px}
     .choice .c-sub{color:var(--muted); font-size:12.5px; margin-top:2px}
 
@@ -389,7 +427,7 @@
       font-size:12.5px;
     }
 
-    /* === MANGAS (radio pro) === */
+    /* === MANGAS (mejorado) === */
     .radio-group{display:flex; gap:12px; flex-wrap:wrap;}
     .radio-option{
       display:flex;
@@ -409,6 +447,11 @@
     }
     .radio-option:active{transform: translateY(1px)}
     .radio-option input{accent-color: var(--green);}
+    .radio-option.selected{
+      border-color: rgba(37,211,102,.35);
+      box-shadow: 0 0 0 4px rgba(37,211,102,.10);
+      background: rgba(37,211,102,.06);
+    }
 
     /* Guia de tallas */
     .tabs{
@@ -449,6 +492,34 @@
       white-space:nowrap;
     }
     th{color:rgba(233,233,242,.95); font-size:12.5px; letter-spacing:.3px; text-transform:uppercase;}
+
+    /* Seccion Calidad */
+    .badge-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
+    .badge{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      font-size:13px;
+      color:rgba(233,233,242,.90);
+    }
+    .badge b{color:rgba(233,233,242,.98)}
+    .metrics{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+    @media (max-width: 900px){ .metrics{grid-template-columns:1fr} }
+    .metric{
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.02);
+      padding:14px;
+    }
+    .metric h4{margin:0 0 6px; font-size:14px}
+    .metric p{margin:0; color:var(--muted); font-size:13px; line-height:1.45}
   </style>
 </head>
 
@@ -483,6 +554,7 @@
           <a href="#catalogo">Catalogo</a>
           <a href="#jerseys-retro">Jerseys Retro</a>
           <a href="#colecciones">Colecciones</a>
+          <a href="#calidad">Calidad</a>
           <a href="#guiatallas">Guia de tallas</a>
           <a href="#comprar">Comprar</a>
           <a href="#contacto">Contacto</a>
@@ -504,6 +576,7 @@
         <a href="#catalogo">Catalogo</a>
         <a href="#jerseys-retro">Jerseys Retro</a>
         <a href="#colecciones">Colecciones</a>
+        <a href="#calidad">Calidad</a>
         <a href="#guiatallas">Guia de tallas</a>
         <a href="#comprar">Comprar</a>
         <a href="#contacto">Contacto</a>
@@ -534,6 +607,16 @@
               <svg class="icon"><use href="#i-cart"></use></svg>
               Comprar producto
             </a>
+          </div>
+
+          <!-- Navegacion rapida -->
+          <div class="quicknav" aria-label="Navegacion rapida">
+            <button class="qbtn" data-go="#catalogo">Ver catalogo</button>
+            <button class="qbtn" data-go="#jerseys-retro">Jerseys retro</button>
+            <button class="qbtn" data-go="#colecciones">Colecciones</button>
+            <button class="qbtn" data-go="#calidad">Calidad</button>
+            <button class="qbtn" data-go="#guiatallas">Guia de tallas</button>
+            <button class="qbtn" data-go="#contacto">Contacto</button>
           </div>
 
           <div class="social-row" aria-label="Redes sociales">
@@ -674,8 +757,8 @@
           </div>
           <div class="product-body">
             <span class="tag">Colecciones</span>
-            <h3>Colecciones especiales</h3>
-            <p>Piezas seleccionadas y modelos de coleccion.</p>
+            <h3>Colecciones</h3>
+            <p>Piezas seleccionadas (sin repeticion de videos).</p>
           </div>
         </a>
       </div>
@@ -713,39 +796,90 @@
       </div>
     </section>
 
-    <!-- COLECCIONES -->
+    <!-- COLECCIONES (YA SIN "destacada" NI "alternativa") -->
     <section id="colecciones">
       <div class="section-title">
         <h2>Colecciones</h2>
-        <p>Ediciones especiales y piezas seleccionadas.</p>
+        <p>Selecciones por temporada, jugador, parches y ediciones.</p>
       </div>
 
-      <div class="products">
-        <article class="card product-card">
-          <div class="product-img">
-            <video autoplay muted loop playsinline webkit-playsinline preload="auto">
-              <source src="video-coleccion.mp4" type="video/mp4">
-            </video>
-          </div>
-          <div class="product-body">
-            <span class="tag">Coleccion</span>
-            <h3>Coleccion destacada</h3>
-            <p>Modelos top con enfoque en detalle y presentacion.</p>
-          </div>
-        </article>
+      <div class="grid-2">
+        <div class="card pad">
+          <p class="subtitle" style="margin:0">
+            Aqui agrupamos piezas por criterios de coleccion: parches especiales, tipografias oficiales, temporadas iconicas y ediciones limitadas.
+          </p>
+          <ul class="list">
+            <li class="li"><span class="dot"></span> Colecciones por pedido (equipo + temporada + jugador + talla)</li>
+            <li class="li"><span class="dot"></span> Version jugador / version fan (segun disponibilidad)</li>
+            <li class="li"><span class="dot"></span> Opciones de parches: liga, champions, final, mundial</li>
+          </ul>
+        </div>
 
-        <article class="card product-card">
+        <div class="card product-card" aria-label="Video colecciones">
           <div class="product-img">
+            <!-- Usa un video diferente para no repetir. Si no tienes este archivo, cambia el nombre -->
             <video autoplay muted loop playsinline webkit-playsinline preload="auto">
-              <source src="video-retro.mp4" type="video/mp4">
+              <source src="video-colecciones-main.mp4" type="video/mp4">
             </video>
           </div>
           <div class="product-body">
-            <span class="tag">Coleccion</span>
-            <h3>Coleccion alternativa</h3>
-            <p>Si no lo ves aqui, lo buscamos por pedido.</p>
+            <span class="tag">Colecciones</span>
+            <h3>Galeria de coleccion</h3>
+            <p>Video unico para esta seccion (sin repetir los del catalogo).</p>
           </div>
-        </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CALIDAD Y CERTIFICACIONES (ISO9001 + Six Sigma White Belt + Mediciones) -->
+    <section id="calidad">
+      <div class="section-title">
+        <h2>Calidad y certificaciones</h2>
+        <p>Control, medicion y consistencia en cada pedido.</p>
+      </div>
+
+      <div class="card pad">
+        <p class="subtitle" style="margin:0">
+          Nuestro proceso de calidad se basa en verificacion visual, mediciones y estandarizacion del pedido.
+          Esto reduce errores de talla, parches, tipografia y acabado.
+        </p>
+
+        <div class="badge-row" aria-label="Certificaciones">
+          <div class="badge"><b>ISO 9001:2015</b> • Enfoque de sistema de gestion de calidad</div>
+          <div class="badge"><b>Six Sigma</b> • White Belt • Mejora continua</div>
+          <div class="badge"><b>Checklist</b> • Validacion antes de envio</div>
+        </div>
+
+        <div class="metrics">
+          <div class="metric">
+            <h4>Mediciones (talla y ajuste)</h4>
+            <p>
+              Medimos largo y pecho (cm) con referencia de tabla. Si el modelo varia, se notifica antes de confirmar.
+            </p>
+          </div>
+          <div class="metric">
+            <h4>Parches y tipografias</h4>
+            <p>
+              Verificamos ubicacion, alineacion, borde y adhesion. Tipografia: estilo, numero y nombre segun pedido.
+            </p>
+          </div>
+          <div class="metric">
+            <h4>Inspeccion visual final</h4>
+            <p>
+              Costuras, cuello, mangas, logos, manchas, y acabado general. Si algo no pasa, se detiene el envio.
+            </p>
+          </div>
+          <div class="metric">
+            <h4>Evidencia para el cliente</h4>
+            <p>
+              Confirmacion por WhatsApp con datos completos (modelo, talla, manga, parches y entrega) antes de salir.
+            </p>
+          </div>
+        </div>
+
+        <div class="hint" style="margin-top:12px">
+          Nota: Si quieres, aqui tambien podemos agregar “codigos de verificacion JRC” como apartado fijo.
+        </div>
       </div>
     </section>
 
@@ -783,6 +917,10 @@
                 <tr><td>2XL</td><td>58 cm</td><td>77 cm</td></tr>
               </tbody>
             </table>
+          </div>
+
+          <div class="hint" style="margin-top:10px">
+            Tip pro: si estas entre dos tallas, elige la mas grande (mejor ajuste y comodidad).
           </div>
         </div>
 
@@ -859,6 +997,7 @@
               <label for="product">Producto / Camisa</label>
               <input id="product" name="product" type="text" placeholder="Ej. Manchester United 2008 Final" required />
             </div>
+
             <div>
               <label for="size">Talla</label>
               <select id="size" name="size" required>
@@ -868,12 +1007,12 @@
 
               <div style="margin-top:12px">
                 <label>Tipo de manga</label>
-                <div class="radio-group">
-                  <label class="radio-option">
+                <div class="radio-group" id="mangaGroup">
+                  <label class="radio-option" data-radio="manga">
                     <input type="radio" name="manga" value="Manga corta" checked>
                     Manga corta
                   </label>
-                  <label class="radio-option">
+                  <label class="radio-option" data-radio="manga">
                     <input type="radio" name="manga" value="Manga larga">
                     Manga larga
                   </label>
@@ -1099,7 +1238,6 @@
       logo: "IMG_1434.png"
     };
 
-    // LINKS reales (los que me mandaste)
     const LINKS = {
       instagram: "https://www.instagram.com/retrosportmx",
       facebook: "https://m.facebook.com/ElRetrosportMX/?",
@@ -1143,15 +1281,24 @@
       a.addEventListener("click", ()=> mobilePanel.classList.remove("show"));
     });
 
-    // Smooth scroll
+    // Smooth scroll (menu + cualquier botón con data-go)
+    function goToHash(hash){
+      const el = document.querySelector(hash);
+      if(el) el.scrollIntoView({behavior:"smooth", block:"start"});
+    }
     $$(".links a, .mobile-panel a").forEach(a=>{
       a.addEventListener("click", (e)=>{
         const href = a.getAttribute("href");
         if(href && href.startsWith("#")){
           e.preventDefault();
-          const el = document.querySelector(href);
-          if(el) el.scrollIntoView({behavior:"smooth", block:"start"});
+          goToHash(href);
         }
+      });
+    });
+    $$(".qbtn").forEach(b=>{
+      b.addEventListener("click", ()=>{
+        const target = b.getAttribute("data-go");
+        if(target) goToHash(target);
       });
     });
 
@@ -1166,7 +1313,7 @@
     });
 
     // =========================
-    // Autoplay seguro en iOS (si Safari bloquea, intentamos play())
+    // Autoplay seguro en iOS
     // =========================
     function forcePlayVideos(){
       document.querySelectorAll("video[autoplay]").forEach(v=>{
@@ -1247,6 +1394,22 @@
         $("#deliveryHint").textContent = "Seleccionado: " + val;
       });
     });
+
+    // =========================
+    // Manga selector visual
+    // =========================
+    function refreshMangaUI(){
+      const selected = document.querySelector('input[name="manga"]:checked')?.value;
+      $$("#mangaGroup .radio-option").forEach(opt=>{
+        const v = opt.querySelector("input")?.value;
+        if(v === selected) opt.classList.add("selected");
+        else opt.classList.remove("selected");
+      });
+    }
+    $$("#mangaGroup input[name='manga']").forEach(r=>{
+      r.addEventListener("change", refreshMangaUI);
+    });
+    refreshMangaUI();
 
     // =========================
     // Color preview
